@@ -133,23 +133,44 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="route{{route('admin.dashboard')}}" class="nav-link">
+            <a href="{{route('admin.dashboard')}}" class="nav-link {{ Request::is('/') ? 'action' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Admin
+                Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
                </li>
 
                <li class="nav-item">
-                <a href="{{route('admin.index')}}" class="nav-link">
-                  <i class="nav-icon fas fa-th"></i>
+                <a href="{{route('admin.index')}}" class="nav-link {{ Request::is('admin.index*') ? 'action' : '' }}">
+                  <i class="nav-icon fas fa-users"></i>
                   <p>
                     Users
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
+
+               <li class="nav-item">
+                <a href="{{ route('admin.kategori') }}" class="nav-link {{ Request::is('admin.kategori*') ? 'action' : '' }}">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>
+                    Kategori
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                   </li>
+
+                   <li class="nav-item">
+                    <a href="{{ route('admin.produk') }}" class="nav-link {{ Request::is('admin.produk*') ? 'action' : '' }}">
+                      <i class="nav-icon fas fa-list"></i>
+                      <p>
+                        Produk
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                       </li>
+    
                    </li>
                    <li class="nav-item">
                     <a href="{{route('logout')}}" class="nav-link active">

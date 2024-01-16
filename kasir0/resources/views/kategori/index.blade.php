@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">User</h1>
+            <h1 class="m-0">Category</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data User</li>
+              <li class="breadcrumb-item active">Category</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,10 +24,9 @@
       <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <a href="{{route('admin.user.create')}}" class="btn btn-primary mb-3">Tambah Data</a>
+                <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary mb-3">Add</a>
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Responsive Hover Table</h3>
   
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -48,22 +47,20 @@
                       <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Email</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $dt)
+                        {{-- @foreach ($data as $dt) --}}
                         <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$dt->name}}</td>
-                            <td>{{$dt->email}}</td>
+                            <td>1</td>
+                            <td>Snack</td>
                             <td>
-                                <a href="{{route('admin.user.edit',['id' =>$dt->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
-                                <a data-toggle="modal" data-target="#modal-hapus{{$dt->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
+                                <a href=""class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
+                                <a data-toggle="modal" data-target=""class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
                             </td>
                           </tr>
-                          <div class="modal fade" id="modal-hapus{{$dt->id}}">
+                          {{-- <div class="modal fade" id="">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -88,9 +85,9 @@
                               <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
-                          </div>
+                          </div> --}}
                           <!-- /.modal -->
-                        @endforeach
+                        {{-- @endforeach --}}
                   
                      
                     </tbody>

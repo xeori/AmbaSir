@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function dashboard(){
         return view("dashboard");
-        return abort(403);
+        
     }
     
     public function index(){
@@ -70,7 +70,7 @@ public function update(Request $request, $id){
 
             User::whereId($id)->update($data);
 
-            return redirect()->route('index');
+            return redirect()->route('admin.index');
 }
 
 public function delete(Request $request, $id){
