@@ -24,7 +24,7 @@
       <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary mb-3">Add</a>
+                <a href="{{ route('admin.kategori.create') }}" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Add</a>
               <div class="card">
                 <div class="card-header">
   
@@ -51,16 +51,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($data as $dt) --}}
+                        @foreach ($data as $dt)
                         <tr>
-                            <td>1</td>
-                            <td>Snack</td>
+                          <td>{{$loop->iteration}}</td>
+                          <td>{{$dt->name}}</td>
                             <td>
-                                <a href=""class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
-                                <a data-toggle="modal" data-target=""class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
+                              <a href="{{route('admin.kategori.edit',['id' =>$dt->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
+                              <a data-toggle="modal" data-target="#modal-hapus{{$dt->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
                             </td>
                           </tr>
-                          {{-- <div class="modal fade" id="">
+                          <div class="modal fade" id="">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -85,13 +85,44 @@
                               <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
-                          </div> --}}
+                          </div> 
+
+                          <div class="modal fade" id="modal-hapus{{$dt->id}}">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Confirm Delete Category?</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Are you sure dude? deleted data <b>{{$dt->name}}</b></p>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <form action="{{route('admin.kategori.destroy', ['id' =>$dt->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                    </form>
+                                </div>
+                              </div>
+                              <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                          </div>
                           <!-- /.modal -->
-                        {{-- @endforeach --}}
+                        @endforeach
                   
                      
                     </tbody>
                   </table>
+                  <div class="d-flex justify-content-center">
+                    
+                    {{ $data -> links() }}
+                  </div>
                 </div>
                 <!-- /.card-body -->
               </div>

@@ -34,6 +34,10 @@ Route::get('/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
 
 Route::get('/kategori',[KategoriController::class,'index'])->name('kategori');
 Route::get('kategori/create',[KategoriController::class,'create'])->name('kategori.create');
+Route::post('kategori/store',[KategoriController::class,'store'])->name('kategori.store');
+Route::get('kategori/edit/{id}',[KategoriController::class,'edit'])->name('kategori.edit');
+Route::put('kategori/update/{id}',[KategoriController::class,'update'])->name('kategori.update');
+Route::delete('/destroy/{id}',[KategoriController::class,'destroy'])->name('kategori.destroy');
 
 Route::get('/produk',[ProdukController::class,'index'])->name('produk');
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kasir | Admin</title>
+  <title>Admin|Kasir</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="{{asset('lte/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('lte/plugins/summernote/summernote-bs4.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('lte/vendor/sweetalert2/sweetalert2.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -143,7 +144,7 @@
                </li>
 
                <li class="nav-item">
-                <a href="{{route('admin.index')}}" class="nav-link {{ Request::is('admin.index*') ? 'action' : '' }}">
+                <a href="{{route('admin.index')}}" class="nav-link {{ Request::is('admin.index') ? 'action' : '' }}">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
                     Users
@@ -152,7 +153,7 @@
                 </a>
 
                <li class="nav-item">
-                <a href="{{ route('admin.kategori') }}" class="nav-link {{ Request::is('admin.kategori*') ? 'action' : '' }}">
+                <a href="{{ route('admin.kategori') }}" class="nav-link {{ Request::is('admin.kategori') ? 'action' : '' }}">
                   <i class="nav-icon fas fa-list"></i>
                   <p>
                     Kategori
@@ -162,7 +163,7 @@
                    </li>
 
                    <li class="nav-item">
-                    <a href="{{ route('admin.produk') }}" class="nav-link {{ Request::is('admin.produk*') ? 'action' : '' }}">
+                    <a href="{{ route('admin.produk') }}" class="nav-link {{ Request::is('admin.produk') ? 'action' : '' }}">
                       <i class="nav-icon fas fa-list"></i>
                       <p>
                         Produk
@@ -239,5 +240,6 @@
 <script src="{{asset('lte/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('lte/dist/js/pages/dashboard.js')}}"></script>
+<script src="{{ asset('lte/vendor/sweetalert2/sweetalert2.min.js') }}"></script>
 </body>
 </html>
