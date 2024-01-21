@@ -20,7 +20,7 @@
       </a>
 
      <li class="nav-item">
-      <a href="{{ route('admin.kategori') }}" class="nav-link {{Route::currentRouteName() == 'kategori' ? 'active' : '' }}">
+      <a href="{{ route('admin.kategori') }}" class="nav-link active">
         <i class="nav-icon fas fa-list"></i>
         <p>
           Kategori
@@ -110,7 +110,7 @@
                         <!-- /.card-body -->
         
                         <div class="card-footer">
-                            <a href="{{ $data }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali</a>
+                            <a href="{{ $kategori }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali</a>
                           <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit</button>
                         </div>
                       </form>

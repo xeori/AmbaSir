@@ -20,7 +20,7 @@
       </a>
 
      <li class="nav-item">
-      <a href="{{ route('admin.kategori') }}" class="nav-link {{Route::currentRouteName() == 'kategori' ? 'active' : '' }}">
+      <a href="{{ route('admin.kategori') }}" class="nav-link active">
         <i class="nav-icon fas fa-list"></i>
         <p>
           Kategori
@@ -112,18 +112,18 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $dt)
+                        @foreach ($kategori as $ktg)
                         <tr>
                           <td>{{$loop->iteration}}</td>
-                          <td>{{$dt->name}}</td>
+                          <td>{{$ktg->name}}</td>
                             <td>
-                              <a href="{{route('admin.kategori.edit',['id' =>$dt->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
-                              <a data-toggle="modal" data-target="#modal-hapus{{$dt->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
+                              <a href="{{route('admin.kategori.edit',['id' =>$ktg->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
+                              <a data-toggle="modal" data-target="#modal-hapus{{$ktg->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
                             </td>
                           </tr>
 
 
-                          <div class="modal fade" id="modal-hapus{{$dt->id}}">
+                          <div class="modal fade" id="modal-hapus{{$ktg->id}}">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -133,10 +133,10 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <p>Are you sure dude? deleted data <b>{{$dt->name}}</b></p>
+                                  <p>Are you sure dude? deleted data <b>{{$ktg->name}}</b></p>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-                                    <form action="{{route('admin.kategori.destroy', ['id' =>$dt->id]) }}" method="POST">
+                                    <form action="{{route('admin.kategori.destroy', ['id' =>$ktg->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
@@ -157,7 +157,7 @@
                   </table>
                   <div class="d-flex justify-content-center">
                     
-                    {{ $data -> links() }}
+                    {{ $kategori -> links() }}
                   </div>
                 </div>
                 <!-- /.card-body -->

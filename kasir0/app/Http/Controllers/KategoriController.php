@@ -15,15 +15,10 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $data = Kategori::paginate(5);
-        $data = [
-            'title'  => 'Manajemen Kategori',
-            'content' => 'kategori.index',
-            'data' => Kategori::paginate(5),
-            ];
-            
+        $kategori = Kategori::paginate(5);
+      
            
-            return view('kategori.index', $data,compact('data'));
+            return view('kategori.index',compact('kategori'));
     }
 
     /**
@@ -32,12 +27,9 @@ class KategoriController extends Controller
     public function create()
     {
        
-        $data = [
-            'title'  => 'Manajemen|Kategori',
-            'content' => 'kategori.create'
-            ];
-            $data = route('admin.kategori');
-            return view('kategori.create', compact('data'));
+      
+            $kategori = route('admin.kategori');
+            return view('kategori.create', compact('kategori'));
     }
 
     /**
@@ -70,8 +62,8 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Kategori::find($id);
-        return view('kategori.edit',compact('data'));
+        $kategori = Kategori::find($id);
+        return view('kategori.edit',compact('kategori'));
     }
 
     /**
@@ -83,11 +75,10 @@ class KategoriController extends Controller
             'name' => 'required|unique:kategoris'
         ]);
         
-        $data['name'] = $request->name;
+        $kategori['name'] = $request->name;
         
     
-        Kategori::create($data);
-        Alert::success('Success','data added successfully!');
+        Kategori::whereId($id)->update($kategori);
         return redirect()->route('admin.kategori');
     }
 
@@ -96,17 +87,17 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Kategori::find($id);
+        $kategori = Kategori::find($id);
 
-        // if($data){
-        //     $data->delete();
+        // if($kategori){
+        //     $kategori->delete();
         // }
         // return redirect()->route('admin.kategori');
-        if (!$data) {
+        if (!$kategori) {
             return redirect()->route('admin.kategori')->with('error', 'Kategori tidak ditemukan');
         }
     
-        $data->delete();
+        $kategori->delete();
     
         return redirect()->route('admin.kategori')->with('success', 'Kategori berhasil dihapus');
     }

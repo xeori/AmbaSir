@@ -41,6 +41,11 @@ Route::put('kategori/update/{id}',[KategoriController::class,'update'])->name('k
 Route::delete('kategori/destroy/{id}',[KategoriController::class,'destroy'])->name('kategori.destroy');
 
 Route::get('/produk',[ProdukController::class,'index'])->name('produk');
+Route::get('produk/create',[ProdukController::class,'create'])->name('produk.create');
+Route::post('produk/store',[ProdukController::class,'store'])->name('produk.store');
+Route::get('produk/edit/{id}',[ProdukController::class,'edit'])->name('produk.edit');
+Route::put('produk/update/{id}',[ProdukController::class,'update'])->name('produk.update');
+Route::delete('produk/destroy/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
 
 Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');
 Route::get('transaksi/create',[TransaksiController::class,'create'])->name('transaksi.create');

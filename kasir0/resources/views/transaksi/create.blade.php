@@ -40,7 +40,7 @@
              </li>
 
              <li class="nav-item">
-              <a href="{{ route('admin.transaksi') }}" class="nav-link {{Route::currentRouteName() == 'transaksi' ? 'active' : '' }}">
+              <a href="{{ route('admin.transaksi') }}" class="nav-link active">
                 <i class="nav-icon fas fa-exchange-alt"></i>
                 <p>
                   Transaksi

@@ -20,7 +20,7 @@
       </a>
 
      <li class="nav-item">
-      <a href="{{ route('admin.kategori') }}" class="nav-link {{Route::currentRouteName() == 'kategori' ? 'active' : '' }}">
+      <a href="{{ route('admin.kategori') }}" class="nav-link active">
         <i class="nav-icon fas fa-list"></i>
         <p>
           Kategori
@@ -81,7 +81,7 @@
     <!-- /.content-header -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('admin.kategori.update',['id' => $data->id])}}" method="POST">
+            <form action="{{route('admin.kategori.update',['id' => $kategori->id])}}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -98,7 +98,7 @@
                         <div class="card-body">
                           <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{$data->name}}" placeholder="Enter name category">
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{$kategori->name}}" placeholder="Enter name category">
                           @error('name')
                           <div class="invalid-feedback">
                             {{$message}}
@@ -111,7 +111,7 @@
                         <!-- /.card-body -->
         
                         <div class="card-footer">
-                            <a href="{{ $data }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali</a>
+                            <a href="{{ $kategori }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali</a>
                           <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit</button>
                         </div>
                       </form>
