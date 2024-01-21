@@ -101,7 +101,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">Restoran</span>
+      <span class="brand-text font-weight-light">Kasir</span>
     </a>
 
     <!-- Sidebar -->
@@ -133,55 +133,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="{{route('admin.dashboard')}}" class="nav-link {{ Request::is('/') ? 'action' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-               </li>
-
-               <li class="nav-item">
-                <a href="{{route('admin.index')}}" class="nav-link {{ Request::is('admin.index') ? 'action' : '' }}">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Users
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-
-               <li class="nav-item">
-                <a href="{{ route('admin.kategori') }}" class="nav-link {{ Request::is('admin.kategori') ? 'action' : '' }}">
-                  <i class="nav-icon fas fa-list"></i>
-                  <p>
-                    Kategori
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                   </li>
-
-                   <li class="nav-item">
-                    <a href="{{ route('admin.produk') }}" class="nav-link {{ Request::is('admin.produk') ? 'action' : '' }}">
-                      <i class="nav-icon fas fa-list"></i>
-                      <p>
-                        Produk
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                       </li>
-    
-                   </li>
-                   <li class="nav-item">
-                    <a href="{{route('logout')}}" class="nav-link active">
-                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                      <p>
-                        Logout
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                       </li>
+              @yield('sidebar')
             </ul>
       </nav>
       <!-- /.sidebar-menu -->

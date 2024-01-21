@@ -67,12 +67,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Category</h1>
+            <h1 class="m-0">Transaksi</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Category</li>
+              <li class="breadcrumb-item active">Transaksi</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -85,7 +85,7 @@
       <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <a href="{{ route('admin.kategori.create') }}" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Add</a>
+                <a href="{{ route('admin.transaksi.create') }}" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Add</a>
               <div class="card">
                 <div class="card-header">
   
@@ -112,18 +112,18 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $dt)
+                        @foreach ($transaksi as $ts)
                         <tr>
                           <td>{{$loop->iteration}}</td>
-                          <td>{{$dt->name}}</td>
+                          <td>{{$ts->name}}</td>
                             <td>
-                              <a href="{{route('admin.kategori.edit',['id' =>$dt->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
-                              <a data-toggle="modal" data-target="#modal-hapus{{$dt->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
+                              <a href="{{route('admin.transaksi.edit',['id' =>$ts->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
+                              <a data-toggle="modal" data-target="#modal-hapus{{$ts->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
                             </td>
                           </tr>
 
 
-                          <div class="modal fade" id="modal-hapus{{$dt->id}}">
+                          <div class="modal fade" id="modal-hapus{{$ts->id}}">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -133,10 +133,10 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <p>Are you sure dude? deleted data <b>{{$dt->name}}</b></p>
+                                  <p>Are you sure dude? deleted data <b>{{$ts->name}}</b></p>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-                                    <form action="{{route('admin.kategori.destroy', ['id' =>$dt->id]) }}" method="POST">
+                                    <form action="{{route('admin.transaksi.destroy', ['id' =>$ts->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
@@ -157,7 +157,7 @@
                   </table>
                   <div class="d-flex justify-content-center">
                     
-                    {{ $data -> links() }}
+                    {{ $transaksi -> links() }}
                   </div>
                 </div>
                 <!-- /.card-body -->

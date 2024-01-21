@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,10 +38,16 @@ Route::get('kategori/create',[KategoriController::class,'create'])->name('katego
 Route::post('kategori/store',[KategoriController::class,'store'])->name('kategori.store');
 Route::get('kategori/edit/{id}',[KategoriController::class,'edit'])->name('kategori.edit');
 Route::put('kategori/update/{id}',[KategoriController::class,'update'])->name('kategori.update');
-Route::delete('/destroy/{id}',[KategoriController::class,'destroy'])->name('kategori.destroy');
+Route::delete('kategori/destroy/{id}',[KategoriController::class,'destroy'])->name('kategori.destroy');
 
 Route::get('/produk',[ProdukController::class,'index'])->name('produk');
 
+Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');
+Route::get('transaksi/create',[TransaksiController::class,'create'])->name('transaksi.create');
+Route::post('transaksi/store',[TransaksiController::class,'store'])->name('transaksi.store');
+Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('transaksi.edit');
+Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
+Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');
 
 Route::get('/user',[HomeController::class,'index'])->name('index');
 Route::get('/create',[HomeController::class,'create'])->name('user.create');
