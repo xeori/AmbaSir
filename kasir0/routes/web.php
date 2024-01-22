@@ -55,7 +55,7 @@ Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('tra
 Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
 Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');
 
-Route::get('/transaksidetail',[TransaksiDetailController::class,'index'])->name('transaksidetail');
+Route::get('/transaksidetail',[TransaksiDetailController::class,'index'])->name('index');
 Route::post('transaksidetail/create',[TransaksiDetailController::class,'create'])->name('transaksidetail.create');
 Route::post('transaksidetail/store',[TransaksiDetailController::class,'store'])->name('transaksidetail.store');
 Route::get('transaksidetail/edit/{id}',[TransaksiDetailController::class,'edit'])->name('transaksidetail.edit');

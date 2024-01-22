@@ -14,7 +14,7 @@ class TransaksiDetailController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -22,33 +22,21 @@ class TransaksiDetailController extends Controller
      */
     public function create(Request $request)
     {
+        
         // Mendeklarasikan objek $data
-        $data = new \stdClass();
-    
+        // $data = new \stdClass();
+   
         // Menambahkan properti ke objek $data
-        $data->produk_name = $request->produk_name;
-        $data->transaksi_id = $request->transaksi_id;
-        $data->qty = $request->qty;
-        $data->subtotal = $request->subtotal;
-        $data->produk_id = $request->produk_id;
-    
-        // Menampilkan nilai dari $data
-        // dd($data);
-    
-        // Deklarasi variabel lainnya
-        $produk = Produk::all();
-        $produk_id = $request->produk_id;
-        $p_detail = Produk::find($produk_id);
-
-        $transaksi = Transaksi::all();
-        $transaksi_id = $request->transaksi_id;
-        $p_detail = Transaksi::find($transaksi_id);
-    
-        // ...
-    
-        // Proses selanjutnya
-        TransaksiDetail::create((array) $data); // Jika metode create memerlukan array, konversikan objek menjadi array
-        return view('transaksi.index', compact('data', 'produk', 'p_detail'));
+        $data =[
+           'produk_id'=>$request->produk_id,
+           'produk_name'=>$request->produk_name,
+           'transaksi_id'=>$request->transaksi_id,
+           'qty' => $request->qty,
+           'subtotal' =>$request->subtotal,
+        ];
+     
+        TransaksiDetail::create($data);
+        return redirect()->back();
     }
     
     

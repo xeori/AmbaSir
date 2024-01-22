@@ -66,8 +66,9 @@
     <div class="content-header">
     <!-- /.content-header -->
     <section class="content">
-        <form action="{{ route('admin.produk.store') }} "method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.produk.update',['id' => $produk->id])}} "method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="row p-2">
             <div class="col-md-6">
               <div class="card">

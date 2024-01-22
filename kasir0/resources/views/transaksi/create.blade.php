@@ -94,16 +94,17 @@
               <br> 
               <form action="{{ route('admin.transaksidetail.create') }}" method="POST">
                 @csrf 
-                <input type="hidden" name="produk_id" id="produk_id" value="{{ $produk[0]->id }}">
-                <input type="hidden" name="produk" id="produk" value="{{ $produk->name }}">
-                <input type="hidden" name="transaksi_id" id="transaksi_id" value="{{ $transaksi_id->id }}">
+                <input type="hidden" name="produk_id"  value="{{ $p_detail->id }}">
+                <input type="hidden" name="produk_name"  value="{{ $p_detail->name }}">
+                <input type="hidden" name="transaksi_id"  value="{{ Request::segment(3) }}">
+                <input type="hidden" name="subtotal"  value="{{ $subtotal }}">
 
               <div class=" row mt-1">
                 <div class="col-md-4">
                   <label for="">Product Name</label>
                 </div>
                 <div class="col-md-8">
-                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->name : '' }}" name="nama_produk">
+                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->name : '' }}" disabled name="nama_produk">
 
                 </div>
               </div>
@@ -113,7 +114,7 @@
                   <label for="">Harga Satuan</label>
                 </div>
                 <div class="col-md-8">
-                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->harga : '' }}" name="harga">
+                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->harga : '' }}" disabled name="harga">
 
                 </div>
               </div>
@@ -246,4 +247,3 @@
 </script>
 
 @endsection
-

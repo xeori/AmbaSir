@@ -98,6 +98,7 @@ class ProdukController extends Controller
     
         // Lakukan update hanya pada kolom-kolom yang diubah
         Produk::whereId($id)->update($data);
+        return redirect()->route('admin.produk');
     }
 
     /**

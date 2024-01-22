@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
@@ -28,26 +29,18 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        $this->addtransaksi();
+        
+        $user = Auth::user();
+$data = [
+'user_id' => $user->id,
+'kasir_nama' => $user->name,
+'total' => '0',
+];
+       $transaksi = Transaksi::create($data);
+        return redirect()->route('admin.transaksi.edit', ['id' => $transaksi->id]);
 
-
-
-        $data = [
-            'title'  => 'Manajemen|Transaksi',
-            'content' => 'produk.create',
-            // 'produk' => $produk,
-            ];
-            $data = route('admin.transaksi');
-            $produk = Produk::all();
-            $produk_id = request('produk_id');
-            $p_detail = Produk::find($produk_id);
-            // dd($produk);
-
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $qty = $_POST["qty"];
-            }
-            return view('transaksi.create', compact('data','produk','p_detail'));
+        
+        
     
 }
 
@@ -72,7 +65,18 @@ class TransaksiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produk = Produk::get();
+
+            $produk_id = request('produk_id');
+            $p_detail = Produk::find($produk_id);
+            // dd($produk);
+
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $qty = $_POST["qty"];
+            }
+            return view('transaksi.create', compact('produk','p_detail'));
+      
     }
 
     /**
@@ -91,15 +95,9 @@ class TransaksiController extends Controller
         //
     }
 
-    function addtransaksi()
+   protected function addTransaksi()
     {
-        $data =[
-            'user_id' => auth()->user()->id,
-            'kasir_name' => auth()->user()->name,
-            'total' => 0,
-
-        ];
-        Transaksi::create($data);
-
+       
+       
     }
 }
