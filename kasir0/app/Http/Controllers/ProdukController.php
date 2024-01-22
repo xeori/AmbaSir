@@ -16,7 +16,7 @@ class ProdukController extends Controller
         $produk =Produk::get();
             
            
-            return view('produk.index', compact('produk'));
+            return view('produk.index',compact ('produk'));
     }
 
     /**

@@ -76,18 +76,35 @@
                   <label for="">Code Product</label>
                 </div>
                 <div class="col-md-8">
-                  <select name="produk_id" class="form-control" id="">
-                    <option value="">Product Name</option>
+                  <form action="" method="GET">
+                  <div class="u-flex">
+                  <select name="produk_id" class="form-control" id="produk_id">
+                    @foreach($produk as $p)
+                    <option value="{{$p->id}}">{{$p->name}}</option>
+                    @endforeach
                   </select>
+                  <button type="submit" class="btn btn-primary ">Pilih</button>
+                  </div> 
+                  </form>
                 </div>
               </div>
-      
+              
+              <!-- knt -->
+
+              <br> 
+              <form action="{{ route('admin.transaksidetail.create') }}" method="POST">
+                @csrf 
+                <input type="hidden" name="produk_id" id="produk_id" value="{{ $produk[0]->id }}">
+                <input type="hidden" name="produk" id="produk" value="{{ $produk->name }}">
+                <input type="hidden" name="transaksi_id" id="transaksi_id" value="{{ $transaksi_id->id }}">
+
               <div class=" row mt-1">
                 <div class="col-md-4">
                   <label for="">Product Name</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" name="nama_produk">
+                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->name : '' }}" name="nama_produk">
+
                 </div>
               </div>
       
@@ -96,32 +113,28 @@
                   <label for="">Harga Satuan</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" name="harga_satuan">
+                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->harga : '' }}" name="harga">
+
                 </div>
               </div>
-      
-              <div class=" row mt-1">
-                <div class="col-md-4">
-                  <label for="">QTY</label>
-                </div>
-                <div class="col-md-8">
-                  <div class="d-flex">
-                    <button class="btn btn-primary"><i class="fas fa-minus"></i></button>
-                    <input type="number" class="form-control" name="qty">
-                    <button class="btn btn-primary"><i class="fas fa-plus"></i></button>
-                  </div>
-                </div>
-              </div>
-      
-              <div class=" row mt-1">
-                <div class="col-md-4">
-                  
-                </div>
-                <div class="col-md-8">
-                  <h5>Subtotal : Rp 20000</h5>
-                </div>
-              </div>
-      
+
+              <div class="row mt-1">
+                      <div class="col-md-4">
+                        <!-- Tambahkan elemen ini untuk menampung nilai qty -->
+                        <input type="hidden" id="hiddenQty" value="1">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="d-flex">
+                          <button type="button" class="btn btn-primary" onclick="updateQty(-1)"><i class="fas fa-minus"></i></button>
+                          <input type="number" class="form-control" name="qty" id="qty" value="1" min="1" oninput="updateSubtotal()">
+                          <button type="button" class="btn btn-primary" onclick="updateQty(1)"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <!-- Menampilkan harga dari database -->
+                        <!-- <h5>Harga: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5> -->
+                        <!-- Subtotal akan ditampilkan di bawah input qty -->
+                        <h5 id="subtotal">Subtotal: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5>
+                      </div>
+                    </div>
               <div class=" row mt-1">
                 <div class="col-md-4">
                   
@@ -131,10 +144,12 @@
                 <button type="sumbit" class="btn btn-primary">Tambah <i class="fas fa-arrow-right"></i></button>
                 </div>
               </div>
-      
+              </form>
             </div>
           </div>
         </div>
+
+       
   
         <div class="col-md-6">
           <div class="card">
@@ -190,7 +205,45 @@
         </div>
       </div>
       </section>
-   
+     
   </div>   
 
+<script>
+  function updateQty(amount) {
+    var qtyInput = document.getElementById('qty');
+    var newValue = parseInt(qtyInput.value) + amount;
+
+    // Pastikan nilai tidak kurang dari 1
+    newValue = newValue < 1 ? 1 : newValue;
+
+    qtyInput.value = newValue;
+  }
+</script>
+
+<script>
+  function updateQty(amount) {
+    var qtyInput = document.getElementById('qty');
+    var hiddenQty = document.getElementById('hiddenQty');
+    var newValue = parseInt(qtyInput.value) + amount;
+
+    // Pastikan nilai tidak kurang dari 1
+    newValue = newValue < 1 ? 1 : newValue;
+
+    qtyInput.value = newValue;
+    hiddenQty.value = newValue;
+
+    updateSubtotal();
+  }
+
+  function updateSubtotal() {
+    var qty = document.getElementById('hiddenQty').value;
+    var subtotalElement = document.getElementById('subtotal');
+    var harga = parseFloat("{{ $p_detail ? $p_detail->harga : 0 }}"); // Menggunakan parseFloat untuk memastikan nilai numerik
+
+    var subtotal = qty * harga;
+    subtotalElement.innerText = 'Subtotal: Rp ' + subtotal.toFixed(2);
+  }
+</script>
+
 @endsection
+

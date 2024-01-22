@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Transaksi;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -27,13 +28,28 @@ class TransaksiController extends Controller
      */
     public function create()
     {
+        $this->addtransaksi();
+
+
+
         $data = [
             'title'  => 'Manajemen|Transaksi',
-            'content' => 'kategori.create'
+            'content' => 'produk.create',
+            // 'produk' => $produk,
             ];
             $data = route('admin.transaksi');
-            return view('transaksi.create', compact('data'));
-    }
+            $produk = Produk::all();
+            $produk_id = request('produk_id');
+            $p_detail = Produk::find($produk_id);
+            // dd($produk);
+
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $qty = $_POST["qty"];
+            }
+            return view('transaksi.create', compact('data','produk','p_detail'));
+    
+}
 
     /**
      * Store a newly created resource in storage.
@@ -73,5 +89,17 @@ class TransaksiController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    function addtransaksi()
+    {
+        $data =[
+            'user_id' => auth()->user()->id,
+            'kasir_name' => auth()->user()->name,
+            'total' => 0,
+
+        ];
+        Transaksi::create($data);
+
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TransaksiDetailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +54,13 @@ Route::post('transaksi/store',[TransaksiController::class,'store'])->name('trans
 Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('transaksi.edit');
 Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
 Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');
+
+Route::get('/transaksidetail',[TransaksiDetailController::class,'index'])->name('transaksidetail');
+Route::post('transaksidetail/create',[TransaksiDetailController::class,'create'])->name('transaksidetail.create');
+Route::post('transaksidetail/store',[TransaksiDetailController::class,'store'])->name('transaksidetail.store');
+Route::get('transaksidetail/edit/{id}',[TransaksiDetailController::class,'edit'])->name('transaksidetail.edit');
+Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'update'])->name('transaksidetail.update');
+Route::delete('transaksidetail/destroy/{id}',[TransaksiDetailController::class,'destroy'])->name('transaksidetail.destroy');
 
 Route::get('/user',[HomeController::class,'index'])->name('index');
 Route::get('/create',[HomeController::class,'create'])->name('user.create');
