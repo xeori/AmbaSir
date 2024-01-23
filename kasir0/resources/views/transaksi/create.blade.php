@@ -168,14 +168,16 @@
                   <th>QTY</th>
                   <th>#</th>
                 </tr>
+                @foreach($transaksi_detail as $td)
                 <tr>
-                  <td>1</td>
-                  <td>Tanggo</td>
-                  <td>4</td>
+                <td>{{$loop->iteration}}</td>
+                  <td>{{$td->produk_name}}</td>
+                  <td>{{$td->qty}}</td>
                   <td>
                     <a href=""><i class="fas fa-times"></i></a>
                   </td>
                 </tr>
+                @endforeach
               </table>
               <a href="" class="btn btn-info"><i class="fas fa-file"></i> Pending</a>
               <a href="" class="btn btn-success"><i class="fas fa-check"></i> Selesai</a>

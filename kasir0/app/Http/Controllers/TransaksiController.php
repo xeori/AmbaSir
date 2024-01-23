@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Transaksi;
+use App\Models\TransaksiDetail;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,9 +67,12 @@ class TransaksiController extends Controller
     {
         
         $produk = Produk::get();
-
         $produk_id = request('produk_id');
         $p_detail = Produk::find($produk_id);
+
+        $transaksi_detail = TransaksiDetail::get();
+        $transaksi_detail = request('produk_name');
+        $transaksi_detail = Produk::find($transaksi_detail);
 
         // dd($produk);
         $act = request('act');
@@ -89,14 +93,16 @@ class TransaksiController extends Controller
             'produk'    => $produk,
             'p_detail'  => $p_detail,
             'qty'       => $qty,
+            'transaksi_detail'   => $transaksi_detail,
             
         ];
         // dd($data);
+        $transaksi_detail = TransaksiDetail::whereTransaksiId($id)->get();
 
     
    
    
-    return view('transaksi.create', compact('produk', 'p_detail', 'qty','subtotal'));
+    return view('transaksi.create', compact('produk', 'p_detail', 'qty','subtotal','transaksi_detail'));
 
       
     }
