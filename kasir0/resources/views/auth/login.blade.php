@@ -1,9 +1,9 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,7 +19,7 @@ s<!DOCTYPE html>
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="{{ route('login') }}" class="h1"><b>Admin</b>LTE</a>
+      <a href="{{ route('login') }}" class="h1"><b>Kasir</b>RTC</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
@@ -52,26 +52,18 @@ s<!DOCTYPE html>
           @enderror
         <div class="row">
           <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
+            
           </div>
           <!-- /.col -->
-          <div class="col-4">
+          <div class="col-12">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
-
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
+      
       <p class="mb-0">
-        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+        <a href="{{ route('register') }}" class="text-center">Don't have account?</a>
       </p>
     </div>
     <!-- /.card-body -->
