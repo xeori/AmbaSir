@@ -92,13 +92,13 @@
               <!-- knt -->
 
               <br> 
-              <form action="{{ route('admin.transaksidetail.create') }}" method="POST">
+              <form action="{{ route('admin.transaksidetail.create') }} "method="POST">
                 @csrf 
                 @if ($p_detail)
                   <input type="hidden" name="produk_id" value="{{ $p_detail->id }}">
               @endif
-                <input type="hidden" name="produk_name"  value="{{ isset ($p_detail->name) ? $p_detail->name : ''  }}">
-                <input type="hidden" name="transaksi_id"  value="{{ Request::segment(3)  }}">
+                <input type="hidden" name="produk_name"  value="{{  $p_detail ? $p_detail->name : ''  }}">
+                <input type="hidden" name="transaksi_id"  value="{{ Request::segment(4)  }}">
                 <input type="hidden" name="subtotal"  value="{{ $subtotal  }}">
                 
               
@@ -148,10 +148,10 @@
                 </div>
                 <div class="col-md-8">
                 <a href="{{ route('admin.transaksi') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i>Kembali</a>
-                <button type="sumbit" class="btn btn-primary">Tambah <i class="fas fa-arrow-right"></i></button>
+                <button type="submit" class="btn btn-primary">Tambah <i class="fas fa-arrow-right"></i></button>
                 </div>
               </div>
-              </form>
+</form>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\TransaksiDetailController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +62,7 @@ Route::post('transaksidetail/store',[TransaksiDetailController::class,'store'])-
 Route::get('transaksidetail/edit/{id}',[TransaksiDetailController::class,'edit'])->name('transaksidetail.edit');
 Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'update'])->name('transaksidetail.update');
 Route::delete('transaksidetail/destroy/{id}',[TransaksiDetailController::class,'destroy'])->name('transaksidetail.destroy');
+
 
 Route::get('/user',[HomeController::class,'index'])->name('index');
 Route::get('/create',[HomeController::class,'create'])->name('user.create');

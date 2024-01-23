@@ -24,9 +24,6 @@ class TransaksiDetailController extends Controller
     {
         
        
-        $data = new \stdClass();
-   
-       
         $data =[
            'produk_id'=>$request->produk_id,
            'produk_name'=>$request->produk_name,
@@ -36,18 +33,15 @@ class TransaksiDetailController extends Controller
         ];
 
         $request->validate([
-            'transaksi_id' => 'required|integer',
+            'transaksi_id' => 'required|integer', // Sesuaikan dengan aturan validasi yang diinginkan
             // ... tambahkan aturan validasi untuk kolom lainnya
         ]);
         
       
      
-        try {
-            TransaksiDetail::create($data);
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
-        return redirect()->back();
+        $transaksiDetail = TransaksiDetail::create($data);
+        
+        return redirect()->back()->with('success', 'TransaksiDetail created successfully.');
     }
     
     
