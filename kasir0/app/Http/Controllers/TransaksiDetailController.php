@@ -23,10 +23,10 @@ class TransaksiDetailController extends Controller
     public function create(Request $request)
     {
         
-        // Mendeklarasikan objek $data
-        // $data = new \stdClass();
+       
+        $data = new \stdClass();
    
-        // Menambahkan properti ke objek $data
+       
         $data =[
            'produk_id'=>$request->produk_id,
            'produk_name'=>$request->produk_name,
@@ -34,8 +34,19 @@ class TransaksiDetailController extends Controller
            'qty' => $request->qty,
            'subtotal' =>$request->subtotal,
         ];
+
+        $request->validate([
+            'transaksi_id' => 'required|integer',
+            // ... tambahkan aturan validasi untuk kolom lainnya
+        ]);
+        
+      
      
-        TransaksiDetail::create($data);
+        try {
+            TransaksiDetail::create($data);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
         return redirect()->back();
     }
     

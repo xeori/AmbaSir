@@ -29,18 +29,17 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        
+       
         $user = Auth::user();
-$data = [
-'user_id' => $user->id,
-'kasir_nama' => $user->name,
-'total' => '0',
-];
-       $transaksi = Transaksi::create($data);
-        return redirect()->route('admin.transaksi.edit', ['id' => $transaksi->id]);
+        $data = [
+        'user_id' => $user->id,
+        'kasir_nama' => $user->name,
+        'total' => '0',
+        ];
 
-        
-        
+        $dataTransaksi = array_merge($data, $data);
+        $transaksi = Transaksi::create($dataTransaksi);
+        return redirect()->route('admin.transaksi.edit', ['id' => $transaksi->id]);
     
 }
 
@@ -65,17 +64,40 @@ $data = [
      */
     public function edit(string $id)
     {
+        
         $produk = Produk::get();
 
-            $produk_id = request('produk_id');
-            $p_detail = Produk::find($produk_id);
-            // dd($produk);
+        $produk_id = request('produk_id');
+        $p_detail = Produk::find($produk_id);
 
+        // dd($produk);
+        $act = request('act');
+        $qty = request('qty', 1); // Jika qty tidak ada, berikan nilai default 1
+        
+        if ($act == 'min') {
+            $qty = $qty - 1;
+        } elseif ($act == 'plus') {
+            $qty = $qty + 1;
+        }
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $qty = $_POST["qty"];
-            }
-            return view('transaksi.create', compact('produk','p_detail'));
+        $subtotal = 0;
+        if($p_detail){ 
+        $subtotal = $qty * $p_detail->harga;
+        }
+        $data = [
+            'title'     => 'Tambah Transaksi',
+            'produk'    => $produk,
+            'p_detail'  => $p_detail,
+            'qty'       => $qty,
+            
+        ];
+        // dd($data);
+
+    
+   
+   
+    return view('transaksi.create', compact('produk', 'p_detail', 'qty','subtotal'));
+
       
     }
 
@@ -95,9 +117,7 @@ $data = [
         //
     }
 
-   protected function addTransaksi()
-    {
-       
-       
-    }
+
+
+ 
 }

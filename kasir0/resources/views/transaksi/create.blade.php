@@ -94,11 +94,14 @@
               <br> 
               <form action="{{ route('admin.transaksidetail.create') }}" method="POST">
                 @csrf 
-                <input type="hidden" name="produk_id"  value="{{ $p_detail->id }}">
-                <input type="hidden" name="produk_name"  value="{{ $p_detail->name }}">
-                <input type="hidden" name="transaksi_id"  value="{{ Request::segment(3) }}">
-                <input type="hidden" name="subtotal"  value="{{ $subtotal }}">
-
+                @if ($p_detail)
+                  <input type="hidden" name="produk_id" value="{{ $p_detail->id }}">
+              @endif
+                <input type="hidden" name="produk_name"  value="{{ isset ($p_detail->name) ? $p_detail->name : ''  }}">
+                <input type="hidden" name="transaksi_id"  value="{{ Request::segment(3)  }}">
+                <input type="hidden" name="subtotal"  value="{{ $subtotal  }}">
+                
+              
               <div class=" row mt-1">
                 <div class="col-md-4">
                   <label for="">Product Name</label>
@@ -126,14 +129,17 @@
                       </div>
                       <div class="col-md-8">
                         <div class="d-flex">
-                          <button type="button" class="btn btn-primary" onclick="updateQty(-1)"><i class="fas fa-minus"></i></button>
-                          <input type="number" class="form-control" name="qty" id="qty" value="1" min="1" oninput="updateSubtotal()">
-                          <button type="button" class="btn btn-primary" onclick="updateQty(1)"><i class="fas fa-plus"></i></button>
-                        </div>
+                        <a href="?produk_id={{ request('produk_id') }}&act=min&qty={{ $qty }}" class="btn btn-primary"><i class="fas fa-minus"></i></a>
+                          <input type="number" value="{{$qty}}" id="qty" class="form-control" name="qty">
+                          <a href="?produk_id={{ request('produk_id') }}&act=plus&qty={{ $qty }}" class="btn btn-primary"><i class="fas fa-spider"></i></a>
+
+                          
+                          </div>
+
                         <!-- Menampilkan harga dari database -->
                         <!-- <h5>Harga: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5> -->
                         <!-- Subtotal akan ditampilkan di bawah input qty -->
-                        <h5 id="subtotal">Subtotal: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5>
+                        <h5 id="subtotal">Subtotal: Rp {{ $p_detail ? $p_detail->harga * $qty : '' }}</h5>
                       </div>
                     </div>
               <div class=" row mt-1">
@@ -209,41 +215,6 @@
      
   </div>   
 
-<script>
-  function updateQty(amount) {
-    var qtyInput = document.getElementById('qty');
-    var newValue = parseInt(qtyInput.value) + amount;
 
-    // Pastikan nilai tidak kurang dari 1
-    newValue = newValue < 1 ? 1 : newValue;
-
-    qtyInput.value = newValue;
-  }
-</script>
-
-<script>
-  function updateQty(amount) {
-    var qtyInput = document.getElementById('qty');
-    var hiddenQty = document.getElementById('hiddenQty');
-    var newValue = parseInt(qtyInput.value) + amount;
-
-    // Pastikan nilai tidak kurang dari 1
-    newValue = newValue < 1 ? 1 : newValue;
-
-    qtyInput.value = newValue;
-    hiddenQty.value = newValue;
-
-    updateSubtotal();
-  }
-
-  function updateSubtotal() {
-    var qty = document.getElementById('hiddenQty').value;
-    var subtotalElement = document.getElementById('subtotal');
-    var harga = parseFloat("{{ $p_detail ? $p_detail->harga : 0 }}"); // Menggunakan parseFloat untuk memastikan nilai numerik
-
-    var subtotal = qty * harga;
-    subtotalElement.innerText = 'Subtotal: Rp ' + subtotal.toFixed(2);
-  }
-</script>
 
 @endsection

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('produk_id');
             $table->string('produk_name');
             $table->string('qty');
-            $table->string('subtotal');
+            $table->string('total');
 
         });
     }
