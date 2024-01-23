@@ -88,13 +88,20 @@ class TransaksiController extends Controller
         if($p_detail){ 
         $subtotal = $qty * $p_detail->harga;
         }
+
+        $transaksi = Transaksi::find($id);
+
+        $dibayarkan = request('dibayarkan');
+        $kembalian = $dibayarkan - $transaksi->total;
+
         $data = [
             'title'     => 'Tambah Transaksi',
             'produk'    => $produk,
             'p_detail'  => $p_detail,
             'qty'       => $qty,
             'transaksi_detail'   => $transaksi_detail,
-            
+            'kembalian' => $kembalian,
+            'transaksi' => $transaksi,
         ];
         // dd($data);
         $transaksi_detail = TransaksiDetail::whereTransaksiId($id)->get();
@@ -102,7 +109,7 @@ class TransaksiController extends Controller
     
    
    
-    return view('transaksi.create', compact('produk', 'p_detail', 'qty','subtotal','transaksi_detail'));
+    return view('transaksi.create', compact('produk', 'p_detail', 'qty','subtotal','transaksi_detail','transaksi','kembalian'));
 
       
     }

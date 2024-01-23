@@ -161,18 +161,22 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
+             
               <table class="table">
                 <tr>
                   <th>No</th>
                   <th>Nama Product</th>
                   <th>QTY</th>
+                  <th>Subtotal</th>
                   <th>#</th>
+                  
                 </tr>
                 @foreach($transaksi_detail as $td)
                 <tr>
                 <td>{{$loop->iteration}}</td>
                   <td>{{$td->produk_name}}</td>
                   <td>{{$td->qty}}</td>
+                  <td>{{$td->subtotal}}</td>
                   <td>
                     <a href=""><i class="fas fa-times"></i></a>
                   </td>
@@ -182,6 +186,7 @@
               <a href="" class="btn btn-info"><i class="fas fa-file"></i> Pending</a>
               <a href="" class="btn btn-success"><i class="fas fa-check"></i> Selesai</a>
             </div>
+          
           </div>
         </div>
       </div>
@@ -191,23 +196,24 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
+              <form action="" method="GET">
               <div class="form-group">
                 <label for="">Total Belanja</label>
-                <input type="number" name="total_belanja" class="form-control">
+                <input type="number" value="{{ $transaksi->total }}" disabled name="total_belanja" class="form-control">
               </div>
 
               <div class="form-group">
                 <label for="">Dibayarkan</label>
-                <input type="number" name="dibayarkan" class="form-control">
+                <input type="number" name="dibayarkan" value="{{ request('dibayarkan') }}" class="form-control">
               </div>
 
               <button type="submit" class="btn btn-primary btn-block">Hitung</button>
-
+            </form>
               <hr>
 
               <div class="form-group">
                 <label for="">Uang Kembalian</label>
-                <input type="number" disabled name="kembalian" class="form-control">
+                <input type="number" value="{{ $kembalian }}" disabled name="kembalian" class="form-control">
               </div>
             </div>
           </div>
@@ -216,6 +222,9 @@
       </section>
      
   </div>   
+
+
+
 
 
 

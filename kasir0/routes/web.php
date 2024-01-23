@@ -59,9 +59,9 @@ Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->
 Route::get('/transaksidetail',[TransaksiDetailController::class,'index'])->name('index');
 Route::post('transaksidetail/create',[TransaksiDetailController::class,'create'])->name('transaksidetail.create');
 Route::post('transaksidetail/store',[TransaksiDetailController::class,'store'])->name('transaksidetail.store');
-Route::get('transaksidetail/edit/{id}',[TransaksiDetailController::class,'edit'])->name('transaksidetail.edit');
+Route::get('/admin/transaksidetail/edit/{id}', [TransaksiDetailController::class, 'edit'])->name('admin.transaksi.edit');
 Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'update'])->name('transaksidetail.update');
-Route::delete('transaksidetail/destroy/{id}',[TransaksiDetailController::class,'destroy'])->name('transaksidetail.destroy');
+Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class, 'delete'])->name('transaksidetail.delete');
 
 
 Route::get('/user',[HomeController::class,'index'])->name('index');

@@ -22,26 +22,38 @@ class TransaksiDetailController extends Controller
      */
     public function create(Request $request)
     {
-        
-       
+        $produk_id = $request->produk_id;
+        $transaksi_id = $request->transaksi_id;
+       $tdt = TransaksiDetail::whereProdukId($produk_id)->whereTransaksiId($transaksi_id)->first();
+        $transaksi = Transaksi::find($transaksi_id);
+       if($tdt == null){
+
         $data =[
-           'produk_id'=>$request->produk_id,
+           'produk_id'=> $produk_id,
            'produk_name'=>$request->produk_name,
-           'transaksi_id'=>$request->transaksi_id,
+           'transaksi_id'=> $transaksi_id,
            'qty' => $request->qty,
            'subtotal' =>$request->subtotal,
         ];
+        TransaksiDetail::create($data);
+        $detailtransaksi = [
+            'total' =>$request ->subtotal + $transaksi->total,
+        ];
+        $transaksi->update($detailtransaksi);
+    }else{
+    $data = [
+        'qty'=> $tdt->qty + $request->qty,
+        'subtotal'=>$tdt->subtotal + $request->subtotal,
+    ];
+    $tdt->update($data);
 
-        $request->validate([
-            'transaksi_id' => 'required|integer', // Sesuaikan dengan aturan validasi yang diinginkan
-            // ... tambahkan aturan validasi untuk kolom lainnya
-        ]);
-        
-      
-     
-        $transaksiDetail = TransaksiDetail::create($data);
-        
-        return redirect()->back()->with('success', 'TransaksiDetail created successfully.');
+    $detailtransaksi = [
+        'total' =>$request ->subtotal + $transaksi->total,
+    ];
+    $transaksi->update($detailtransaksi);
+    }
+    return redirect()->route('admin.transaksi.edit', ['id' => $transaksi_id]);
+   
     }
     
     
@@ -81,8 +93,11 @@ class TransaksiDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        $id = request('id');
+        $tdt = TransaksiDetail::find($id);
+        $tdt -> delete();
+        return redirect()->back();
     }
 }
