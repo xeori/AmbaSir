@@ -178,7 +178,16 @@
                   <td>{{$td->qty}}</td>
                   <td>{{$td->subtotal}}</td>
                   <td>
-                    <a href=""><i class="fas fa-times"></i></a>
+                 <a href="{{ route('admin.transaksidetail.delete', ['id' => $td->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$td->id}}').submit(); }">
+                  <i class="fas fa-times"></i>
+              </a>
+
+                  <form id="delete-form-{{$td->id}}" action="{{ route('admin.transaksidetail.delete', ['id' => $td->id]) }}" method="POST" style="display: none;">
+                      @csrf
+                      @method('DELETE')
+                  </form>
+
+
                   </td>
                 </tr>
                 @endforeach

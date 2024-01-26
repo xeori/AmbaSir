@@ -64,6 +64,9 @@ Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'upda
 Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class, 'delete'])->name('transaksidetail.delete');
 
 
+Route::get('/download-pdf/{id}', 'TransaksiDetailController@downloadPDF')->name('download.pdf');
+
+
 Route::get('/user',[HomeController::class,'index'])->name('index');
 Route::get('/create',[HomeController::class,'create'])->name('user.create');
 Route::post('/store',[HomeController::class,'store'])->name('user.store');
