@@ -100,4 +100,14 @@ class TransaksiDetailController extends Controller
         $tdt -> delete();
         return redirect()->back();
     }
+
+    public function selesai($id)
+    {
+        $transaksi = Transaksi::find($id);
+        $data=[
+            'status' => 'selesai'
+        ];
+        $transaksi->update($data);
+        return redirect('admin.transaksi');
+    }
 }

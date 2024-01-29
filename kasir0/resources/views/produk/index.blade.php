@@ -108,6 +108,7 @@
                       <tr>
                         <th>No</th>
                         <th>Nama</th>
+                        <th>Gambar</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -116,6 +117,9 @@
                         <tr>
                           <td>{{$loop->iteration}}</td>
                           <td>{{$pdt->name}}</td>
+                          <td><img src="{{ asset($pdt->gambar) }}" alt="" style="max-width: 300px;"></td>
+
+                         
                             <td>
                               <a href="{{route('admin.produk.edit',['id' =>$pdt->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
                               <a data-toggle="modal" data-target="#modal-hapus{{$pdt->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>

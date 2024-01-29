@@ -107,7 +107,7 @@
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Tanggal Transaksi</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -115,7 +115,7 @@
                         @foreach ($transaksi as $ts)
                         <tr>
                           <td>{{$loop->iteration}}</td>
-                          <td>{{$ts->name}}</td>
+                          <td>{{$ts->created_at}}</td>
                             <td>
                               <a href="{{route('admin.transaksi.edit',['id' =>$ts->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
                               <a data-toggle="modal" data-target="#modal-hapus{{$ts->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
@@ -142,6 +142,7 @@
 
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                         <button type="submit" class="btn btn-primary">Delete</button>
+                                       
                                     </form>
                                 </div>
                               </div>

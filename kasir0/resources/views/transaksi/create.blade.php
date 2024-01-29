@@ -192,8 +192,12 @@
                 </tr>
                 @endforeach
               </table>
-              <a href="" class="btn btn-info"><i class="fas fa-file"></i> Pending</a>
-              <a href="" class="btn btn-success"><i class="fas fa-check"></i> Selesai</a>
+              
+              <a class="btn btn-info btn" href="{{ route('admin.generate-pdf') }}"><i class="fas fa-file"></i>Pending</a> 
+              <a class="btn btn-info btn" href="{{ route('admin.transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i>selesai</a>
+
+              <!-- <a href="admin.transaksidetail.selesai" b class="btn btn-success"><i class="fas fa-check"></i> Selesai</a> -->
+           
             </div>
           
           </div>
@@ -208,7 +212,7 @@
               <form action="" method="GET">
               <div class="form-group">
                 <label for="">Total Belanja</label>
-                <input type="number" value="{{ $transaksi->total }}" disabled name="total_belanja" class="form-control">
+                <input type="number" value="{{ optional($transaksi)->total }}" disabled name="total_belanja" class="form-control">
               </div>
 
               <div class="form-group">

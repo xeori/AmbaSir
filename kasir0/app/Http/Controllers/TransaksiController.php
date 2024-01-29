@@ -92,7 +92,7 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::find($id);
 
         $dibayarkan = request('dibayarkan');
-        $kembalian = $dibayarkan - $transaksi->total;
+        $kembalian = $dibayarkan - optional($transaksi)->total;
 
         $data = [
             'title'     => 'Tambah Transaksi',

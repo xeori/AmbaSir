@@ -6,6 +6,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\TransaksiDetailController;
+use App\Http\Controllers\PDFController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,9 @@ Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->
 
 Route::get('/transaksidetail',[TransaksiDetailController::class,'index'])->name('index');
 Route::post('transaksidetail/create',[TransaksiDetailController::class,'create'])->name('transaksidetail.create');
+
+Route::get('transaksidetail/selesai/{id}',[TransaksiDetailController::class,'selesai'])->name('transaksidetail.selesai');
+
 Route::post('transaksidetail/store',[TransaksiDetailController::class,'store'])->name('transaksidetail.store');
 Route::get('/admin/transaksidetail/edit/{id}', [TransaksiDetailController::class, 'edit'])->name('admin.transaksi.edit');
 Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'update'])->name('transaksidetail.update');
@@ -74,4 +78,6 @@ Route::get('/edit/{id}',[HomeController::class,'edit'])->name('user.edit');
 Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update');
 Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
 
+// PDF AJG
+Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
 });
