@@ -127,7 +127,9 @@ class TransaksiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $transaksi = Transaksi::find($id);
+        $transaksi->delete();
+        return redirect('admin/transaksi');
     }
 
 

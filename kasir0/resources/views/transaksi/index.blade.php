@@ -108,6 +108,9 @@
                       <tr>
                         <th>No</th>
                         <th>Tanggal Transaksi</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>User</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -116,9 +119,12 @@
                         <tr>
                           <td>{{$loop->iteration}}</td>
                           <td>{{$ts->created_at}}</td>
+                          <td>{{$ts->status}}</td>
+                          <td>{{$ts->total}}</td>
+                          <td>{{$ts->kasir_nama}}</td>
                             <td>
-                              <a href="{{route('admin.transaksi.edit',['id' =>$ts->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
-                              <a data-toggle="modal" data-target="#modal-hapus{{$ts->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>
+                              <a href="{{route('admin.transaksi.edit',['id' =>$ts->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                              <a data-toggle="modal" data-target="#modal-hapus{{$ts->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                             </td>
                           </tr>
 

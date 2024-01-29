@@ -108,6 +108,6 @@ class TransaksiDetailController extends Controller
             'status' => 'selesai'
         ];
         $transaksi->update($data);
-        return redirect('admin.transaksi');
+        return redirect('admin/transaksi');
     }
 }

@@ -23,7 +23,11 @@ class LoginController extends Controller
             'password'=> $request->password,
         ];
        if(Auth::attempt($data)) {
-        return redirect()->route('admin.dashboard');
+        if (Auth::user()->role == 'admin') {
+            return redirect('admin/dashboard');
+        } elseif (Auth::user()->role == 'pengguna') {
+            return redirect('admin/pengguna/dashboard');
+        }
        }else{ 
         return redirect()->route('login')->with('failed','Incorrect email or password ');
        }

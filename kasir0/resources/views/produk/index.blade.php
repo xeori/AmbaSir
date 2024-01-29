@@ -117,7 +117,7 @@
                         <tr>
                           <td>{{$loop->iteration}}</td>
                           <td>{{$pdt->name}}</td>
-                          <td><img src="{{ asset($pdt->gambar) }}" alt="" style="max-width: 300px;"></td>
+                          <td><img src="{{ asset($pdt->gambar) }}" alt="" style="max-width: 200px;"></td>
 
                          
                             <td>
