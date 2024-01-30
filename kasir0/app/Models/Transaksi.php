@@ -9,4 +9,9 @@ class Transaksi extends Model
 {
     use HasFactory;
     protected $fillable = ['total', 'kasir_nama', 'status','user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

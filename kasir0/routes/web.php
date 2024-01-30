@@ -68,7 +68,8 @@ Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'upda
 Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class, 'delete'])->name('transaksidetail.delete');
 
 
-Route::get('/download-pdf/{id}', 'TransaksiDetailController@downloadPDF')->name('download.pdf');
+Route::get('/admin/generate-pdf/{id}', 'PDFController@generatePDF')->name('admin.generate-pdf');
+Route::put('/admin/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('admin.generate-pdf');
 
 
 Route::get('pengguna/dashboard',[PenggunaController::class,'dashboard'])->name('pengguna.dashboard')->middleware('userAkses:pengguna');

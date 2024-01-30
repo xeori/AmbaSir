@@ -14,6 +14,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+         $transaksidetail = TransaksiDetail::all();
         $data = [
             'title'  => 'Manajemen Transaksi',
             'content' => 'transaksi.index',
@@ -21,7 +22,7 @@ class TransaksiController extends Controller
             ];
             
            
-            return view('transaksi.index', $data,compact('data'));
+            return view('transaksi.index', $data,compact('data', 'transaksidetail'));
     }
     
 

@@ -9,4 +9,6 @@ class TransaksiDetail extends Model
 {
     use HasFactory;
     protected $fillable = ['transaksi_id', 'produk_id', 'produk_name','qty','subtotal'];
+
+    
 }

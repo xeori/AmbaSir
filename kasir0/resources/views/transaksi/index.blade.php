@@ -111,6 +111,7 @@
                         <th>Status</th>
                         <th>Total</th>
                         <th>User</th>
+                        <th>Struk</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -122,6 +123,9 @@
                           <td>{{$ts->status}}</td>
                           <td>{{$ts->total}}</td>
                           <td>{{$ts->kasir_nama}}</td>
+                          <td> @if($ts->status == 'selesai')
+                <a href="{{ route('admin.generate-pdf', ['id' => $ts->id]) }}">Generate PDF</a>
+            @endif </td>
                             <td>
                               <a href="{{route('admin.transaksi.edit',['id' =>$ts->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i></a>
                               <a data-toggle="modal" data-target="#modal-hapus{{$ts->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
