@@ -84,5 +84,5 @@ Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update')
 Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
 
 // PDF AJG
-Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
+Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generate-pdf');
 });

@@ -1,5 +1,6 @@
 <div style="width: 712px; height: 1023px; background: #25282E">
-@foreach($transaksidetail as $ts)
+
+@foreach($transaksi as $ts)
   <div style="width: 150px; height: 150px; left: 283px; top: 44px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
     <div style="width: 150px; height: 150px; position: relative">
       <div style="width: 125px; height: 125px; left: 12.50px; top: 12.50px; position: absolute; background: #41D195"></div>
@@ -24,8 +25,13 @@
 
   <div style="width: 246px; height: 31px; left: 21px; top: 512px; position: absolute; color: rgba(255, 255, 255, 0.72); font-size: 32px; font-family: Poppins; font-weight: 400; line-height: 18px; word-wrap: break-word">Payment Time</div>
   
-  <!-- Foreach -->
-  <div style="width: 368px; height: 47px; left: 346px; top: 509px; position: absolute; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 500; line-height: 18px; word-wrap: break-word">{{$ts->subtotal}}</div>
+  
+  @if($transaksi)
+    <div style="width: 368px; height: 47px; left: 346px; top: 509px; position: absolute; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 500; line-height: 18px; word-wrap: break-word">
+        {{ $transaksi->total }}
+    </div>
+@endif
+
   <!-- Ligma -->
 
   <!-- Kudu DIisi Foreach  -->

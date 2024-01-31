@@ -13,25 +13,27 @@ class PDFController extends Controller
     public function generatePDF($id)
     {
         $users = User::get();
-
-        $transaksidetail = TransaksiDetail::find($id);
-        $transaksi = transaksi::all(); // Inisialisasi $transaksidetail dengan data dari model TransaksiDetail
-
+        $transaksi = Transaksi::all();
+        // $transaksidetail = TransaksiDetail::find($id);
+        $transaksi = Transaksi::find($id);
+        // Inisialisasi $transaksidetail dengan data dari model TransaksiDetail
+        // $transaksidetail = TransaksiDetail::all();
+       
         $data = [
             'title' => 'Struk Pembelian ',
             'date' => date('m/d/Y'),
             'users' => $users,
-            'transaksidetail' => $transaksidetail,
+            
             'transaksi' => $transaksi,
         ];
         
-        $transaksidetail = TransaksiDetail::all();
+       
         // return $transaksidetail;
 
         
         // return $transaksi;
 
         $pdf = PDF::loadView('pdf.usersPdf', $data);
-        return $pdf->download('struk.pdf');
+        return $pdf->download('struk.pdf', );
     }
 } 

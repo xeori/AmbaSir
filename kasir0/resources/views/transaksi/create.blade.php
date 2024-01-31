@@ -193,7 +193,7 @@
                 @endforeach
               </table>
               
-              <a class="btn btn-info btn" href="{{ route('admin.generate-pdf') }}"><i class="fas fa-file"></i>Pending</a> 
+              <a class="btn btn-info btn" href="{{ route('admin.generate-pdf', ['id' => $id]) }}"><i class="fas fa-file"></i>Pending</a>
               <a class="btn btn-info btn" href="{{ route('admin.transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i>selesai</a>
 
               <!-- <a href="admin.transaksidetail.selesai" b class="btn btn-success"><i class="fas fa-check"></i> Selesai</a> -->
