@@ -108,6 +108,8 @@
                       <tr>
                         <th>No</th>
                         <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Stok</th>
                         <th>Gambar</th>
                         <th>Action</th>
                       </tr>
@@ -117,6 +119,8 @@
                         <tr>
                           <td>{{$loop->iteration}}</td>
                           <td>{{$pdt->name}}</td>
+                          <td>{{$pdt->harga}}</td>
+                          <td>{{$pdt->stok}}</td>
                           <td><img src="{{ asset($pdt->gambar) }}" alt="" style="max-width: 200px;"></td>
 
                          
