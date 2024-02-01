@@ -88,7 +88,7 @@
                 <a href="{{route('admin.user.create')}}" class="btn btn-primary mb-3">Tambah Data</a>
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Responsive Hover Table</h3>
+
   
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -110,6 +110,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>role</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -119,6 +120,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$dt->name}}</td>
                             <td>{{$dt->email}}</td>
+                            <td>{{ $dt->role }}</td>
                             <td>
                                 <a href="{{route('admin.user.edit',['id' =>$dt->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i>Edit</a>
                                 <a data-toggle="modal" data-target="#modal-hapus{{$dt->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete</a>

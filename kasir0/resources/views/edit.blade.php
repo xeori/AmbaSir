@@ -90,7 +90,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                       <div class="card-header">
-                        <h3 class="card-title">Add User Form</h3>
+                        <h3 class="card-title">Edit User Form</h3>
                       </div>
                       <!-- /.card-header -->
                       <!-- form start -->
@@ -117,6 +117,21 @@
                             <small>{{$message}}</small>
                             @enderror
                           </div>
+
+                          <div class="form-group">
+                            <label for="role">Role:</label>
+                            <select name="role" class="form-control" id="role">
+                                <option value="pengguna" {{ $user->role === 'user' ? 'pengguna' : '' }}>Pengguna</option>
+                                <option value="admin" {{ $user->role === 'admin' ? 'admin ' : '' }}>Admin</option>
+                                <!-- Tambahkan opsi untuk peran lain jika diperlukan -->
+                            </select>
+                      @error('role')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                      @enderror
+                          </div>
+                        
                         <!-- /.card-body -->
         
                         <div class="card-footer">
