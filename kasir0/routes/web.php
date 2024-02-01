@@ -56,10 +56,10 @@ Route::post('transaksi/store',[TransaksiController::class,'store'])->name('trans
 Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('transaksi.edit')->middleware('userAkses:admin');
 Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
 Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');
+Route::get('transaksi/lanjutkan/{id}', [TransaksiController::class, 'lanjutkan'])->name('transaksi.lanjutkan');
 
 Route::get('/transaksidetail',[TransaksiDetailController::class,'index'])->name('index')->middleware('userAkses:admin');
 Route::post('transaksidetail/create',[TransaksiDetailController::class,'create'])->name('transaksidetail.create')->middleware('userAkses:admin');
-
 Route::get('transaksidetail/selesai/{id}',[TransaksiDetailController::class,'selesai'])->name('transaksidetail.selesai');
 
 Route::post('transaksidetail/store',[TransaksiDetailController::class,'store'])->name('transaksidetail.store');
@@ -68,8 +68,8 @@ Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'upda
 Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class, 'delete'])->name('transaksidetail.delete');
 
 
-Route::get('/admin/generate-pdf/{id}', 'PDFController@generatePDF')->name('admin.generate-pdf');
-Route::put('/admin/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('admin.generate-pdf');
+// Route::get('/admin/generate-pdf/{id}', 'PDFController@generatePDF')->name('admin.generate-pdf');
+// Route::put('/admin/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('admin.generate-pdf');
 
 
 Route::get('pengguna/dashboard',[PenggunaController::class,'dashboard'])->name('pengguna.dashboard')->middleware('userAkses:pengguna');

@@ -135,6 +135,54 @@ class TransaksiController extends Controller
         return redirect('admin/transaksi');
     }
 
+    public function lanjutkan( $id)
+    {
+
+
+        $produk = Produk::get();
+        $produk_id = request('produk_id');
+        $p_detail = Produk::find($produk_id);
+
+        $transaksi_detail = TransaksiDetail::get();
+        $transaksi_detail = request('produk_name');
+        $transaksi_detail = Produk::find($transaksi_detail);
+
+        // dd($produk);
+        $act = request('act');
+        $qty = request('qty', 1); // Jika qty tidak ada, berikan nilai default 1
+        
+        if ($act == 'min') {
+            $qty = $qty - 1;
+        } elseif ($act == 'plus') {
+            $qty = $qty + 1;
+        }
+
+        $subtotal = 0;
+        if($p_detail){ 
+        $subtotal = $qty * $p_detail->harga;
+        }
+
+        $transaksi = Transaksi::find($id);
+
+        $dibayarkan = request('dibayarkan');
+        $kembalian = $dibayarkan - optional($transaksi)->total;
+
+        $data = [
+            'title'     => 'Tambah Transaksi',
+            'produk'    => $produk,
+            'p_detail'  => $p_detail,
+            'qty'       => $qty,
+            'transaksi_detail'   => $transaksi_detail,
+            'kembalian' => $kembalian,
+            'transaksi' => $transaksi,
+        ];
+        // dd($data);
+        $transaksi_detail = TransaksiDetail::whereTransaksiId($id)->get();
+       
+        $transaksi = Transaksi::find($id);
+
+        return view('transaksi.pembayaran', compact('produk', 'p_detail', 'subtotal', 'qty', 'transaksi_detail', 'transaksi', 'kembalian'));
+    }
 
 
  

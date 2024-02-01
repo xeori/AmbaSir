@@ -123,10 +123,13 @@
                           <td>{{$ts->status}}</td>
                           <td>{{$ts->total}}</td>
                           <td>{{$ts->kasir_nama}}</td>
-                          <td> @if($ts->status == 'selesai')
-               
-                <a class="btn btn-info btn" href="{{ route('admin.generate-pdf', ['id' => $ts-> id]) }}"><i class="fas fa-file"></i>Pending</a>
-            @endif </td>
+                          <td>
+                              @if($ts->status == 'selesai')
+                                  <a class="btn btn-info btn" href="{{ route('admin.generate-pdf', ['id' => $ts->id]) }}"><i class="fas fa-file"></i> Cetak Struk</a>
+                              @else
+                                  <a class="btn btn-success btn" href="{{ route('admin.transaksi.lanjutkan', ['id' => $ts->id]) }}"><i class="fas fa-money-bill"></i> Bayarkan</a>
+                              @endif
+                          </td>
                             <td>
                               <a href="{{route('admin.transaksi.edit',['id' =>$ts->id]) }}"class="btn btn-primary"><i class="fas fa-pen"></i></a>
                               <a data-toggle="modal" data-target="#modal-hapus{{$ts->id}}"class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>

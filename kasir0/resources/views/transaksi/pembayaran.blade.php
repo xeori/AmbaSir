@@ -211,9 +211,12 @@
             <div class="card-body">
               <form action="" method="GET">
               <div class="form-group">
-                <label for="">Total Belanja</label>
-                <input type="number" value="{{ optional($transaksi)->total }}" disabled name="total_belanja" class="form-control">
+                  <label for="">Total Belanja</label>
+                  <input type="number" value="{{ optional($transaksi)->total }}" disabled name="total" class="form-control">
               </div>
+
+
+              
 
               <div class="form-group">
                 <label for="">Dibayarkan</label>
