@@ -12,25 +12,29 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login_proses(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
-            'email' =>'required',
-            'password'=> 'required',
-
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
-        $data = [
-            'email'=> $request->email,
-            'password'=> $request->password,
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
         ];
-       if(Auth::attempt($data)) {
-        if (Auth::user()->role == 'admin') {
-            return redirect('admin/dashboard');
-        } elseif (Auth::user()->role == 'pengguna') {
-            return redirect('admin/pengguna/dashboard');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication successful
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif (Auth::user()->role == 'pengguna') {
+                return redirect()->route('admin.dashboard');
+            }
+        } else {
+            // Authentication failed
+            return redirect()->route('login')->with('failed', 'Incorrect email or password');
         }
-       }else{ 
-        return redirect()->route('login')->with('failed','Incorrect email or password ');
-       }
     }
 
     public function logout(){
@@ -63,7 +67,7 @@ class LoginController extends Controller
                 'password'=> $request->password,
             ];
            if(Auth::attempt($login)) {
-            return redirect()->route('admin.pengguna.dashboard');
+            return redirect()->route('admin.dashboard');
            }else{ 
             return redirect()->route('login')->with('failed','Incorrect email or password ');
            }

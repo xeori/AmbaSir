@@ -10,6 +10,7 @@
   </a>
      </li>
 
+     @if(auth()->user()->role!="pengguna")
      <li class="nav-item">
       <a href="{{route('admin.index')}}" class="nav-link {{Route::currentRouteName() == 'index' ? 'active' : '' }}">
         <i class="nav-icon fas fa-users"></i>
@@ -18,7 +19,7 @@
           <i class="right fas fa-angle-left"></i>
         </p>
       </a>
-
+@endif
      <li class="nav-item">
       <a href="{{ route('admin.kategori') }}" class="nav-link {{Route::currentRouteName() == 'kategori' ? 'active' : '' }}">
         <i class="nav-icon fas fa-list"></i>
