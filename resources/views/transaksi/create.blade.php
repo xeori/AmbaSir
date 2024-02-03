@@ -1,0 +1,183 @@
+@extends('layout.body.main')
+@section('layout')
+@include('sweetalert::alert')
+<div class="page-content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+    </div>
+    <!-- /.content-header -->
+    <section class="content">
+      <div class="row p-2">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div class=" row mt-1">
+                <div class="col-md-4">
+                  <label for="">Code Product</label>
+                </div>
+                <div class="col-md-8">
+                  <form action="" method="GET">
+                  <div class="u-flex">
+                  <select name="produk_id" class="form-control" id="produk_id">
+                    @foreach($produk as $p)
+                    <option value="{{$p->id}}">{{$p->name}}</option>
+                    @endforeach
+                  </select>
+                  <button type="submit" class="btn btn-inverse-primary mt-3">Pilih</button>
+                  </div> 
+                  </form>
+                </div>
+              </div>
+              
+              <!-- knt -->
+
+              <br> 
+              <form action="{{ route('admin.transaksidetail.create') }} "method="POST">
+                @csrf 
+                @if ($p_detail)
+                  <input type="hidden" name="produk_id" value="{{ $p_detail->id }}">
+              @endif
+              
+                <input type="hidden" name="produk_name"  value="{{  $p_detail ? $p_detail->name : ''  }}">
+                <input type="hidden" name="transaksi_id"  value="{{ Request::segment(4)  }}">
+                <input type="hidden" name="subtotal"  value="{{ $subtotal  }}">
+                
+              
+              <div class=" row mt-1">
+                <div class="col-md-4">
+                  <label for="">Product Name</label>
+                </div>
+                <div class="col-md-8">
+                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->name : '' }}" disabled name="nama_produk">
+
+                </div>
+              </div>
+      
+              <div class=" row mt-1">
+                <div class="col-md-4">
+                  <label for="">Harga Satuan</label>
+                </div>
+                <div class="col-md-8">
+                <input type="text" class="form-control" value="{{ $p_detail ? $p_detail->harga : '' }}" disabled name="harga">
+
+                </div>
+              </div>
+
+              <div class="row mt-1">
+                      <div class="col-md-4">
+                        <!-- Tambahkan elemen ini untuk menampung nilai qty -->
+                        <input type="hidden" id="hiddenQty" value="1">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="d-flex">
+                        <a href="?produk_id={{ request('produk_id') }}&act=min&qty={{ $qty }}" class="btn btn-inverse-primary"><i class="link-icon" data-feather="minus"></i></a>
+                          <input type="number" value="{{$qty}}" id="qty" class="form-control" name="qty">
+                          <a href="?produk_id={{ request('produk_id') }}&act=plus&qty={{ $qty }}" class="btn btn-inverse-primary"> <i class="link-icon" data-feather="plus"></i></a>
+
+                          
+                          </div>
+
+                        <!-- Menampilkan harga dari database -->
+                        <!-- <h5>Harga: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5> -->
+                        <!-- Subtotal akan ditampilkan di bawah input qty -->
+                        <h5 id="subtotal">Subtotal: Rp {{ $p_detail ? $p_detail->harga * $qty : '' }}</h5>
+                      </div>
+                    </div>
+              <div class=" row mt-1">
+                <div class="col-md-4">
+                  
+                </div>
+                <div class="col-md-8">
+                <a href="{{ route('admin.transaksi') }}" class="btn btn-inverse-info"><i class="link-icon" data-feather="arrow-left"></i></a>
+                <button type="submit" class="btn btn-inverse-primary"><i class="link-icon" data-feather="arrow-right"></i></button>
+                </div>
+              </div>
+</form>
+            </div>
+          </div>
+        </div>
+
+       
+  
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+             
+              <table class="table">
+                <tr>
+                  <th>No</th>
+                  <th>Nama Product</th>
+                  <th>QTY</th>
+                  <th>Subtotal</th>
+                  <th>#</th>
+                  
+                </tr>
+                @foreach($transaksi_detail as $td)
+                <tr>
+                <td>{{$loop->iteration}}</td>
+                  <td>{{$td->produk_name}}</td>
+                  <td>{{$td->qty}}</td>
+                  <td>{{$td->subtotal}}</td>
+                  <td>
+                 <a href="{{ route('admin.transaksidetail.delete', ['id' => $td->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$td->id}}').submit(); }">
+                    <i class="link-icon" data-feather="x"></i>
+              </a>
+
+                  <form id="delete-form-{{$td->id}}" action="{{ route('admin.transaksidetail.delete', ['id' => $td->id]) }}" method="POST" style="display: none;">
+                      @csrf
+                      @method('DELETE')
+                  </form>
+
+
+                  </td>
+                </tr>
+                @endforeach
+              </table>
+              <div class="mt-3">
+                <a class="btn btn-inverse-info btn" href="{{ route('admin.transaksi') }}"><i class="fas fa-file"></i> Tunda</a>
+                <a class="btn btn-inverse-info btn" href="{{ route('admin.transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i>selesai</a>
+              </div>
+           
+
+              <!-- <a href="admin.transaksidetail.selesai" b class="btn btn-success"><i class="fas fa-check"></i> Selesai</a> -->
+           
+            </div>
+          
+          </div>
+        </div>
+      </div>
+     
+
+      <div class="row p-2">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <form action="" method="GET">
+              <div class="form-group">
+                <label for="">Total Belanja</label>
+                <input type="number" value="{{ optional($transaksi)->total }}" disabled name="total_belanja" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="">Dibayarkan</label>
+                <input type="number" name="dibayarkan" value="{{ request('dibayarkan') }}" class="form-control">
+              </div>
+
+              <button type="submit" class="btn btn-inverse-primary btn-block">Hitung</button>
+            </form>
+              <hr>
+
+              <div class="form-group">
+                <label for="">Uang Kembalian</label>
+                <input type="number" value="{{ $kembalian }}" disabled name="kembalian" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+     
+  </div>   
+
+
+@endsection
