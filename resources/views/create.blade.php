@@ -17,7 +17,7 @@
 
 
 
-                    <form action="{{ route('admin.user.store') }}" class="forms-sample" method="POST">
+                    <form action="{{ route('user.store') }}" class="forms-sample" method="POST">
                         @csrf
                         <div class="mt-3">
                             <label for="exampleInputUsername1" class="form-label">Username</label>
@@ -46,6 +46,21 @@
                         @enderror
                     </div>
                        
+                    <div class="form-group">
+                        <label for="role">Role:</label>
+                        <select name="role" class="form-control" id="role">
+                            <option value="pengguna">Pengguna</option>
+                            <option value="admin">Admin</option>
+                            <!-- Tambahkan opsi untuk peran lain jika diperlukan -->
+                        </select>
+                        
+                        
+                  @error('role')
+                  <div class="invalid-feedback">
+                      {{ $message }}
+                  </div>
+                  @enderror
+                      </div>
 
                   <div class="mt-3">
                     <button type="submit" class="btn btn-primary me-2">Submit</button>

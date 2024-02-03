@@ -4,7 +4,7 @@
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{ route('admin.produk.create') }}" class="btn btn-inverse-primary ">
+            <a href="{{ route('produk.create') }}" class="btn btn-inverse-primary ">
                 Tambah Produk</a>
         </ol>
     </nav>
@@ -31,7 +31,7 @@
                                 @foreach ($produk as $pdk)
                                 <tr>
                                     <form
-                                        action="{{ route('admin.produk.destroy', ['id' => $pdk->id]) }}"
+                                        action="{{ route('produk.destroy', ['id' => $pdk->id]) }}"
                                         method="POST">
                                         @csrf @method('DELETE')
                                         <td>{{ $loop->iteration }}</td>
@@ -41,7 +41,7 @@
                                         <td><img src="{{ asset($pdk->gambar) }}" alt="" style="max-width: 200px;"></td>
                                         <td>
                                             <a
-                                                href="{{ route('admin.produk.edit', ['id' => $pdk->id]) }}"
+                                                href="{{ route('produk.edit', ['id' => $pdk->id]) }}"
                                                 class="btn btn-inverse-warning">
                                                 <i class="link-icon" data-feather="edit"></i>
                                             </a>

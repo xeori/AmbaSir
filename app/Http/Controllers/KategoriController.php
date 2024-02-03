@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('userAkses:admin');
-    }
+   
     public function index()
     {
         $kategori = Kategori::all();
@@ -23,7 +20,7 @@ class KategoriController extends Controller
     {
        
       
-            $kategori = route('admin.kategori');
+            $kategori = route('kategori');
             return view('kategori.create', compact('kategori'));
     }
     public function store(Request $request)
@@ -37,7 +34,7 @@ class KategoriController extends Controller
     
         Kategori::create($data);
     
-        return redirect()->route('admin.kategori');
+        return redirect()->route('kategori');
     }
     public function edit(string $id)
     {
@@ -56,22 +53,19 @@ class KategoriController extends Controller
     
         Kategori::whereId($id)->update($kategori);
         Alert::success('Kategori', 'Kategori Berhasil di Update');
-        return redirect()->route('admin.kategori');
+        return redirect()->route('kategori');
     }
     public function destroy(string $id)
     {
         $kategori = Kategori::find($id);
 
-        // if($kategori){
-        //     $kategori->delete();
-        // }
-        // return redirect()->route('admin.kategori');
+
         if (!$kategori) {
-            return redirect()->route('admin.kategori')->with('error', 'Kategori tidak ditemukan');
+            return redirect()->route('kategori')->with('error', 'Kategori tidak ditemukan');
         }
     
         $kategori->delete();
         Alert::success('Kategori', 'Kategori Berhasil Di Hapus');
-        return redirect()->route('admin.kategori')->with('success', 'Kategori berhasil dihapus');
+        return redirect()->route('kategori')->with('success', 'Kategori berhasil dihapus');
     }
 }

@@ -4,7 +4,7 @@
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{ route('admin.transaksi.create') }}" class="btn btn-inverse-primary ">
+            <a href="{{ route('transaksi.create') }}" class="btn btn-inverse-primary ">
                 buat Transaksi</a>
         </ol>
     </nav>
@@ -32,7 +32,7 @@
                                 @foreach ($transaksi as $ts)
                                 <tr>
                                     <form
-                                        action="{{ route('admin.transaksi.destroy', ['id' => $ts->id]) }}"
+                                        action="{{ route('transaksi.destroy', ['id' => $ts->id]) }}"
                                         method="POST">
                                         @csrf @method('DELETE')
                                         <td>{{$loop->iteration}}</td>
@@ -42,14 +42,14 @@
                                         <td>{{$ts->kasir_nama}}</td>
                                         <td>
                                             @if($ts->status == 'selesai')
-                                                <a class="btn btn-info btn" href="{{ route('admin.generate-pdf', ['id' => $ts->id]) }}"><i class="fas fa-file"></i> Cetak Struk</a>
+                                                <a class="btn btn-info btn" href="{{ route('generate-pdf', ['id' => $ts->id]) }}"><i class="fas fa-file"></i> Cetak Struk</a>
                                             @else
-                                                <a class="btn btn-inverse-success" href="{{ route('admin.transaksi.lanjutkan', ['id' => $ts->id]) }}"><i class="fas fa-money-bill"></i> Bayarkan</a>
+                                                <a class="btn btn-inverse-success" href="{{ route('transaksi.lanjutkan', ['id' => $ts->id]) }}"><i class="fas fa-money-bill"></i> Bayarkan</a>
                                             @endif
                                         </td>
                                         <td>
                                             <a
-                                            href="{{ route('admin.produk.edit', ['id' => $ts->id]) }}"
+                                            href="{{ route('produk.edit', ['id' => $ts->id]) }}"
                                             class="btn btn-inverse-warning">
                                             <i class="link-icon" data-feather="edit"></i>
                                         </a>

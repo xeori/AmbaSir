@@ -4,7 +4,7 @@
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-              <a href="{{ route('admin.user.create') }}" class="btn btn-inverse-primary mb-3">
+              <a href="{{ route('user.create') }}" class="btn btn-inverse-primary mb-3">
                 <i data-feather="user-plus"></i>
                     </a>
         </ol>
@@ -31,7 +31,7 @@
                             <tbody>
 
                                 @foreach ($data as $dt)
-                                <form action="{{route('admin.user.delete', ['id' =>$dt->id]) }}" method="POST">
+                                <form action="{{route('user.delete', ['id' =>$dt->id]) }}" method="POST">
                                     @csrf @method('DELETE')
                                     <tr>
                                         <th>{{$loop->iteration}}</th>
@@ -40,7 +40,7 @@
                                         <td>{{ $dt->role }}</td>
                                         <td>
                                             <a
-                                                href="{{route('admin.user.edit',['id' =>$dt->id]) }}"
+                                                href="{{route('user.edit',['id' =>$dt->id]) }}"
                                                 class="btn btn-inverse-warning">
                                                 <i class="link-icon" data-feather="edit"></i>
                                             </a>

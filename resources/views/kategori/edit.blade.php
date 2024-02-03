@@ -17,7 +17,7 @@
 
 
 
-                    <form action="{{route('admin.kategori.update',['id' => $kategori->id])}}" class="forms-sample" method="POST">
+                    <form action="{{route('kategori.update',['id' => $kategori->id])}}" class="forms-sample" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">

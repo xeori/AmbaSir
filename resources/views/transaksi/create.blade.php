@@ -32,7 +32,7 @@
               <!-- knt -->
 
               <br> 
-              <form action="{{ route('admin.transaksidetail.create') }} "method="POST">
+              <form action="{{ route('transaksidetail.create') }} "method="POST">
                 @csrf 
                 @if ($p_detail)
                   <input type="hidden" name="produk_id" value="{{ $p_detail->id }}">
@@ -88,7 +88,7 @@
                   
                 </div>
                 <div class="col-md-8">
-                <a href="{{ route('admin.transaksi') }}" class="btn btn-inverse-info"><i class="link-icon" data-feather="arrow-left"></i></a>
+                <a href="{{ route('transaksi') }}" class="btn btn-inverse-info"><i class="link-icon" data-feather="arrow-left"></i></a>
                 <button type="submit" class="btn btn-inverse-primary"><i class="link-icon" data-feather="arrow-right"></i></button>
                 </div>
               </div>
@@ -119,11 +119,11 @@
                   <td>{{$td->qty}}</td>
                   <td>{{$td->subtotal}}</td>
                   <td>
-                 <a href="{{ route('admin.transaksidetail.delete', ['id' => $td->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$td->id}}').submit(); }">
+                 <a href="{{ route('transaksidetail.delete', ['id' => $td->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$td->id}}').submit(); }">
                     <i class="link-icon" data-feather="x"></i>
               </a>
 
-                  <form id="delete-form-{{$td->id}}" action="{{ route('admin.transaksidetail.delete', ['id' => $td->id]) }}" method="POST" style="display: none;">
+                  <form id="delete-form-{{$td->id}}" action="{{ route('transaksidetail.delete', ['id' => $td->id]) }}" method="POST" style="display: none;">
                       @csrf
                       @method('DELETE')
                   </form>
@@ -134,12 +134,12 @@
                 @endforeach
               </table>
               <div class="mt-3">
-                <a class="btn btn-inverse-info btn" href="{{ route('admin.transaksi') }}"><i class="fas fa-file"></i> Tunda</a>
-                <a class="btn btn-inverse-info btn" href="{{ route('admin.transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i>selesai</a>
+                <a class="btn btn-inverse-info btn" href="{{ route('transaksi') }}"><i class="fas fa-file"></i> Tunda</a>
+                <a class="btn btn-inverse-info btn" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i>selesai</a>
               </div>
            
 
-              <!-- <a href="admin.transaksidetail.selesai" b class="btn btn-success"><i class="fas fa-check"></i> Selesai</a> -->
+              <!-- <a href="transaksidetail.selesai" b class="btn btn-success"><i class="fas fa-check"></i> Selesai</a> -->
            
             </div>
           

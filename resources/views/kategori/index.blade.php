@@ -4,7 +4,7 @@
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{ route('admin.kategori.create') }}" class="btn btn-inverse-primary ">
+            <a href="{{ route('kategori.create') }}" class="btn btn-inverse-primary ">
                 Tambah Kategori</a>
         </ol>
     </nav>
@@ -28,14 +28,14 @@
                             <tbody>
                                 @foreach ($kategori as $ktg)
                                 <tr>
-                                    <form action="{{ route('admin.kategori.destroy', ['id' => $ktg->id]) }}" method="POST">
+                                    <form action="{{ route('kategori.destroy', ['id' => $ktg->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $ktg->name }}</td>
                                         <td>{{ $ktg->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('admin.kategori.edit', ['id' => $ktg->id]) }}" class="btn btn-inverse-warning">
+                                            <a href="{{ route('kategori.edit', ['id' => $ktg->id]) }}" class="btn btn-inverse-warning">
                                                 <i class="link-icon" data-feather="edit"></i>
                                             </a>
                             

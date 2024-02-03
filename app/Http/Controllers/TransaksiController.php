@@ -34,7 +34,7 @@ class TransaksiController extends Controller
 
         $dataTransaksi = array_merge($data, $data);
         $transaksi = Transaksi::create($dataTransaksi);
-        return redirect()->route('admin.transaksi.edit', ['id' => $transaksi->id]);
+        return redirect()->route('transaksi.edit', ['id' => $transaksi->id]);
     
 }
 public function lanjutkan( $id)
@@ -140,6 +140,6 @@ public function lanjutkan( $id)
         Alert::success('Transaksi', 'Transaksi Berhasil Dihapus');
         $transaksi = Transaksi::find($id);
         $transaksi->delete();
-        return redirect('admin/transaksi');
+        return redirect('transaksi');
     }
 }

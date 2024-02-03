@@ -39,7 +39,7 @@ class TransaksiDetailController extends Controller
     ];
     $transaksi->update($detailtransaksi);
     }
-    return redirect()->route('admin.transaksi.edit', ['id' => $transaksi_id]);
+    return redirect()->route('transaksi.edit', ['id' => $transaksi_id]);
    
     }
     public function delete(string $id)
@@ -57,6 +57,6 @@ class TransaksiDetailController extends Controller
             'status' => 'selesai'
         ];
         $transaksi->update($data);
-        return redirect('admin/transaksi');
+        return redirect('transaksi');
     }
 }

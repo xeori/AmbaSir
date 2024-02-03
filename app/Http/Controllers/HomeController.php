@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
+use illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
@@ -46,9 +47,10 @@ class HomeController extends Controller
                 $data['name'] = $request->nama;
                 $data['password'] = Hash::make($request->password);
 
+         
                 User::create($data);
                 
-                return redirect()->route('admin.index');
+                return redirect()->route('index');
 }
 public function update(Request $request, $id){
     $validator = Validator::make($request->all(), [
@@ -81,7 +83,7 @@ public function update(Request $request, $id){
 
             User::whereId($id)->update($data);
             Alert::success('User', 'User Berhasil Diedit');
-            return redirect()->route('admin.index');
+            return redirect()->route('index');
 }
 public function delete(Request $request, $id){
     $data = User::find($id);
@@ -91,7 +93,7 @@ public function delete(Request $request, $id){
         Alert::success('User', 'User Berhasil Dihapus');
     }
     
-    return redirect()->route('admin.index');
+    return redirect()->route('index');
 }
 
 }

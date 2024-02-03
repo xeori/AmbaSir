@@ -18,10 +18,10 @@ class ProdukController extends Controller
     }
     public function create()
     {
-        $konz = route('admin.produk');
+        $konz = route('produk');
         $kategori = Kategori::all();
         // $kategori =Kategori::get();
-        // $kategori = route('admin.produk');
+        // $kategori = route('produk');
         return view('produk.create',compact('kategori','konz'));
     }
     public function store(Request $request)
@@ -43,11 +43,11 @@ class ProdukController extends Controller
             $data ['gambar'] = 'null';
         }
         Produk::create($data);
-        return redirect()->route('admin.produk');
+        return redirect()->route('produk');
     }
     public function edit(string $id)
     {
-        $konz = route('admin.produk');
+        $konz = route('produk');
         $produk = Produk::find($id);
         $kategori = Kategori::get();
         return view('produk.edit',compact('produk','kategori','konz'));
@@ -73,14 +73,14 @@ class ProdukController extends Controller
         // Lakukan update hanya pada kolom-kolom yang diubah
         Produk::whereId($id)->update($data);
         Alert::success('Produk', 'Produk Berhasil Di Update');
-        return redirect()->route('admin.produk');
+        return redirect()->route('produk');
     }
     public function destroy(string $id)
     {
         $data = Produk::find($id);
         $data->delete();
         Alert::success('Produk', 'Produk Berhasil Di Hapus');
-        return redirect()->route('admin.produk')->with('success', 'Produk berhasil dihapus');
+        return redirect()->route('produk')->with('success', 'Produk berhasil dihapus');
     }
 
 }

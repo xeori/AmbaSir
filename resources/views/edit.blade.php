@@ -17,7 +17,7 @@
 
 
 
-                    <form action="{{route('admin.user.update',['id' => $data->id])}}" class="forms-sample" method="POST">
+                    <form action="{{route('user.update',['id' => $data->id])}}" class="forms-sample" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">

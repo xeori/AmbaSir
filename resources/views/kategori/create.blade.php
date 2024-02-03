@@ -17,7 +17,7 @@
 
 
 
-                    <form action="{{ route('admin.kategori.store') }}" class="forms-sample" method="POST">
+                    <form action="{{ route('kategori.store') }}" class="forms-sample" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputUsername1" class="form-label">Nama Kategori</label>
