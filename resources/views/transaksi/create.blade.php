@@ -39,7 +39,7 @@
               @endif
               
                 <input type="hidden" name="produk_name"  value="{{  $p_detail ? $p_detail->name : ''  }}">
-                <input type="hidden" name="transaksi_id"  value="{{ Request::segment(4)  }}">
+                <input type="hidden" name="transaksi_id" value="{{ Request::segment(3) }}">
                 <input type="hidden" name="subtotal"  value="{{ $subtotal  }}">
                 
               
@@ -65,7 +65,7 @@
 
               <div class="row mt-1">
                       <div class="col-md-4">
-                        <!-- Tambahkan elemen ini untuk menampung nilai qty -->
+                       <label for="">QTY</label>
                         <input type="hidden" id="hiddenQty" value="1">
                       </div>
                       <div class="col-md-8">
@@ -80,7 +80,7 @@
                         <!-- Menampilkan harga dari database -->
                         <!-- <h5>Harga: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5> -->
                         <!-- Subtotal akan ditampilkan di bawah input qty -->
-                        <h5 id="subtotal">Subtotal: Rp {{ $p_detail ? $p_detail->harga * $qty : '' }}</h5>
+                        <h5 id="subtotal">Subtotal: Rp. {{ format_rupiah($subtotal)}}</h5>
                       </div>
                     </div>
               <div class=" row mt-1">
@@ -117,7 +117,7 @@
                 <td>{{$loop->iteration}}</td>
                   <td>{{$td->produk_name}}</td>
                   <td>{{$td->qty}}</td>
-                  <td>{{$td->subtotal}}</td>
+                  <td>{{ 'Rp. '.format_rupiah ($td->subtotal)}}</td>
                   <td>
                  <a href="{{ route('transaksidetail.delete', ['id' => $td->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$td->id}}').submit(); }">
                     <i class="link-icon" data-feather="x"></i>
@@ -135,7 +135,8 @@
               </table>
               <div class="mt-3">
                 <a class="btn btn-inverse-info btn" href="{{ route('transaksi') }}"><i class="fas fa-file"></i> Tunda</a>
-                <a class="btn btn-inverse-info btn" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i>selesai</a>
+                <a class="btn btn-inverse-info btn" href="route('transaksidetail.selesai', ['id' => Request::segment(4)])
+                  "><i class="fas fa-frog"></i>selesai</a>
               </div>
            
 
@@ -153,13 +154,13 @@
           <div class="card">
             <div class="card-body">
               <form action="" method="GET">
-              <div class="form-group">
-                <label for="">Total Belanja</label>
+              <div class="form-group mb-3">
+                <label class="mb-2"  for="">Total Belanja</label>
                 <input type="number" value="{{ optional($transaksi)->total }}" disabled name="total_belanja" class="form-control">
               </div>
 
-              <div class="form-group">
-                <label for="">Dibayarkan</label>
+              <div class="form-group mb-3">
+                <label class="mb-2" for="">Dibayarkan</label>
                 <input type="number" name="dibayarkan" value="{{ request('dibayarkan') }}" class="form-control">
               </div>
 
@@ -167,9 +168,9 @@
             </form>
               <hr>
 
-              <div class="form-group">
-                <label for="">Uang Kembalian</label>
-                <input type="number" value="{{ $kembalian }}" disabled name="kembalian" class="form-control">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="">Uang Kembalian</label>
+                <input type="number" value="{{ format_rupiah($kembalian) }}" disabled name="kembalian" class="form-control">
               </div>
             </div>
           </div>
