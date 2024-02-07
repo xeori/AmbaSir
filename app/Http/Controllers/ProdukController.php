@@ -35,7 +35,7 @@ class ProdukController extends Controller
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
             $file_name = time(). "_".$gambar->getClientOriginalName();
-            $storage = 'public/images/';
+            $storage = 'images/';
             $gambar->move($storage, $file_name);
             $data['gambar'] = $storage . $file_name;
 
@@ -72,14 +72,14 @@ class ProdukController extends Controller
     
         // Lakukan update hanya pada kolom-kolom yang diubah
         Produk::whereId($id)->update($data);
-        Alert::success('Produk', 'Produk Berhasil Di Update');
+        Alert::success('Success', 'Produk Berhasil Di Update');
         return redirect()->route('produk');
     }
     public function destroy(string $id)
     {
         $data = Produk::find($id);
         $data->delete();
-        Alert::success('Produk', 'Produk Berhasil Di Hapus');
+        Alert::success('Success', 'Produk Berhasil Di Hapus');
         return redirect()->route('produk')->with('success', 'Produk berhasil dihapus');
     }
 
