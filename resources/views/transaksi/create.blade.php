@@ -117,7 +117,7 @@
                 <td>{{$loop->iteration}}</td>
                   <td>{{$td->produk_name}}</td>
                   <td>{{$td->qty}}</td>
-                  <td>{{ 'Rp. '.format_rupiah ($td->subtotal)}}</td>
+                  <td>{{ 'Rp.'.format_rupiah ($td->subtotal)}}</td>
                   <td>
                  <a href="{{ route('transaksidetail.delete', ['id' => $td->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$td->id}}').submit(); }">
                     <i class="link-icon" data-feather="x"></i>
@@ -135,8 +135,7 @@
               </table>
               <div class="mt-3">
                 <a class="btn btn-inverse-info btn" href="{{ route('transaksi') }}"><i class="fas fa-file"></i> Tunda</a>
-                <a class="btn btn-inverse-info btn" href="route('transaksidetail.selesai', ['id' => Request::segment(4)])
-                  "><i class="fas fa-frog"></i>selesai</a>
+                <a class="btn btn-inverse-info btn" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(3)]) }}"><i class="fas fa-frog"></i> Selesai</a>
               </div>
            
 

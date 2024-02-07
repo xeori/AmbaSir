@@ -14,6 +14,7 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Tabel Kategori</h6>
+                    
 
                     <div class="table-responsive">
                         <table id="dataTableExample" class="table">
