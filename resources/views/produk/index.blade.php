@@ -22,6 +22,7 @@
                                     <th>#</th>
                                     <th>Nama</th>
                                     <th>Harga</th>
+                                    <th>Diskon</th>
                                     <th>Stok</th>
                                     <th>Gambar</th>
                                     <th>Action</th>
@@ -37,6 +38,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pdk->name }}</td>
                                         <td>{{ $pdk->harga }}</td>
+                                        <td>{{ $pdk->diskon }}%</td>
                                         <td>{{ $pdk->stok }}</td>
                                         <td><img src="{{ asset($pdk->gambar) }}" alt="" style="max-width: 200px;"></td>
                                         <td>

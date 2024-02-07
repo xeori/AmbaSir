@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Produk;
+use App\Models\Transaksi;
 use illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
     public function dashboard(){
-        return view("layout/dashboard");
+        $totalUsers = User::count();
+        $totalProduk = Produk::count();
+        $totalPenjualan = Transaksi::sum('total');
+        return view('layout.dashboard', compact('totalUsers','totalProduk','totalPenjualan'));
         
     }
     public function index(){
@@ -82,7 +87,7 @@ public function update(Request $request, $id){
             
 
             User::whereId($id)->update($data);
-            Alert::success('User', 'User Berhasil Diedit');
+            Alert::success('Success', 'User Berhasil Diedit');
             return redirect()->route('index');
 }
 public function delete(Request $request, $id){
@@ -90,7 +95,7 @@ public function delete(Request $request, $id){
 
     if($data){
         $data->delete();
-        Alert::success('User', 'User Berhasil Dihapus');
+        Alert::success('Success', 'User Berhasil Dihapus');
     }
     
     return redirect()->route('index');

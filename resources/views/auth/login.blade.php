@@ -20,7 +20,15 @@ License: For each use you must have a valid license purchased only from above li
 	<meta name="author" content="NobleUI">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<title>NobleUI - HTML Bootstrap 5 Admin Dashboard Template</title>
+	<title>KasirUkk | Login</title>
+
+<style>
+  .authlogin-side-wrapper{
+    with:100%;
+    height: 100%;
+    background-image: url(images/background.jpg)
+  }
+</style>
 
   <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}">
   <!-- Fonts -->
@@ -57,7 +65,7 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="card">
 							<div class="row">
                 <div class="col-md-4 pe-md-0">
-                  <div class="auth-side-wrapper">
+                  <div class="authlogin-side-wrapper">
 
                   </div>
                 </div>

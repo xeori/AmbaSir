@@ -42,9 +42,9 @@
                                         <td>{{$ts->kasir_nama}}</td>
                                         <td>
                                             @if($ts->status == 'selesai')
-                                                <a class="btn btn-info btn" href="{{ route('generate-pdf', ['id' => $ts->id]) }}"><i class="fas fa-file"></i> Cetak Struk</a>
+                                                <a class="btn btn-inverse-info" href="{{ route('generate-pdf', ['id' => $ts->id]) }}"><i class="fas fa-file"></i> Cetak</a>
                                             @else
-                                                <a class="btn btn-inverse-success" href="{{ route('transaksi.lanjutkan', ['id' => $ts->id]) }}"><i class="fas fa-money-bill"></i> Bayarkan</a>
+                                                <a class="btn btn-inverse-success" href="{{ route('transaksi.lanjutkan', ['id' => $ts->id]) }}"><i class="fas fa-money-bill"></i> Bayar</a>
                                             @endif
                                         </td>
                                         <td>

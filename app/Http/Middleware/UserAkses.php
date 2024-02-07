@@ -22,7 +22,7 @@ class UserAkses
            return $next($request);
        }
 
-       abort(403, 'unauthorize');
+       abort(403, 'GET AWAY');
    }
        
     }
