@@ -1,6 +1,7 @@
 @extends('layout.body.main')
 @section('layout')
 @include('sweetalert::alert')
+
 <div class="page-content">
 
     <nav class="page-breadcrumb">
@@ -17,7 +18,7 @@
 
 
 
-                    <form action="{{ route('produk.store') }}" class="forms-sample" method="POST">
+                    <form action="{{ route('produk.store') }}" class="forms-sample" method="POST"  enctype="multipart/form-data" >
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputUsername1" class="form-label">Nama Produk</label>
@@ -64,15 +65,25 @@
             </div>
 
             <div class="mb-3">
-                <label for="exampleInputUsername1" class="form-label">Gambar</label>
-                <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" id="exampleInputUsername1" autocomplete="off" placeholder="gambar">
-            
-            @error('gambar')
-          <span class="text-danger">{{$message}}</span>    
-           
-            @enderror
-        </div>
+    <label for="diskon" class="form-label">Diskon (%)</label>
+    <div class="input-group">
+        <input type="txt" name="diskon" class="form-control @error('diskon') is-invalid @enderror" id="diskon" autocomplete="off" placeholder="Masukkan Diskon Jika Ada" step="0.01">
+        <span class="input-group-text">%</span>
+    </div>
 
+    @error('diskon')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+</div>
+
+<div class="mb-3">
+    <label for="exampleInputUsername1" class="form-label">Gambar</label>
+    <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" id="gambar" autocomplete="off" placeholder="gambar">
+    
+    @error('gambar')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+</div>
 
            <div class="mt-3">
             <button type="submit" class="btn btn-primary me-2">Submit</button>

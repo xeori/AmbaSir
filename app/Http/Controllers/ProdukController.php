@@ -24,27 +24,42 @@ class ProdukController extends Controller
         // $kategori = route('produk');
         return view('produk.create',compact('kategori','konz'));
     }
-    public function store(Request $request)
+    public function store(Request $request ) 
     {
         $data = $request->validate([
             'name'=> 'required',
             'kategori_id'=> 'required',
             'harga'=>'required',
             'stok'=>'required',
+            'diskon'=>'nullable', // Mengubah 'required' menjadi 'nullable'
+            'gambar'=>'required',
         ]);
+    
+        // Periksa apakah ada nilai diskon yang diberikan
+      
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
             $file_name = time(). "_".$gambar->getClientOriginalName();
-            $storage = 'public/images/';
-            $gambar->move($storage, $file_name);
-            $data['gambar'] = $storage . $file_name;
-
-        }else{
-            $data ['gambar'] = 'null';
+            $storage = 'uploads/images/';
+        
+            // Cek apakah pemindahan gambar berhasil
+            if ($gambar->move($storage, $file_name)) {
+                $data['gambar'] = $storage . $file_name;
+            } else {
+                // Tampilkan pesan kesalahan jika pemindahan gagal
+                return redirect()->back()->withInput()->withErrors(['gambar' => 'Pemindahan gambar gagal']);
+            }
+        } else {
+            // Jika gambar tidak diunggah, beri nilai default 'null'
+            $data['gambar'] = 'nul';
         }
+        
+    
         Produk::create($data);
+        // dd($data);
         return redirect()->route('produk');
     }
+    
     public function edit(string $id)
     {
         $konz = route('produk');
@@ -59,6 +74,7 @@ class ProdukController extends Controller
             'kategori_id' => 'required',
             'harga' => 'required',
             'stok' => 'required',
+            'diskon' => 'required',
         ]);
     
         // Cek apakah ada perubahan pada gambar

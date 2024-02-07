@@ -9,9 +9,15 @@ use Illuminate\Http\Request;
 class KategoriController extends Controller
 {
    
-    public function index()
+    public function index(Request $request)
     {
         $kategori = Kategori::all();
+        $search = $request->input('search');
+
+        // Gunakan query builder untuk melakukan pencarian
+        $kategori = Kategori::when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', "%$search%");
+        })->get();
       
            
             return view('kategori.index', compact('kategori'));

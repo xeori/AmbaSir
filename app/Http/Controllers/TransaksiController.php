@@ -37,7 +37,7 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.edit', ['id' => $transaksi->id]);
     
 }
-public function lanjutkan( $id)
+    public function lanjutkan( $id)
     {
 
 
