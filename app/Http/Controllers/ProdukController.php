@@ -88,15 +88,23 @@ class ProdukController extends Controller
     
         // Lakukan update hanya pada kolom-kolom yang diubah
         Produk::whereId($id)->update($data);
-        Alert::success('Success', 'Produk Berhasil Di Update');
-        return redirect()->route('produk');
+        $notification = array(
+            'message' => 'Produk Berhasil Di Update',
+            'alert-type' => 'success'
+        );
+        
+        return redirect('produk')->with($notification);
     }
     public function destroy(string $id)
     {
         $data = Produk::find($id);
         $data->delete();
-        Alert::success('Success', 'Produk Berhasil Di Hapus');
-        return redirect()->route('produk')->with('success', 'Produk berhasil dihapus');
+        $notification = array(
+            'message' => 'Produk Berhasil Di Hapus',
+            'alert-type' => 'success'
+        );
+        
+        return redirect('produk')->with($notification);
     }
 
 }

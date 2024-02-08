@@ -1,6 +1,6 @@
 <nav class="sidebar">
     <div class="sidebar-header">
-      <a href="#" class="sidebar-brand">
+      <a href="{{ route('dashboard') }}" class="sidebar-brand">
         Kasir<span>Ukk</span>
       </a>
       <div class="sidebar-toggler not-active">
@@ -11,6 +11,7 @@
     </div>
     <div class="sidebar-body">
       <ul class="nav">
+        @if(auth()->user()->role!="pengguna")
         <li class="nav-item nav-category">Main</li>
         <li class="nav-item">
           <a href="{{ route('dashboard') }}" class="nav-link Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
@@ -18,7 +19,7 @@
             <span class="link-title">Dashboard</span>
           </a>
         </li>
-
+        @endif
         @if(auth()->user()->role!="pengguna")
         <li class="nav-item nav-category">users</li>
       

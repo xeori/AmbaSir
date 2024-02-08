@@ -13,6 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
+  
     public function dashboard(){
         $totalUsers = User::count();
         $totalProduk = Produk::count();
@@ -87,18 +88,25 @@ public function update(Request $request, $id){
             
 
             User::whereId($id)->update($data);
-            Alert::success('Success', 'User Berhasil Diedit');
-            return redirect()->route('index');
+            $notification = array(
+                'message' => 'User Berhasil Di Update',
+                'alert-type' => 'success'
+            );
+            return redirect('user')->with($notification);
 }
 public function delete(Request $request, $id){
     $data = User::find($id);
 
     if($data){
         $data->delete();
-        Alert::success('Success', 'User Berhasil Dihapus');
+        
     }
+    $notification = array(
+        'message' => 'User Berhasil Di Hapus',
+        'alert-type' => 'success'
+    );
     
-    return redirect()->route('index');
+    return redirect('user')->with($notification);
 }
 
 }

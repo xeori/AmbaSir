@@ -58,8 +58,12 @@ class KategoriController extends Controller
         
     
         Kategori::whereId($id)->update($kategori);
-        Alert::success('Kategori', 'Kategori Berhasil di Update');
-        return redirect()->route('kategori');
+        $notification = array(
+            'message' => 'Kategori Berhasil Di Update',
+            'alert-type' => 'success'
+        );
+        
+        return redirect('kategori')->with($notification);
     }
     public function destroy(string $id)
     {
@@ -71,7 +75,11 @@ class KategoriController extends Controller
         }
     
         $kategori->delete();
-        Alert::success('Kategori', 'Kategori Berhasil Di Hapus');
-        return redirect()->route('kategori')->with('success', 'Kategori berhasil dihapus');
+        $notification = array(
+            'message' => 'Kategori Berhasil Di Hapus',
+            'alert-type' => 'success'
+        );
+        
+        return redirect('kategori')->with($notification);
     }
 }

@@ -31,12 +31,13 @@
 
            <div class="mt-3">
             <button type="submit" class="btn btn-primary me-2">Submit</button>
-            <button class="btn btn-secondary">Cancel</button>
+        </form>
+            <a class="btn btn-secondary me-2" href="{{ route('kategori') }}">Back</a>
            </div>
                            
                        
                        
-                    </form>
+                  
 
   </div>
 

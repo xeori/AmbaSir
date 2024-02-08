@@ -24,7 +24,7 @@ License: For each use you must have a valid license purchased only from above li
     .authlogin-side-wrapper{
       with:100%;
       height: 100%;
-      background-image: url(images/background.jpg)
+      background-image: url(images/login.png)
     }
   </style>
   <!-- Fonts -->

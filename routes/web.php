@@ -53,10 +53,10 @@ Route::put('produk/update/{id}',[ProdukController::class,'update'])->name('produ
 Route::delete('produk/destroy/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
 
 
+Route::get('layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
 });
 
 Route::group(['middleware' => ['auth', 'userAkses:admin,pengguna']], function(){
-    Route::get('layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
 
     Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');
 Route::get('transaksi/create',[TransaksiController::class,'create'])->name('transaksi.create');

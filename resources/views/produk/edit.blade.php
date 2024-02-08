@@ -64,6 +64,14 @@
                 @enderror
             </div>
 
+            
+            <div class="mb-3">
+              <label for="diskon" class="form-label">Diskon (%)</label>
+              <div class="input-group">
+                  <input type="txt" name="diskon" class="form-control @error('diskon') is-invalid @enderror" id="diskon" autocomplete="off" placeholder="Masukkan Diskon Jika Ada" value="{{ old('name', $produk->diskon) }}" step="0.01">
+                  <span class="input-group-text">%</span>
+              </div>
+
             <div class="mb-3">
                 <label for="exampleInputUsername1" class="form-label">Gambar</label>
                 <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" id="exampleInputUsername1" autocomplete="off" placeholder="gambar">

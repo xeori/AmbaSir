@@ -27,6 +27,8 @@ License: For each use you must have a valid license purchased only from above li
 
   	<!-- Plugin css for this page -->
 	  <link rel="stylesheet" href="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
+
+	 
 	  <!-- End plugin css for this page -->
 	  <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}">
 
@@ -47,7 +49,8 @@ License: For each use you must have a valid license purchased only from above li
   <!-- Layout styles -->  
 	<link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
   <!-- End layout styles -->
-
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+  
   <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
 </head>
 <body>
@@ -98,5 +101,30 @@ License: For each use you must have a valid license purchased only from above li
   <script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
   <!-- End custom js for this page -->
   <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <script>
+   @if(Session::has('message'))
+   var type = "{{ Session::get('alert-type','info') }}"
+   switch(type){
+	  case 'info':
+	  toastr.info(" {{ Session::get('message') }} ");
+	  break;
+  
+	  case 'success':
+	  toastr.success(" {{ Session::get('message') }} ");
+	  break;
+  
+	  case 'warning':
+	  toastr.warning(" {{ Session::get('message') }} ");
+	  break;
+  
+	  case 'error':
+	  toastr.error(" {{ Session::get('message') }} ");
+	  break; 
+   }
+   @endif 
+  </script>
 </body>
 </html>    

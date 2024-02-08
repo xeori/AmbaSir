@@ -69,6 +69,11 @@ class TransaksiDetailController extends Controller
             'status' => 'selesai'
         ];
         $transaksi->update($data);
-        return redirect('transaksi');
+        $notification = array(
+            'message' => 'Transaksi Berhasil',
+            'alert-type' => 'success'
+        );
+        
+        return redirect('transaksi')->with($notification);
     }
 }

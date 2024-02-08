@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use RealRashid\SweetAlert\Facades\Alert;
 use illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
      public function index(){
         return view('auth.login');
+
     }
 
     public function login_proses(Request $request){
@@ -29,7 +31,7 @@ class LoginController extends Controller
         if (Auth::user()->role == 'admin') {
             return redirect('layout/dashboard');
         } elseif (Auth::user()->role == 'pengguna') {
-            return redirect('layout/dashboard');
+            return redirect('transaksi');
             
         }
        }else{ 

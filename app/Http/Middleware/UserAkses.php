@@ -22,7 +22,7 @@ class UserAkses
            return $next($request);
        }
 
-       abort(403, 'GET AWAY');
+       abort(403, 'GET AWAY ');
    }
        
     }
