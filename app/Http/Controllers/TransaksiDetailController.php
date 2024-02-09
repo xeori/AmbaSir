@@ -12,20 +12,28 @@ class TransaksiDetailController extends Controller
     {
         $produk_id = $request->produk_id;
         $transaksi_id = $request->transaksi_id;
-        $tdt = TransaksiDetail::whereProdukId($produk_id)->whereTransaksiId($transaksi_id)->first();
+        $qty = $request->qty;
+    
         $transaksi = Transaksi::find($transaksi_id);
-        
-        // Retrieve diskon value from produk
         $produk = Produk::find($produk_id);
+    
+        // Check if there is enough stock
+        if ($produk->stok < $qty) {
+            return redirect()->back()->with('error', 'Stok Melebihi Batas . Stok saat ini: ' . $produk->stok);
+        }
+    
+        $tdt = TransaksiDetail::whereProdukId($produk_id)->whereTransaksiId($transaksi_id)->first();
+    
+        // Retrieve diskon value from produk
         $diskonPersen = $produk->diskon ?? 0; // Default to 0 if diskon is not set
-        
+    
         if ($tdt == null) {
             $subtotal = ($request->subtotal - ($request->subtotal * $diskonPersen / 100));
             $data = [
                 'produk_id' => $produk_id,
                 'produk_name' => $request->produk_name,
                 'transaksi_id' => $transaksi_id,
-                'qty' => $request->qty,
+                'qty' => $qty,
                 'subtotal' => $subtotal,
             ];
             TransaksiDetail::create($data);
@@ -34,10 +42,13 @@ class TransaksiDetailController extends Controller
                 'total' => $subtotal + $transaksi->total,
             ];
             $transaksi->update($dt);
+    
+            // Update the stock
+            $produk->decrement('stok', $qty);
         } else {
             $subtotal = ($tdt->subtotal + ($request->subtotal - ($request->subtotal * $diskonPersen / 100)));
             $data = [
-                'qty' => $tdt->qty + $request->qty,
+                'qty' => $tdt->qty + $qty,
                 'subtotal' => $subtotal,
             ];
             $tdt->update($data);
@@ -46,10 +57,14 @@ class TransaksiDetailController extends Controller
                 'total' => $subtotal + $transaksi->total,
             ];
             $transaksi->update($dt);
+    
+            // Update the stock
+            $produk->decrement('stok', $qty);
         }
     
         return redirect()->route('transaksi.edit', ['id' => $transaksi_id]);
     }
+    
     
    
    
