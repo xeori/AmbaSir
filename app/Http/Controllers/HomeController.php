@@ -31,13 +31,13 @@ class HomeController extends Controller
         return view('edit',compact('data','user'));
     }
     public function create(){
-       
         return view('create');
     }
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|string|max:30',
             'nama'=> 'required|string',
+            'role' => 'required|in:pengguna,admin', // Pastikan rolenya adalah salah satu dari opsi yang diizinkan
             
                 'password' => [
                     'required',
@@ -51,8 +51,25 @@ class HomeController extends Controller
             
                 $data['email'] = $request->email;
                 $data['name'] = $request->nama;
+                $data ['role'] = $request->role;
                 $data['password'] = Hash::make($request->password);
 
+                if ($request->hasFile('gambar')) {
+                    $gambar = $request->file('gambar');
+                    $file_name = time(). "_".$gambar->getClientOriginalName();
+                    $storage = 'images/';
+                
+                    // Cek apakah pemindahan gambar berhasil
+                    if ($gambar->move($storage, $file_name)) {
+                        $data['gambar'] = $storage . $file_name;
+                    } else {
+                        // Tampilkan pesan kesalahan jika pemindahan gagal
+                        return redirect()->back()->withInput()->withErrors(['gambar' => 'Pemindahan gambar gagal']);
+                    }
+                } else {
+                    // Jika gambar tidak diunggah, beri nilai default 'null'
+                    $data['gambar'] = 'nul';
+                }
          
                 User::create($data);
                 

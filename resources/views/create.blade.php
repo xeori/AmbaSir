@@ -17,7 +17,7 @@
 
 
 
-                    <form action="{{ route('user.store') }}" class="forms-sample" method="POST">
+                    <form action="{{ route('user.store') }}" class="forms-sample" method="POST" enctype="multipart/form-data"  enctype="multipart/form-data">
                         @csrf
                         <div class="mt-3">
                             <label for="exampleInputUsername1" class="form-label">Username</label>
@@ -53,20 +53,31 @@
                             <option value="admin">Admin</option>
                             <!-- Tambahkan opsi untuk peran lain jika diperlukan -->
                         </select>
+                    </div>
                         
+                        @error('role')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    
                         
-                  @error('role')
-                  <div class="invalid-feedback">
-                      {{ $message }}
-                  </div>
-                  @enderror
-                      </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername1" class="form-label">Foto Profile</label>
+                        <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" id="gambar" autocomplete="off" placeholder="gambar">
+                        
+                        @error('gambar')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                
 
                   <div class="mt-3">
                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                 </form>
                     <a class="btn btn-secondary me-2" href="{{ route('produk') }}">Back</a>
                   </div>
+                
                             
                        
                        

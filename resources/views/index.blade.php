@@ -25,6 +25,7 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Profile</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -38,6 +39,7 @@
                                         <td>{{ $dt->name }}</td>
                                         <td>{{ $dt->email }}</td>
                                         <td>{{ $dt->role }}</td>
+                                        <td><img src="{{ asset($dt->gambar) }}" alt="" style="max-width: 200px;"></td>
                                         <td>
                                             <a
                                                 href="{{route('user.edit',['id' =>$dt->id]) }}"

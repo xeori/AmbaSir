@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,pengguna']], function(){
     Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');
 Route::get('transaksi/create',[TransaksiController::class,'create'])->name('transaksi.create');
 Route::post('transaksi/store',[TransaksiController::class,'store'])->name('transaksi.store');
+Route::get('invoice/index/{id}',[TransaksiController::class,'invoice'])->name('invoice');
 Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('transaksi.edit');
 Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
 Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');
@@ -74,5 +75,7 @@ Route::get('/admin/transaksidetail/edit/{id}', [TransaksiDetailController::class
 Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'update'])->name('transaksidetail.update');
 Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class, 'delete'])->name('transaksidetail.delete');
 
-Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generate-pdf');
+// routes/web.php
+Route::get('/print-invoice/{id}', 'InvoiceController@printInvoice')->name('print.invoice');
+
 });
