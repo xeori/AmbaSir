@@ -142,4 +142,9 @@ class TransaksiController extends Controller
         $transaksi->delete();
         return redirect('transaksi');
     }
+
+    
+    
+    
+
 }

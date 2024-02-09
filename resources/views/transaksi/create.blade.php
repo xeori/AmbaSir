@@ -19,8 +19,10 @@
                   <form action="" method="GET">
                   <div class="u-flex">
                   <select name="produk_id" class="form-control" id="produk_id">
-                    @foreach($produk as $p)
-                    <option value="{{$p->id}}">{{$p->name}}</option>
+                  @foreach($produk as $p)
+                  @if($p->stok > 0)
+                        <option value="{{ $p->id }}">{{ $p->name }}</option>
+                    @endif
                     @endforeach
                   </select>
                   <button type="submit" class="btn btn-inverse-primary mt-3">Pilih</button>
@@ -63,20 +65,28 @@
                 </div>
               </div>
 
+            
+
               <div class="row mt-1">
                       <div class="col-md-4">
                        <label for="">QTY</label>
                         <input type="hidden" id="hiddenQty" value="1">
                       </div>
+                      
                       <div class="col-md-8">
                         <div class="d-flex">
                         <a href="?produk_id={{ request('produk_id') }}&act=min&qty={{ $qty }}" class="btn btn-inverse-primary"><i class="link-icon" data-feather="minus"></i></a>
+                        
                           <input type="number" value="{{$qty}}" id="qty" class="form-control" name="qty">
                           <a href="?produk_id={{ request('produk_id') }}&act=plus&qty={{ $qty }}" class="btn btn-inverse-primary"> <i class="link-icon" data-feather="plus"></i></a>
 
                           
-                          </div>
-
+              </div>
+              @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
                         <!-- Menampilkan harga dari database -->
                         <!-- <h5>Harga: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5> -->
                         <!-- Subtotal akan ditampilkan di bawah input qty -->
@@ -177,7 +187,9 @@
       </div>
       </section>
      
-  </div>   
+  </div>  
+  
+  
 
 
 @endsection
