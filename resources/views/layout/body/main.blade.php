@@ -29,7 +29,9 @@ License: For each use you must have a valid license purchased only from above li
 	  <link rel="stylesheet" href="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
 
 	 
-	  <!-- End plugin css for this page -->
+	<!-- Plugin css for this page -->
+	<link rel="stylesheet" href="{{ asset('backend/assets/vendors/sweetalert2/sweetalert2.min.css') }}">
+	<!-- End plugin css for this page -->
 	  <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}">
 
 
@@ -75,6 +77,11 @@ License: For each use you must have a valid license purchased only from above li
 		
 		</div>
 	</div>
+	
+	<!-- Plugin js for this page -->
+	<script src="{{ asset('backend/assets/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
+		<!-- Custom js for this page -->
+		<script src="{{ asset('backend/assets/js/sweet-alert.js') }}"></script>
 
 	<!-- core:js -->
 	<script src="{{ asset('backend/assets/vendors/core/core.js') }}"></script>
@@ -100,7 +107,10 @@ License: For each use you must have a valid license purchased only from above li
 	  <!-- Custom js for this page -->
   <script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
   <!-- End custom js for this page -->
-  <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+  <script src="{{ asset('backend/vendor/sweetalert/sweetalert.min.js') }}"></script>
+ <!-- Plugin js for this page -->
+ <script src="{{ asset('backend/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
+ <!-- End plugin js for this page -->
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 

@@ -71,6 +71,7 @@ class TransaksiController extends Controller
         'user_id' => $user->id,
         'kasir_nama' => $user->name,
         'total' => '0',
+        'bayar' => '0',
         ];
 
         $dataTransaksi = array_merge($data, $data);
