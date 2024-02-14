@@ -21,6 +21,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
+                                    <th>Kategori</th>
                                     <th>Harga</th>
                                     <th>Diskon</th>
                                     <th>Stok</th>
@@ -37,6 +38,7 @@
                                         @csrf @method('DELETE')
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pdk->name }}</td>
+                                        <td>{{ $pdk->kategori->name }}</td>
                                         <td>{{ $pdk->harga }}</td>
                                         <td>{{ $pdk->diskon }}%</td>
                                         <td>{{ $pdk->stok }}</td>

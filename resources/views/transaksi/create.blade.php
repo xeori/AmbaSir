@@ -118,16 +118,17 @@
                   <th>No</th>
                   <th>Nama Product</th>
                   <th>QTY</th>
+                  <th>Diskon</th>
                   <th>Subtotal</th>
                   <th>#</th>
-                  
                 </tr>
                 @foreach($transaksi_detail as $td)
                 <tr>
                 <td>{{$loop->iteration}}</td>
                   <td>{{$td->produk_name}}</td>
                   <td>{{$td->qty}}</td>
-                  <td>{{ 'Rp.'.format_rupiah ($td->subtotal)}}</td>
+                  <td>{{$td->produk->diskon}}%</td>
+                  <td>{{ format_rupiah ($td->subtotal)}}</td>
                   <td>
                  <a href="{{ route('transaksidetail.delete', ['id' => $td->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$td->id}}').submit(); }">
                     <i class="link-icon" data-feather="x"></i>
