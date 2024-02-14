@@ -60,11 +60,23 @@ class ProdukController extends Controller
         return redirect()->route('produk');
     }
     
-    public function edit(string $id)
+    public function edit(Request $request,string $id)
     {
         $konz = route('produk');
         $produk = Produk::find($id);
         $kategori = Kategori::get();
+        if ($request->hasFile('gambar')) {
+            // Hapus gambar lama jika ada
+            if ($produk->gambar) {
+                Storage::delete('images/' . $produk->gambar);
+            }
+    
+            // Simpan gambar yang baru diunggah
+            $gambar = $request->file('gambar')->store('images/');
+            $produk->gambar = $gambar;
+        }
+
+        $produk->save();
         return view('produk.edit',compact('produk','kategori','konz'));
     }
     public function update(Request $request, string $id)

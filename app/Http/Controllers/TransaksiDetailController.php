@@ -74,6 +74,10 @@ class TransaksiDetailController extends Controller
         $id = request('id');
         $tdt = TransaksiDetail::find($id);
         $tdt -> delete();
+        $qtyToDelete = $tdt->qty;
+        $produk = $tdt->produk; // asumsikan bahwa ada relasi ke model Produk
+        $produk->stok += $qtyToDelete;
+        $produk->save();
         return redirect()->back();
     }
 
@@ -89,6 +93,6 @@ class TransaksiDetailController extends Controller
             'alert-type' => 'success'
         );
         
-        return redirect('transaksi')->with($notification);
+        return redirect('user/transaksi')->with($notification);
     }
 }

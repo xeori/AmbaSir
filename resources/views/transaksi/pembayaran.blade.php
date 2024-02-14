@@ -41,7 +41,7 @@
               @endif
               
                 <input type="hidden" name="produk_name"  value="{{  $p_detail ? $p_detail->name : ''  }}">
-                <input type="hidden" name="transaksi_id" value="{{ Request::segment(3) }}">
+                <input type="hidden" name="transaksi_id" value="{{ Request::segment(4) }}">
                 <input type="hidden" name="subtotal"  value="{{ $subtotal  }}">
                 
               
