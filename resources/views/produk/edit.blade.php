@@ -17,7 +17,7 @@
 
 
 
-                    <form action="{{route('produk.update',['id' => $produk->id])}}" class="forms-sample" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('produk.update',['id' => $produk->id])}}" class="forms-sample" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
