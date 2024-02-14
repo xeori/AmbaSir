@@ -18,8 +18,6 @@ class HomeController extends Controller
         $totalUsers = User::count();
         $totalProduk = Produk::count();
         $totalPenjualan = Transaksi::sum('total');
-        $produk = Produk::all();
-        //dd($produk);
         return view('layout.dashboard', compact('totalUsers','totalProduk','totalPenjualan'));
         
     }

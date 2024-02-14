@@ -182,18 +182,11 @@ class TransaksiController extends Controller
         Alert::success('Transaksi', 'Transaksi Berhasil Dihapus');
         $transaksi = Transaksi::find($id);
         $transaksi->delete();
-        return redirect('user/transaksi');
+        return redirect('transaksi');
     }
 
-   
-
+    
+    
+    
 
 }
-
-    
-
-    
-    
-    
-
-

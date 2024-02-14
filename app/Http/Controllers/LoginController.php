@@ -30,9 +30,9 @@ class LoginController extends Controller
        if(Auth::attempt($data)) {
         
         if (Auth::user()->role == 'admin') {
-            return redirect('admin/layout/dashboard');
+            return redirect('layout/dashboard');
         } elseif (Auth::user()->role == 'pengguna') {
-            return redirect('user/transaksi');
+            return redirect('transaksi');
             
         }
        }else{ 

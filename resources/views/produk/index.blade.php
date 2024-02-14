@@ -34,7 +34,7 @@
                                 <tr>
                                     <form
                                         action="{{ route('produk.destroy', ['id' => $pdk->id]) }}"
-                                        method="POST" enctype="multipart/form-data">
+                                        method="POST">
                                         @csrf @method('DELETE')
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pdk->name }}</td>
