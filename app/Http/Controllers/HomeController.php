@@ -34,12 +34,10 @@ class HomeController extends Controller
         return view('create');
     }
     public function store(Request $request){
-        
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|string|max:30',
             'nama'=> 'required|string',
             'role' => 'required|in:pengguna,admin', // Pastikan rolenya adalah salah satu dari opsi yang diizinkan
-            'gambar' => 'required',
             
                 'password' => [
                     'required',
@@ -82,7 +80,6 @@ public function update(Request $request, $id){
         'email' => 'required|email|string|max:30',
         'nama'=> 'required|string',
         'password'=> 'nullable',
-        'gambar' => 'required',
         ]);
         
         if($validator->fails())

@@ -39,7 +39,6 @@ class KategoriController extends Controller
         
     
         Kategori::create($data);
-        
     
         return redirect()->route('kategori');
     }

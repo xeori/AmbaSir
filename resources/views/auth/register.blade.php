@@ -96,7 +96,6 @@ License: For each use you must have a valid license purchased only from above li
                     @enderror
                    
                       <div>
-                        
                        
                         <button type="submit" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
                           Sign Up

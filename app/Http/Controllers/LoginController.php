@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
      public function index(){
-        Auth::logout();
         return view('auth.login');
 
     }
@@ -30,17 +29,14 @@ class LoginController extends Controller
        if(Auth::attempt($data)) {
         
         if (Auth::user()->role == 'admin') {
-            return redirect('layout/dashboard');
+            return redirect('admin/layout/dashboard');
         } elseif (Auth::user()->role == 'pengguna') {
             return redirect('transaksi');
             
         }
        }else{ 
-            $notification = array(
-                'message' => 'Password Atau Email Salah',
-                'alert-type' => 'error'
-            );
-        return redirect()->route('login')->with($notification);
+        Alert::error('Failed', 'Email Atau Password Salah');
+        return redirect()->route('login');
        }
     }
 
@@ -75,7 +71,7 @@ class LoginController extends Controller
                 'password'=> $request->password,
             ];
            if(Auth::attempt($login)) {
-            return redirect('transaksi');
+            return redirect('layout/dashboard');
            }else{ 
             return redirect()->route('login')->with('failed','Incorrect email or password ');
            }

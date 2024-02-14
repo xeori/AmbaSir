@@ -77,20 +77,20 @@ License: For each use you must have a valid license purchased only from above li
                         @csrf
                       <div class="mb-3">
                         <label for="userEmail" class="form-label">Email address</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="userEmail" placeholder="Email">
-                     
+                        <input type="email" name="email" class="form-control" id="userEmail" placeholder="Email">
+                      </div>
                       @error('email')
-                      <span class="text-danger">{{$message}}</span>
-                      @enderror
-                    </div>
+                      <small>{{ $message }}</small>
+                    @enderror
+
                       <div class="mb-3">
                         <label for="userPassword" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="userPassword" autocomplete="current-password" placeholder="Password">
-                    
-                      @error('password')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
+                        <input type="password" name="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
                       </div>
+                      @error('password')
+                      <small>{{ $message }}</small>
+                    @enderror
+
                       <div>
 
                         <button type="submit" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">

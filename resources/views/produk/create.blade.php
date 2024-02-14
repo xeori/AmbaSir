@@ -18,7 +18,7 @@
 
 
 
-                    <form action="{{ route('produk.store') }}" class="forms-sample" method="POST"  enctype="multipart/form-data" >
+                    <form action="{{ route('produk.store') }}" class="forms-sample" method="POST"  enctype="multipart/form-data"  enctype="multipart/form-data" >
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputUsername1" class="form-label">Nama Produk</label>
