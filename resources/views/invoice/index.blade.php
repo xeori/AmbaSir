@@ -80,7 +80,7 @@
                    
                     <tr>
                       <td>Total Diskon (%)</td>
-                      <td class="text-end">{{ format_rupiah($totalDiskon / count($semuaTransaksi), 2) }}</td>
+                      <td class="text-end">{{ format_rupiah($totalDiskon) }}</td>
                     </tr>
                     
                     <tr class="bg-dark">

@@ -4,7 +4,7 @@
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-              <a href="{{ route('user.create') }}" class="btn btn-inverse-primary mb-3">
+              <a href="{{ route('user.create') }}" class="btn btn-inverse-info mb-3">
                 <i data-feather="user-plus"></i>
                     </a>
         </ol>

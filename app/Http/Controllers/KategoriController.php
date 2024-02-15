@@ -63,7 +63,7 @@ class KategoriController extends Controller
             'alert-type' => 'success'
         );
         
-        return redirect('kategori')->with($notification);
+        return redirect('admin/kategori')->with($notification);
     }
     public function destroy(string $id)
     {
@@ -80,6 +80,6 @@ class KategoriController extends Controller
             'alert-type' => 'success'
         );
         
-        return redirect('kategori')->with($notification);
+        return redirect('admin/kategori')->with($notification);
     }
 }

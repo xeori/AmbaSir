@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Produk;
+
 
 class TransaksiDetail extends Model
 {
@@ -11,6 +13,7 @@ class TransaksiDetail extends Model
     protected $fillable = ['transaksi_id', 'produk_id', 'produk_name','qty','subtotal'];
     public function produk()
     {
-        return $this->belongsTo('App\Models\Produk', 'produk_id');
+        return $this->belongsTo(Produk::class, 'produk_id');
     }
-}
+
+}    

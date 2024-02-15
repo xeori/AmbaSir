@@ -4,7 +4,7 @@
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{ route('kategori.create') }}" class="btn btn-inverse-primary ">
+            <a href="{{ route('kategori.create') }}" class="btn btn-inverse-info ">
                 Tambah Kategori</a>
         </ol>
     </nav>
@@ -34,7 +34,7 @@
                                         @method('DELETE')
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $ktg->name }}</td>
-                                        <td>{{ $ktg->created_at }}</td>
+                                        <td>{{ $ktg->created_at->format('d F Y') }}</td>
                                         <td>
                                             <a href="{{ route('kategori.edit', ['id' => $ktg->id]) }}" class="btn btn-inverse-warning">
                                                 <i class="link-icon" data-feather="edit"></i>

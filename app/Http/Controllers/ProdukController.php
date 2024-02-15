@@ -93,7 +93,7 @@ class ProdukController extends Controller
             'alert-type' => 'success'
         );
         
-        return redirect('produk')->with($notification);
+        return redirect('admin/produk')->with($notification);
     }
     public function destroy(string $id)
     {
@@ -104,7 +104,7 @@ class ProdukController extends Controller
             'alert-type' => 'success'
         );
         
-        return redirect('produk')->with($notification);
+        return redirect('admin/produk')->with($notification);
     }
 
 }

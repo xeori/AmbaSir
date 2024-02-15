@@ -41,7 +41,7 @@
               @endif
               
                 <input type="hidden" name="produk_name"  value="{{  $p_detail ? $p_detail->name : ''  }}">
-                <input type="hidden" name="transaksi_id" value="{{ Request::segment(3) }}">
+                <input type="hidden" name="transaksi_id" value="{{ Request::segment(4) }}">
                 <input type="hidden" name="subtotal"  value="{{ $subtotal  }}">
                 
               
@@ -145,7 +145,7 @@
               </table>
               <div class="mt-3">
                 <a class="btn btn-inverse-info btn" href="{{ route('transaksi') }}"><i class="fas fa-file"></i> Tunda</a>
-                <a class="btn btn-inverse-info btn" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(3)]) }}"><i class="fas fa-frog"></i> Selesai</a>
+                <a class="btn btn-inverse-info btn" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i> Selesai</a>
               </div>
            
 

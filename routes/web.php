@@ -53,12 +53,12 @@ Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'],
     Route::get('/layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
 });
 
-Route::group(['middleware' => ['auth', 'userAkses:admin,pengguna'],'prefix' => ''], function(){
+Route::group(['middleware' => ['auth', 'userAkses:admin,pengguna'],'prefix' => 'kasir'], function(){
 
     Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');
 Route::get('transaksi/create',[TransaksiController::class,'create'])->name('transaksi.create');
 Route::post('transaksi/store',[TransaksiController::class,'store'])->name('transaksi.store');
-Route::get('invoice/index/{id}',[TransaksiController::class,'invoice'])->name('invoice');
+Route::get('index/{id}',[TransaksiController::class,'invoice'])->name('invoice');
 Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('transaksi.edit');
 Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
 Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');

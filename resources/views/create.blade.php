@@ -17,7 +17,7 @@
 
 
 
-                    <form action="{{ route('user.store') }}" class="forms-sample" method="POST" enctype="multipart/form-data"  enctype="multipart/form-data">
+                    <form action="{{ route('user.store') }}" class="forms-sample" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mt-3">
                             <label for="exampleInputUsername1" class="form-label">Username</label>
@@ -46,8 +46,8 @@
                         @enderror
                     </div>
                        
-                    <div class="form-group">
-                        <label for="role">Role:</label>
+                    <div class="mt-3">
+                        <label class="form-label" for="role">Role:</label>
                         <select name="role" class="form-control" id="role">
                             <option value="pengguna">Pengguna</option>
                             <option value="admin">Admin</option>
@@ -62,7 +62,7 @@
                         @enderror
                     
                         
-                    <div class="mb-3">
+                    <div class="mt-3">
                         <label for="exampleInputUsername1" class="form-label">Foto Profile</label>
                         <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" id="gambar" autocomplete="off" placeholder="gambar">
                         

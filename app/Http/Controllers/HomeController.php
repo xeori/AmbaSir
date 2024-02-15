@@ -80,6 +80,7 @@ public function update(Request $request, $id){
         'email' => 'required|email|string|max:30',
         'nama'=> 'required|string',
         'password'=> 'nullable',
+        'gambar' => 'required',
         ]);
         
         if($validator->fails())
@@ -90,6 +91,20 @@ public function update(Request $request, $id){
 
             if($request->password){
                 $data['password'] = Hash::make($request->password);
+            }
+            
+            if ($request->hasFile('gambar')) {
+                $gambar = $request->file('gambar');
+                $file_name = time(). "_".$gambar->getClientOriginalName();
+                $storage = 'images/';
+            
+                // Cek apakah pemindahan gambar berhasil
+                if ($gambar->move($storage, $file_name)) {
+                    $data['gambar'] = $storage . $file_name;
+                
+            } else 
+                // Jika gambar tidak diunggah, beri nilai default 'null'
+                $data['gambar'] = 'kosong';
             }
             
     $request->validate([
@@ -109,7 +124,8 @@ public function update(Request $request, $id){
                 'message' => 'User Berhasil Di Update',
                 'alert-type' => 'success'
             );
-            return redirect('user')->with($notification);
+            return redirect('admin/user')->with($notification);
+
 }
 public function delete(Request $request, $id){
     $data = User::find($id);
@@ -123,7 +139,7 @@ public function delete(Request $request, $id){
         'alert-type' => 'success'
     );
     
-    return redirect('user')->with($notification);
+    return redirect('admin/user')->with($notification);
 }
 
 }

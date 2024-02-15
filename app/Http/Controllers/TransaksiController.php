@@ -179,10 +179,13 @@ class TransaksiController extends Controller
     }
     public function destroy(string $id)
     {
-        Alert::success('Transaksi', 'Transaksi Berhasil Dihapus');
+        $notification = array(
+            'message' => 'Transaksi Berhasil Di Hapus',
+            'alert-type' => 'success'
+        );
         $transaksi = Transaksi::find($id);
         $transaksi->delete();
-        return redirect('user/transaksi');
+        return redirect('kasir/transaksi')->with($notification);
     }
 
     

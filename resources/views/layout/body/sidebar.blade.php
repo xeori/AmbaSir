@@ -13,50 +13,53 @@
       <ul class="nav">
         @if(auth()->user()->role!="pengguna")
         <li class="nav-item nav-category">Main</li>
-        <li class="nav-item">
-          <a href="{{ route('dashboard') }}" class="nav-link Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
-            <i class="link-icon" data-feather="box"></i>
-            <span class="link-title">Dashboard</span>
-          </a>
+      
+        <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}" class="nav-link">
+                <i class="link-icon" data-feather="box"></i>
+                <span class="link-title">Dashboard</span>
+            </a>
         </li>
+        
         @endif
         @if(auth()->user()->role!="pengguna")
-        <li class="nav-item nav-category">users</li>
+        <li class="nav-item nav-category">Users</li>
       
-        <li class="nav-item">
-          <a href="{{ route('index') }}" class="nav-link" Route::currentRouteName() == 'index' ? 'active' : '' }}>
-            <i class="link-icon" data-feather="users"></i>
-            <span class="link-title">Users</span>
-          </a>
+        <li class="nav-item {{ Request::is('index') ? 'active' : '' }}">
+            <a href="{{ route('index') }}" class="nav-link">
+                <i class="link-icon" data-feather="users"></i>
+                <span class="link-title">Users</span>
+            </a>
         </li>
+        
         @endif
         @if(auth()->user()->role!="pengguna")
         <li class="nav-item nav-category">Item</li>
-        <li class="nav-item">
-            <li class="nav-item">
-                <a href="{{ route('kategori') }}" class="nav-link" Route::currentRouteName() == 'kategori' ? 'active' : '' }}>
-                  <i class="link-icon" data-feather="server"></i>
-                  <span class="link-title">Kategori</span>
-                </a>
-              </li>
+        <li class="nav-item {{ Request::is('kategori') ? 'active' : '' }}">
+            <a href="{{ route('kategori') }}" class="nav-link">
+                <i class="link-icon" data-feather="server"></i>
+                <span class="link-title">Kategori</span>
+            </a>
+        </li>
+        
              @endif
              @if(auth()->user()->role!="pengguna")
-              <li class="nav-item">
-                <a href="{{ route('produk') }}" class="nav-link" Route::currentRouteName() == 'produk' ? 'active' : '' }}>
+             <li class="nav-item {{ Request::is('produk') ? 'active' : '' }}">
+              <a href="{{ route('produk') }}" class="nav-link">
                   <i class="link-icon" data-feather="archive"></i>
                   <span class="link-title">Produk</span>
-                </a>
-              </li>
-        </li>
+              </a>
+          </li>
+          
         @endif
         <li class="nav-item nav-category">Transaksi</li>
-        <li class="nav-item">
-            <li class="nav-item">
-                <a href="{{ route('transaksi') }}" class="nav-link" Route::currentRouteName() == 'transaksi' ? 'active' : '' }}>
-                  <i class="link-icon" data-feather="credit-card"></i>
-                  <span class="link-title">Transaksi</span>
-                </a>
-              </li>
+        <li class="nav-item {{ Request::is('transaksi*') ? 'active' : '' }}">
+            <a href="{{ route('transaksi') }}" class="nav-link">
+                <i class="link-icon" data-feather="credit-card"></i>
+                <span class="link-title">Transaksi</span>
+            </a>
+        </li>
+        
         
       
       </ul>

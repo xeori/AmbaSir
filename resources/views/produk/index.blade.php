@@ -4,7 +4,7 @@
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{ route('produk.create') }}" class="btn btn-inverse-primary ">
+            <a href="{{ route('produk.create') }}" class="btn btn-inverse-info ">
                 Tambah Produk</a>
         </ol>
     </nav>
@@ -21,6 +21,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
+                                    <th>Kategori</th>
                                     <th>Harga</th>
                                     <th>Diskon</th>
                                     <th>Stok</th>
@@ -37,6 +38,7 @@
                                         @csrf @method('DELETE')
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pdk->name }}</td>
+                                        <td>{{ $pdk->kategori->name }}</td>
                                         <td>{{ $pdk->harga }}</td>
                                         <td>{{ $pdk->diskon }}%</td>
                                         <td>{{ $pdk->stok }}</td>
