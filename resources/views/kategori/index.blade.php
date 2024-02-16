@@ -36,11 +36,11 @@
                                         <td>{{ $ktg->name }}</td>
                                         <td>{{ $ktg->created_at->format('d F Y') }}</td>
                                         <td>
-                                            <a href="{{ route('kategori.edit', ['id' => $ktg->id]) }}" class="btn btn-inverse-warning">
+                                            <a href="{{ route('kategori.edit', ['id' => $ktg->id]) }}" class="btn btn-inverse-warning  btn-icon">
                                                 <i class="link-icon" data-feather="edit"></i>
                                             </a>
                             
-                                            <button type="submit" class="btn btn-inverse-danger">
+                                            <button type="submit" class="btn btn-inverse-danger  btn-icon">
                                                 <i class="link-icon" data-feather="trash"></i>
                                             </button>
                                         </td>

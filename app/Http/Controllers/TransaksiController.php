@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
-    
+   
 
     public function invoice(string $id){
         // Mengambil data transaksi berdasarkan ID
@@ -53,16 +53,16 @@ class TransaksiController extends Controller
     
 
     public function index()
-    {
-      
-        $transaksi =Transaksi::get();
-        $transaksidetail = TransaksiDetail::all();
-       
-            
-           
-            return view('transaksi.index',compact( 'transaksidetail','transaksi' ));
-      
-    }
+{
+    // Ambil semua transaksi dan transaksi detail
+    $transaksidetail = TransaksiDetail::all();
+    
+    // Ambil transaksi dan urutkan berdasarkan status
+    $transaksi = Transaksi::orderBy('status', 'desc')->get();
+        
+    return view('transaksi.index', compact('transaksidetail', 'transaksi'));
+}
+
     public function create()
     {
        

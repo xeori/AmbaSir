@@ -17,12 +17,13 @@ class HomeController extends Controller
     public function dashboard(){
         $totalUsers = User::count();
         $totalProduk = Produk::count();
+        $pengguna = Auth::user()->name;
         $totalPenjualan = Transaksi::sum('total');
-        return view('layout.dashboard', compact('totalUsers','totalProduk','totalPenjualan'));
+        return view('layout.dashboard', compact('totalUsers','totalProduk','totalPenjualan','pengguna'));
         
     }
     public function index(){
-        $data = User::get();
+        $data = User::orderByRaw("FIELD(role, 'admin') DESC")->get();
         return view('index',compact('data'));
     }
     public function edit(Request $request, $id){ 

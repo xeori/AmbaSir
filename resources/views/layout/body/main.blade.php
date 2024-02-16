@@ -98,6 +98,9 @@ License: For each use you must have a valid license purchased only from above li
 	<script src="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
 	  <!-- End plugin js for this page -->
 	  <!-- Custom js for this page -->
+	  <script src="{{ asset('backend/assets/js/particles.js') }}"></script>
+	  <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+
   <script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
   <!-- End custom js for this page -->
   <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>

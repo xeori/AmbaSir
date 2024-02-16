@@ -43,11 +43,11 @@
                                         <td>
                                             <a
                                                 href="{{route('user.edit',['id' =>$dt->id]) }}"
-                                                class="btn btn-inverse-warning">
+                                                class="btn btn-inverse-warning  btn-icon">
                                                 <i class="link-icon" data-feather="edit"></i>
                                             </a>
 
-                                            <button type="submit" class="btn btn-inverse-danger">
+                                            <button type="submit" class="btn btn-inverse-danger  btn-icon">
                                                 <i class="link-icon" data-feather="trash"></i>
                                             </button>
                                         </form>

@@ -94,6 +94,6 @@ class TransaksiDetailController extends Controller
             'alert-type' => 'success'
         );
         
-        return redirect('user/transaksi')->with($notification);
+        return redirect('kasir/transaksi')->with($notification);
     }
 }

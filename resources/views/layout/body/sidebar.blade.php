@@ -14,7 +14,7 @@
         @if(auth()->user()->role!="pengguna")
         <li class="nav-item nav-category">Main</li>
       
-        <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+        <li class="nav-item">
             <a href="{{ route('dashboard') }}" class="nav-link">
                 <i class="link-icon" data-feather="box"></i>
                 <span class="link-title">Dashboard</span>
@@ -25,7 +25,7 @@
         @if(auth()->user()->role!="pengguna")
         <li class="nav-item nav-category">Users</li>
       
-        <li class="nav-item {{ Request::is('index') ? 'active' : '' }}">
+        <li class="nav-item">
             <a href="{{ route('index') }}" class="nav-link">
                 <i class="link-icon" data-feather="users"></i>
                 <span class="link-title">Users</span>
@@ -35,7 +35,7 @@
         @endif
         @if(auth()->user()->role!="pengguna")
         <li class="nav-item nav-category">Item</li>
-        <li class="nav-item {{ Request::is('kategori') ? 'active' : '' }}">
+        <li class="nav-item">
             <a href="{{ route('kategori') }}" class="nav-link">
                 <i class="link-icon" data-feather="server"></i>
                 <span class="link-title">Kategori</span>
@@ -44,7 +44,7 @@
         
              @endif
              @if(auth()->user()->role!="pengguna")
-             <li class="nav-item {{ Request::is('produk') ? 'active' : '' }}">
+             <li class="nav-item">
               <a href="{{ route('produk') }}" class="nav-link">
                   <i class="link-icon" data-feather="archive"></i>
                   <span class="link-title">Produk</span>
@@ -52,13 +52,20 @@
           </li>
           
         @endif
-        <li class="nav-item nav-category">Transaksi</li>
-        <li class="nav-item {{ Request::is('transaksi*') ? 'active' : '' }}">
+        <li class="nav-item nav-category">Kasir</li>
+        <li class="nav-item">
             <a href="{{ route('transaksi') }}" class="nav-link">
                 <i class="link-icon" data-feather="credit-card"></i>
                 <span class="link-title">Transaksi</span>
             </a>
         </li>
+
+        <li class="nav-item">
+          <a href="{{ route('riwayat') }}" class="nav-link">
+              <i class="link-icon" data-feather="database"></i>
+              <span class="link-title">Database</span>
+          </a>
+      </li>
         
         
       

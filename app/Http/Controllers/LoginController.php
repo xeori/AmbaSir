@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
      public function index(){
+        auth::logout();
         return view('auth.login');
 
     }
@@ -20,25 +21,25 @@ class LoginController extends Controller
         $request->validate([
             'email' =>'required',
             'password'=> 'required',
-
         ]);
+    
         $data = [
             'email'=> $request->email,
             'password'=> $request->password,
         ];
-       if(Auth::attempt($data)) {
-        
-        if (Auth::user()->role == 'admin') {
-            return redirect('admin/layout/dashboard');
-        } elseif (Auth::user()->role == 'pengguna') {
-            return redirect('kasir/transaksi');
-            
+    
+        if(Auth::attempt($data)) {
+            if (Auth::user()->role == 'admin') {
+                return redirect('admin/layout/dashboard');
+            } elseif (Auth::user()->role == 'pengguna') {
+                return redirect('kasir/transaksi');
+            }
+        } else { 
+            // Jika login gagal, redirect ke halaman login dengan pesan error
+            return redirect()->route('login')->with('errorMessage', 'Email atau Password Salah');
         }
-       }else{ 
-        Alert::error('Failed', 'Email Atau Password Salah');
-        return redirect()->route('login');
-       }
     }
+    
 
     public function logout(){
         Auth::logout();
