@@ -25,7 +25,7 @@
                     @endif
                     @endforeach
                   </select>
-                  <button type="submit" class="btn btn-inverse-primary mt-3">Pilih</button>
+                  <button type="submit" class="btn btn-inverse-info mt-3">Pilih</button>
                   </div> 
                   </form>
                 </div>
@@ -90,7 +90,7 @@
                         <!-- Menampilkan harga dari database -->
                         <!-- <h5>Harga: Rp {{ $p_detail ? $p_detail->harga : '' }}</h5> -->
                         <!-- Subtotal akan ditampilkan di bawah input qty -->
-                        <h5 id="subtotal">Subtotal: Rp. {{ format_rupiah($subtotal)}}</h5>
+                        <h5 class="m-2" id="subtotal">Subtotal: Rp. {{ format_rupiah($subtotal)}}</h5>
                       </div>
                     </div>
               <div class=" row mt-1">
@@ -98,8 +98,8 @@
                   
                 </div>
                 <div class="col-md-8">
-                <a href="{{ route('transaksi') }}" class="btn btn-inverse-info"><i class="link-icon" data-feather="arrow-left"></i></a>
-                <button type="submit" class="btn btn-inverse-primary"><i class="link-icon" data-feather="arrow-right"></i></button>
+
+                <button type="submit" class="btn btn-inverse-info btn-icon-text">Tambah Data<i class="link-icon" data-feather="chevrons-right"></i></button>
                 </div>
               </div>
 </form>
@@ -108,7 +108,6 @@
         </div>
 
        
-  
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
@@ -173,9 +172,9 @@
                 <input type="number" name="dibayarkan" value="{{ request('dibayarkan') }}" class="form-control">
               </div>
 
-              <button type="submit" class="btn btn-inverse-primary btn-block">Hitung</button>
+              <button type="submit" class="btn btn-inverse-info btn-block mb-3">Hitung</button>
             </form>
-              <hr>
+             
 
               <div class="form-group mb-3">
                 <label class="mb-2" for="">Uang Kembalian</label>

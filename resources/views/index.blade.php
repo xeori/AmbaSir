@@ -11,14 +11,14 @@
     </nav>
 
     <div class="row ">
-        <div class="col-6">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Users Table</h6>
                   
 
                     <div class="table-responsive">
-                        <table class="table">
+                        <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
                                     <th>#</th>
