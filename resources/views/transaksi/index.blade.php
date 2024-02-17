@@ -72,38 +72,32 @@
                             </tbody>
                             
                             <script>
-                                @foreach ($transaksi as $ts)
-                                    // Fungsi untuk memeriksa status dan menampilkan tombol yang sesuai
-                                    function checkStatus{{$ts->id}}() {
-                                        var created_at{{$ts->id}} = "{{ $ts->created_at->toIso8601String() }}";
-    var fifteenMinutesAgo = new Date(created_at{{$ts->id}});
-    fifteenMinutesAgo.setMinutes(fifteenMinutesAgo.getMinutes() + 1);
-                            
-                                        var now = new Date();
-                                        if (now > fifteenMinutesAgo) {
-                                            document.getElementById('status{{$ts->id}}').innerText = 'Expired';
-                                            document.getElementById('btnDestroy{{$ts->id}}').style.display = 'inline-block';
-                                            document.getElementById('btnLanjutkan{{$ts->id}}').style.display = 'none';
-                                            document.getElementById('btnInvoice{{$ts->id}}').style.display = 'none';
-                                            clearInterval(interval{{$ts->id}});
-                                        }
-                                    }
-                            
-                                    // Panggil fungsi pertama kali saat halaman dimuat
-                                    checkStatus{{$ts->id}}();
-                            
-                                    // Set interval untuk memeriksa status setiap menit
-                                    var interval{{$ts->id}} = setInterval(checkStatus{{$ts->id}}, 60000); // 60000 milidetik = 1 menit
-                                @endforeach
-                            
-                                // Fungsi untuk menangani tombol "lanjutkan"
-                                function handleLanjutkan(id) {
-                                    // Lakukan sesuatu saat tombol "lanjutkan" ditekan
-                                    // Misalnya, mengarahkan ke rute "transaksi.lanjutkan"
-                                    window.location.href = "{{ route('transaksi.lanjutkan', ['id' => $ts->id]) }}";
-                                }
-                            </script>
-                            
+    @foreach ($transaksi as $ts)
+        function checkStatus{{$ts->id}}() {
+            var created_at{{$ts->id}} = "{{ $ts->created_at->toIso8601String() }}";
+            var fifteenMinutesAgo = new Date(created_at{{$ts->id}});
+            fifteenMinutesAgo.setMinutes(fifteenMinutesAgo.getMinutes() + 1);
+
+            var now = new Date();
+            if (now > fifteenMinutesAgo) {
+                document.getElementById('status{{$ts->id}}').innerText = 'Expired';
+                document.getElementById('btnDestroy{{$ts->id}}').style.display = 'inline-block';
+                document.getElementById('btnLanjutkan{{$ts->id}}').style.display = 'none';
+                document.getElementById('btnInvoice{{$ts->id}}').style.display = 'none';
+                clearInterval(interval{{$ts->id}});
+            }
+        }
+
+        checkStatus{{$ts->id}}();
+
+        var interval{{$ts->id}} = setInterval(checkStatus{{$ts->id}}, 60000);
+
+        function handleLanjutkan(id) {
+            window.location.href = "{{ route('transaksi.lanjutkan', ['id' => ':id']) }}".replace(':id', id);
+        }
+    @endforeach
+</script>
+
                             
                         </table>
                     </div>

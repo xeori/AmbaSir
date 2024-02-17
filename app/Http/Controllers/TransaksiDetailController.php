@@ -69,17 +69,27 @@ class TransaksiDetailController extends Controller
    
    
     public function delete(string $id)
-    {
-      
-        $id = request('id');
-        $tdt = TransaksiDetail::find($id);
-        $tdt -> delete();
-        $qtyToDelete = $tdt->qty;
-        $produk = $tdt->produk; // asumsikan bahwa ada relasi ke model Produk
-        $produk->stok += $qtyToDelete;
-        $produk->save();
-        return redirect()->back();
+{
+    $transaksiDetail = TransaksiDetail::find($id);
+
+    if (!$transaksiDetail) {
+        return redirect()->back()->with('error', 'TransaksiDetail not found.');
     }
+
+    $transaksi = $transaksiDetail->transaksi;
+
+    if ($transaksi) {
+        // Kurangkan subtotal dari total
+        $transaksi->total -= $transaksiDetail->subtotal;
+        $transaksi->save();
+    }
+
+    // Hapus TransaksiDetail
+    $transaksiDetail->delete();
+
+    return redirect()->back();
+}
+
 
 
     public function selesai($id)

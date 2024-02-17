@@ -119,7 +119,7 @@ class TransaksiController extends Controller
             'transaksi_detail'   => $transaksi_detail,
             'kembalian' => $kembalian,
             'transaksi' => $transaksi,
-        ];
+        ]; 
         // dd($data);
         $transaksi_detail = TransaksiDetail::whereTransaksiId($id)->get();
        

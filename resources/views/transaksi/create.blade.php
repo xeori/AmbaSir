@@ -177,10 +177,16 @@
             </form>
               <hr>
 
-              <div class="form-group mb-3">
-                <label class="mb-2" for="">Uang Kembalian</label>
-                <input type="number" value="{{ format_rupiah($kembalian) }}" disabled name="kembalian" class="form-control">
-              </div>
+              @if($kembalian < 0)
+    <div class="alert alert-danger">
+        Uang tidak cukup. Harap masukkan jumlah uang yang sesuai.
+    </div>
+@endif
+
+<div class="form-group mb-3">
+    <label class="mb-2" for="">Uang Kembalian</label>
+    <input type="number" value="{{ format_rupiah($kembalian) }}" disabled name="kembalian" class="form-control">
+</div>
             </div>
           </div>
         </div>
