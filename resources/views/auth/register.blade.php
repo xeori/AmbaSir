@@ -69,7 +69,7 @@ License: For each use you must have a valid license purchased only from above li
                   <div class="auth-form-wrapper px-4 py-5">
                     <a href="#" class="noble-ui-logo logo-light d-block mb-2">Kasir<span>Ukk</span></a>
                     <h5 class="text-muted fw-normal mb-4">Create a free account.</h5>
-                    <form action="{{ route('register-proses') }}" class="forms-sample" method="POST">
+                    <form action="{{ route('register-proses') }}" class="forms-sample" method="POST"  enctype="multipart/form-data">
                         @csrf
                       <div class="mb-3">
                         <label for="exampleInputUsername1" class="form-label">Username</label>
@@ -94,6 +94,17 @@ License: For each use you must have a valid license purchased only from above li
                       @error('password')
                       <small>{{ $message }}</small>
                     @enderror
+
+                    
+                    <div class="mb-3">
+                        <label for="exampleInputUsername1" class="form-label">Foto Profile</label>
+                        <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" id="gambar" autocomplete="off" placeholder="gambar">
+                        
+                        @error('gambar')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                      
                    
                       <div>
                        

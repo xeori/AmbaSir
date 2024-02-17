@@ -53,6 +53,7 @@ class LoginController extends Controller
         $request->validate([
             'nama'=> 'required',
             'email' => 'required|email|unique:users,email',
+            'gambar' => 'required|image|mimes:jpg,jpeg,png,gif',
             
                 'password' => [
                     'required',
@@ -61,18 +62,40 @@ class LoginController extends Controller
                 ],
             ]);
 
-            $data['name'] = $request->nama;
-            $data['email'] = $request->email;
-            $data['password'] = Hash::make($request->password);
+            $data = [
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ];
 
+            if ($request->hasFile('gambar')) {
+                $gambar = $request->file('gambar');
+                $file_name = time(). "_".$gambar->getClientOriginalName();
+                $storage = 'images/';
+                
+                // Cek apakah pemindahan gambar berhasil
+                if ($gambar->move($storage, $file_name)) {
+                    $data['gambar'] = $storage . $file_name;
+                } else {
+                    // Tampilkan pesan kesalahan jika pemindahan gagal
+                    return redirect()->back()->withInput()->withErrors(['gambar' => 'Pemindahan gambar gagal']);
+                }
+            } else {
+                // Jika gambar tidak diunggah, beri nilai default null atau string kosong
+                $data['gambar'] = null; // or $data['gambar'] = '';
+            }
+            // dd($data);
+            
             user::create($data);
+            
+            // ...
 
             $login = [
                 'email'=> $request->email,
                 'password'=> $request->password,
             ];
            if(Auth::attempt($login)) {
-            return redirect('layout/dashboard');
+            return redirect('admin/layout/dashboard');
            }else{ 
             return redirect()->route('login')->with('failed','Incorrect email or password ');
            }
