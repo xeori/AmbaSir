@@ -81,7 +81,7 @@ public function update(Request $request, $id){
         'email' => 'required|email|string|max:30',
         'nama'=> 'required|string',
         'password'=> 'nullable',
-        'gambar' => 'required',
+        'gambar' => 'nullable',
         ]);
         
         if($validator->fails())

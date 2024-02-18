@@ -38,7 +38,12 @@
                                         <th>{{$loop->iteration}}</th>
                                         <td>{{ $dt->name }}</td>
                                         <td>{{ $dt->email }}</td>
-                                        <td>{{ $dt->role }}</td>
+                                        <td> @if($dt->role === 'admin')
+                                            <td><span class="badge bg-danger">Admin</span></td>
+                                        @else
+                                            <td><span class="badge bg-success">Karyawan</span></td>
+                                        @endif
+                                        </td>
                                         <td><img src="{{ asset($dt->gambar) }}" alt="" style="max-width: 200px;"></td>
                                         <td>
                                             <a
