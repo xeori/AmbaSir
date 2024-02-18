@@ -51,7 +51,8 @@ Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'],
     Route::delete('/produk/destroy/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
 
     Route::get('riwayat/index',[RiwayatController::class,'index'])->name('riwayat');    
-Route::post('riwayat/print',[RiwayatController::class,'print'])->name('riwayat.print'); 
+    Route::post('/riwayat/print', [RiwayatController::class, 'print'])->name('riwayat.print');
+Route::get('/riwayat/pdf', [RiwayatController::class, 'generatePDF'])->name('riwayat.pdf'); 
 
     Route::get('/layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
 });
@@ -61,7 +62,9 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,pengguna'],'prefix' => '
 Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');   
 Route::get('transaksi/create',[TransaksiController::class,'create'])->name('transaksi.create');
 Route::post('transaksi/store',[TransaksiController::class,'store'])->name('transaksi.store');
+
 Route::get('index/{id}',[TransaksiController::class,'invoice'])->name('invoice');
+
 Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('transaksi.edit');
 Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
 Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');
@@ -77,6 +80,6 @@ Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class,
 
 Route::delete('riwayat/destroy/{id}',[RiwayatController::class,'destroy'])->name('riwayat.destroy');
 // routes/web.php
-Route::get('/print-invoice/{id}', 'InvoiceController@printInvoice')->name('print.invoice');
+Route::post('invoice/print/{id}', [TransaksiController::class,'print_invoice'])->name('print.invoice');
 
 });

@@ -30,10 +30,8 @@
                             <tbody>
                                 @foreach ($transaksi as $ts)
                                 <tr id="row{{$ts->id}}">
-                                    <form id="form{{$ts->id}}"
-                                          action="{{ route('transaksi.destroy', ['id' => $ts->id]) }}"
-                                          method="POST">
-                                        @csrf @method('DELETE')
+                                    <form action="{{ route('print.invoice', ['id' => $ts->id]) }}" method="POST">
+                                        @csrf
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$ts->created_at->format('d F Y')}}</td>
                                         <td>{{$ts->kasir_nama}}</td>
@@ -52,6 +50,11 @@
                                                href="{{ route('invoice', ['id' => $ts->id]) }}">
                                                 <i class="link-icon" data-feather="file-text"></i>
                                             </a>
+                                            
+                                            <button type="submit" class="btn btn-inverse-primary btn-icon" >
+                                                <i data-feather="printer" class="link-icon"></i>
+                                            </button>
+                                        </form>
                                             @else
                                             <a id="btnLanjutkan{{$ts->id}}"
                                                     class="btn btn-inverse-warning btn-icon"
@@ -59,6 +62,10 @@
                                                 <i class="link-icon" data-feather="flag"></i>
                                             </a>
                                             @endif
+                                            <form id="form{{$ts->id}}"
+                                                action="{{ route('transaksi.destroy', ['id' => $ts->id]) }}"
+                                                method="POST">
+                                              @csrf @method('DELETE')
                                             <button id="btnDestroy{{$ts->id}}"
                                                     class="btn btn-inverse-danger btn-icon"
                                                     style="display: none;"

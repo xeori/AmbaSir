@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Produk;
 use Mpdf\Mpdf;
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +16,56 @@ use Illuminate\Http\Request;
 class TransaksiController extends Controller
 {
    
+public function print_invoice(string $id){
+    $transaksi = Transaksi::find($id);
+    $transaksiDetails = TransaksiDetail::with('produk')->where('transaksi_id', $id)->get();
+    $semuaTransaksi = TransaksiDetail::where('transaksi_id', $id)->get();
+   $hasil = TransaksiDetail::find($id);
+    
+    // Memastikan transaksi ditemukan sebelum mencoba mengakses propertinya
+    if($transaksi){
+        // Mengambil nama kasir dari objek transaksi
+        $namaKasir = $transaksi->kasir_nama;
+        // Mengambil total dari objek transaksi
+        $total = $transaksi->total;
+    
+        // Mengambil tanggal transaksi dari objek transaksi
+        $tanggalTransaksi = $transaksi->created_at;
 
+        // Mengambil subtotal dari detail transaksi berdasarkan ID
+        $transaksiDetail = TransaksiDetail::find($id);
+
+        // Memastikan detail transaksi ditemukan sebelum mencoba mengakses propertinya
+        if($transaksiDetail){
+            $subTotal = $transaksiDetail->subtotal;
+                // Mengambil Transaksi ID dari objek transaksiDetail
+        $transaksiId = $transaksiDetail->transaksi_id;
+
+        
+    // Konfigurasi Dompdf
+    $options = new Options();
+    $options->set('isRemoteEnabled', true);
+
+    
+    // Inisialisasi Dompdf
+    $dompdf = new Dompdf($options);
+
+    // Load tampilan blade dan berikan data transaksi detail
+    $html = view('invoice.invoice_pdf', compact('namaKasir', 'subTotal', 'tanggalTransaksi','semuaTransaksi','total','transaksiId','hasil'))->render();
+
+    // Tambahkan konten ke PDF
+    $dompdf->loadHtml($html);
+
+    // Render PDF
+    $dompdf->render();
+
+    // Unduh PDF
+    return $dompdf->stream('Invoice.pdf');
+
+    }
+}
+
+}
     public function invoice(string $id){
         // Mengambil data transaksi berdasarkan ID
         $transaksi = Transaksi::find($id);
@@ -54,6 +104,7 @@ class TransaksiController extends Controller
 
     public function index()
 {
+    
     // Ambil semua transaksi dan transaksi detail
     $transaksidetail = TransaksiDetail::all();
     
