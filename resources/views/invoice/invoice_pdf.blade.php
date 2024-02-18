@@ -153,6 +153,10 @@
         border-radius: .25rem;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
+
+    .larger-text {
+        font-size: 1.2em; /* Sesuaikan ukuran huruf dengan kebutuhan Anda */
+    }
 </style>
 
 <div class="page-content">
@@ -162,18 +166,22 @@
                 <div class="card-body">
                     <div class="container-fluid d-flex justify-content-between">
                         <div class="col-lg-3 ps-0">
-                            <p class="mt-1 mb-1 larger-text"><b>Kasir Sederhana</b></p>
+                            <p class="mt-1 mb-1 larger-text"><b>Amba Kasir</b></p>
                             <p class="larger-text">Jalan Raya Siwalan Panji,<br> Kec. Sidoarjo,<br>Jawa Timur 61252.</p>
-                            <h5 class="mt-5 mb-2 text-muted larger-text">Nama Kasir</h5>
-                            <p class="larger-text">{{ $namaKasir }}</p>
+                            <h5 class="mt-5 mb-2 text-muted larger-text" style="margin-bottom: 0.25rem;">Nama Kasir</h5>
+                            <p class="larger-text" style="margin-top: 0.25rem;">{{ $namaKasir }}</p>
                         </div>
                         <div class="col-lg-3 pe-0">
-                            <h4 class="fw-bolder text-uppercase text-end mt-4 mb-2 larger-text">invoice</h4>
-                            <h6 class="text-end mb-5 pb-4 larger-text"># INV-00230{{ $transaksiId }}</h6>
-                            <p class="text-end text-muted mb-1 larger-text">Total Transaksi</p>
-                            <h4 class="text-end fw-normal mb-3 larger-text">Rp. {{ format_rupiah($total) }}</h4>
+                            <h4 class="text-end text-muted mt-4 mb-2 larger-text" style="margin-bottom: 0.25rem;">Invoice</h4>
+                            <h6 class="text-end mb-5 pb-4 larger-text" style="margin-top: 0.25rem;"># INV-00230{{ $transaksiId }}</h6>
+                            
+                            <p class="text-end text-muted mb-1 larger-text" style="margin-bottom: 0.25rem;">Total Transaksi</p>
+                            <h4 class="text-end fw-normal mb-3 larger-text" style="margin-top: 0.25rem;">Rp. {{ format_rupiah($total) }}</h4>
+                            
                             <p class="text-end text-muted mb-1 larger-text">Tanggal Transaksi</p>
-                            <h6 class="text-end fw-normal larger-text">{{ $tanggalTransaksi->format('d F Y') }}</h6>
+                            <h6 class="text-end fw-normal larger-text" style="margin-top: 0.25rem;">{{ $tanggalTransaksi->format('d F Y') }}</h6>
+                            
+                            
                         </div>
                     </div>
                     <div class="container-fluid mt-3 d-flex justify-content-center w-100"> <!-- Mengurangi margin top -->

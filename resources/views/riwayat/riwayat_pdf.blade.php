@@ -26,32 +26,47 @@
         }
     </style>
 </head>
+@php
+    // Urutkan $transaksiDetails berdasarkan transaksi_id
+    $transaksiDetails = $transaksiDetails->sortBy('transaksi_id');
+@endphp
+
 <body>
-    <h1>Laporan Pengeluaran</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Transaksi ID</th>
-                <th>Tanggal</th>
-                <th>Produk</th>
-                <th>Jumlah</th>
-                <!-- Tambahkan kolom lain sesuai kebutuhan -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Looping data transaksi di sini -->
-            @foreach ($transaksiDetails as $trx)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $trx->transaksi_id }}</td>
-                <td>{{ $trx->created_at->format('d F Y') }}</td>
-                <td>{{ $trx->produk_name }}</td>
-                <td>{{ $trx->qty }}</td>
-                <!-- Tambahkan kolom lain sesuai kebutuhan -->
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</body>
+    @foreach ($transaksiDetails->groupBy('transaksi_id') as $transaksi_id => $transaksi)
+        <div style="margin-bottom: 15px;">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th colspan="4">Transaksi ID: # INV-00230{{ $transaksi_id }}</th>
+                    </tr>
+                    <tr>
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Produk</th>
+                        <th>Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($transaksi as $key => $trx)
+                        <tr>
+                            @if ($key === 0)
+                                <td rowspan="{{ count($transaksi) }}">{{ $key + 1 }}</td>
+                                <td rowspan="{{ count($transaksi) }}">{{ $trx->created_at->format('d F Y') }}</td>
+                                <td>{{ $trx->produk_name }}</td>
+                                <td>{{ $trx->qty }}</td>
+                            @else
+                                <td>{{ $trx->produk_name }}</td>
+                                <td>{{ $trx->qty }}</td>
+                            @endif
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endforeach
+    </body>
+    
+    
+    
+
 </html>
