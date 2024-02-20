@@ -104,14 +104,14 @@ public function print_invoice(string $id){
 
     public function index()
 {
-    
+    $pengguna = Auth::user()->name;
     // Ambil semua transaksi dan transaksi detail
     $transaksidetail = TransaksiDetail::all();
     
     // Ambil transaksi dan urutkan berdasarkan status
     $transaksi = Transaksi::orderBy('status', 'desc')->get();
         
-    return view('transaksi.index', compact('transaksidetail', 'transaksi'));
+    return view('transaksi.index', compact('transaksidetail', 'transaksi','pengguna'));
 }
 
     public function create()

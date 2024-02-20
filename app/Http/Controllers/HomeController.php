@@ -23,7 +23,7 @@ class HomeController extends Controller
         
     }
     public function index(){
-        $data = User::orderByRaw("FIELD(role, 'admin') DESC")->get();
+        $data = User::orderByRaw("FIELD(role, 'pemilik') DESC")->get();
         return view('index',compact('data'));
     }
     public function edit(Request $request, $id){ 
@@ -38,7 +38,7 @@ class HomeController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|string|max:30',
             'nama'=> 'required|string',
-            'role' => 'required|in:pengguna,admin', // Pastikan rolenya adalah salah satu dari opsi yang diizinkan
+            'role' => 'required|in:karyawan,admin,pemilik', // Pastikan rolenya adalah salah satu dari opsi yang diizinkan
             
                 'password' => [
                     'required',
@@ -109,7 +109,7 @@ public function update(Request $request, $id){
             }
             
     $request->validate([
-        'role' => 'required|in:pengguna,admin', // Sesuaikan dengan peran yang diperlukan
+        'role' => 'required|in:pengguna,admin,pemilik', // Sesuaikan dengan peran yang diperlukan
         // Validasi dan aturan validasi lainnya
     ]);
 

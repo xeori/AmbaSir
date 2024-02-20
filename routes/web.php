@@ -29,13 +29,6 @@ Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register-proses', [LoginController::class, 'register_proses'])->name('register-proses');
 
 Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'], function(){
-    Route::get('/user',[HomeController::class,'index'])->name('index');
-    Route::get('/create',[HomeController::class,'create'])->name('user.create');
-    Route::post('/store',[HomeController::class,'store'])->name('user.store');
-    Route::get('/edit/{id}',[HomeController::class,'edit'])->name('user.edit');
-    Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update');
-    Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
-
     Route::get('/kategori',[KategoriController::class,'index'])->name('kategori');
     Route::get('/kategori/create',[KategoriController::class,'create'])->name('kategori.create');
     Route::post('/kategori/store',[KategoriController::class,'store'])->name('kategori.store');
@@ -50,14 +43,10 @@ Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'],
     Route::put('/produk/update/{id}',[ProdukController::class,'update'])->name('produk.update');
     Route::delete('/produk/destroy/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
 
-    Route::get('riwayat/index',[RiwayatController::class,'index'])->name('riwayat');    
-    Route::post('/riwayat/print', [RiwayatController::class, 'print'])->name('riwayat.print');
-Route::get('/riwayat/pdf', [RiwayatController::class, 'generatePDF'])->name('riwayat.pdf'); 
 
-    Route::get('/layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
 });
 
-Route::group(['middleware' => ['auth', 'userAkses:admin,pengguna'],'prefix' => 'kasir'], function(){
+Route::group(['middleware' => ['auth', 'userAkses:karyawan'],'prefix' => 'kasir'], function(){
 
 Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');   
 Route::get('transaksi/create',[TransaksiController::class,'create'])->name('transaksi.create');
@@ -78,8 +67,28 @@ Route::get('/admin/transaksidetail/edit/{id}', [TransaksiDetailController::class
 Route::put('transaksidetail/update/{id}',[TransaksiDetailController::class,'update'])->name('transaksidetail.update');
 Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class, 'delete'])->name('transaksidetail.delete');
 
-Route::delete('riwayat/destroy/{id}',[RiwayatController::class,'destroy'])->name('riwayat.destroy');
+
 // routes/web.php
 Route::post('invoice/print/{id}', [TransaksiController::class,'print_invoice'])->name('print.invoice');
 
+});
+
+Route::group(['middleware' => ['auth', 'userAkses:pemilik'],'prefix' => 'pemilik'], function(){
+
+    
+
+    Route::get('riwayat/index',[RiwayatController::class,'index'])->name('riwayat');    
+    Route::post('/riwayat/print', [RiwayatController::class, 'print'])->name('riwayat.print');
+    Route::get('/riwayat/pdf', [RiwayatController::class, 'generatePDF'])->name('riwayat.pdf'); 
+    Route::delete('riwayat/destroy/{id}',[RiwayatController::class,'destroy'])->name('riwayat.destroy');
+
+});
+Route::group(['middleware' => ['auth', 'userAkses:pemilik,admin'],'prefix' => 'admin'], function(){
+    Route::get('/layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
+    Route::get('/user',[HomeController::class,'index'])->name('index');
+    Route::get('/create',[HomeController::class,'create'])->name('user.create');
+    Route::post('/store',[HomeController::class,'store'])->name('user.store');
+    Route::get('/edit/{id}',[HomeController::class,'edit'])->name('user.edit');
+    Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update');
+    Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
 });

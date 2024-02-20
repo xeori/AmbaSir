@@ -11,7 +11,7 @@
     </div>
     <div class="sidebar-body">
       <ul class="nav">
-        @if(auth()->user()->role!="pengguna")
+        @if(auth()->user()->role!="karyawan")
         <li class="nav-item nav-category">Main</li>
       
         <li class="nav-item">
@@ -22,7 +22,7 @@
         </li>
         
         @endif
-        @if(auth()->user()->role!="pengguna")
+        @if(auth()->user()->role!="karyawan")
         <li class="nav-item nav-category">Users</li>
       
         <li class="nav-item">
@@ -33,7 +33,7 @@
         </li>
         
         @endif
-        @if(auth()->user()->role!="pengguna")
+        @if(auth()->user()->role != "pemilik" && auth()->user()->role != "karyawan")
         <li class="nav-item nav-category">Item</li>
         <li class="nav-item">
             <a href="{{ route('kategori') }}" class="nav-link">
@@ -42,30 +42,33 @@
             </a>
         </li>
         
-             @endif
-             @if(auth()->user()->role!="pengguna")
+             
              <li class="nav-item">
               <a href="{{ route('produk') }}" class="nav-link">
                   <i class="link-icon" data-feather="archive"></i>
                   <span class="link-title">Produk</span>
               </a>
           </li>
-          
         @endif
+        
+        @if(auth()->user()->role != "admin" && auth()->user()->role != "pemilik")
         <li class="nav-item nav-category">Kasir</li>
+       
         <li class="nav-item">
             <a href="{{ route('transaksi') }}" class="nav-link">
                 <i class="link-icon" data-feather="credit-card"></i>
                 <span class="link-title">Transaksi</span>
             </a>
         </li>
-
+        @endif
+        @if(auth()->user()->role != "admin" && auth()->user()->role != "karyawan")
         <li class="nav-item">
-          <a href="{{ route('riwayat') }}" class="nav-link">
-              <i class="link-icon" data-feather="database"></i>
-              <span class="link-title">Database</span>
-          </a>
-      </li>
+            <a href="{{ route('riwayat') }}" class="nav-link">
+                <i class="link-icon" data-feather="database"></i>
+                <span class="link-title">Database</span>
+            </a>
+        </li>
+        @endif
         
         
       

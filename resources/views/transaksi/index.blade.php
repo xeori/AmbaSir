@@ -3,6 +3,20 @@
 <div class="page-content">
 
     <nav class="page-breadcrumb">
+        <div id="alertMessage" class="alert alert-info alert-dismissible fade show" role="alert">
+            Selamat datang 
+            {{ $pengguna }}
+            di Kasir UKK
+            !!!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
+        </div>
+        <script>
+            // Menghilangkan alert setelah 5 detik
+            setTimeout(function(){
+                var alertMessage = document.getElementById('alertMessage');
+                alertMessage.remove();
+            }, 5000); // 5000 milidetik = 5 detik
+        </script>
         <ol class="breadcrumb">
             <a href="{{ route('transaksi.create') }}" class="btn btn-inverse-info ">
                 Buat Transaksi</a>

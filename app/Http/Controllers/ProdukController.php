@@ -29,9 +29,9 @@ class ProdukController extends Controller
         $data = $request->validate([
             'name'=> 'required',
             'kategori_id'=> 'required',
-            'harga'=>'required',
-            'stok'=>'required',
-            'diskon'=>'nullable', // Mengubah 'required' menjadi 'nullable'
+            'harga'=>'required|numeric|min:1',
+            'stok' => 'required|numeric|min:1',
+            'diskon'=>'nullable|min:1', // Mengubah 'required' menjadi 'nullable'
             'gambar'=>'required',
         ]);
     

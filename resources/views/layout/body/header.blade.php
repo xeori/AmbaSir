@@ -3,7 +3,13 @@
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
-       
+   
+        
+   
+           
+          
+        
+        
             <ul class="navbar-nav">
 
                 @php $id = Auth::user()->id; $profileData = App\Models\User::find($id); @endphp

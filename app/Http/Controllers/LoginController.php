@@ -31,8 +31,10 @@ class LoginController extends Controller
         if(Auth::attempt($data)) {
             if (Auth::user()->role == 'admin') {
                 return redirect('admin/layout/dashboard');
-            } elseif (Auth::user()->role == 'pengguna') {
+            } elseif (Auth::user()->role == 'karyawan') {
                 return redirect('kasir/transaksi');
+            }elseif (Auth::user()->role == 'pemilik'){
+                return redirect('admin/layout/dashboard');
             }
         } else { 
             // Jika login gagal, redirect ke halaman login dengan pesan error

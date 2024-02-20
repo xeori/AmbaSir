@@ -43,8 +43,11 @@
                         <div class="form-group">
                             <label for="role">Role:</label>
                             <select name="role" class="form-control" id="role">
-                                <option value="pengguna" {{ $user->role === 'pengguna' ? 'selected' : '' }}>Pengguna</option>
+                                @if(auth()->user()->role === 'pemilik')
+                                <option value="admin" {{ $user->role === 'pemilik' ? 'selected' : '' }}>Pemilik</option>
+                                @endif
                                 <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="pengguna" {{ $user->role === 'pengguna' ? 'selected' : '' }}>Pengguna</option>
                                 <!-- Tambahkan opsi untuk peran lain jika diperlukan -->
                             </select>
                             
