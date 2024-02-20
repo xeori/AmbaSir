@@ -3,11 +3,9 @@
 <div class="page-content">
 
     <nav class="page-breadcrumb">
+        @if (!session('alert_shown'))
         <div id="alertMessage" class="alert alert-info alert-dismissible fade show" role="alert">
-            Selamat datang 
-            {{ $pengguna }}
-            di Kasir UKK
-            !!!
+            Selamat datang {{ $pengguna }} di Kasir UKK !!!
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
         </div>
         <script>
@@ -16,7 +14,12 @@
                 var alertMessage = document.getElementById('alertMessage');
                 alertMessage.remove();
             }, 5000); // 5000 milidetik = 5 detik
+    
+            // Setel status alert_shown dalam sesi
+            <?php session(['alert_shown' => true]); ?>
         </script>
+    @endif
+    
         <ol class="breadcrumb">
             <a href="{{ route('transaksi.create') }}" class="btn btn-inverse-info ">
                 Buat Transaksi</a>

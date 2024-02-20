@@ -10,9 +10,9 @@
   <div class="card-body">
     <div class="container-fluid d-flex justify-content-between">
       <div class="col-lg-3 ps-0">
-        <a href="#" class="noble-ui-logo logo-light d-block mt-3">Kasir<span>Ukk</span></a>                 
-        <p class="mt-1 mb-1"><b>Kasir Sederhana</b></p>
-        <p>Jalan Raya Siwalan Panji,<br> Kec. Sidoarjo,<br>Jawa Timur 61252.</p>
+        <a href="#" class="noble-ui-logo logo-light d-block mt-3">Amba<span>Sir</span></a>                 
+        <p class="mt-1 mb-1"><b>Kasir Part Komputer</b></p>
+        <p>Jalan Raya Sarirogo,<br> Kec. Sidoarjo,<br>Jawa Timur 61252.</p>
         <h5 class="mt-5 mb-2 text-muted">Nama Kasir</h5>
         <p>{{ $namaKasir }}</p>
       </div>

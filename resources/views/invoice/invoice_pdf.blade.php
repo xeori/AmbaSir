@@ -166,8 +166,8 @@
                 <div class="card-body">
                     <div class="container-fluid d-flex justify-content-between">
                         <div class="col-lg-3 ps-0">
-                            <p class="mt-1 mb-1 larger-text"><b>Amba Kasir</b></p>
-                            <p class="larger-text">Jalan Raya Siwalan Panji,<br> Kec. Sidoarjo,<br>Jawa Timur 61252.</p>
+                            <p class="mt-1 mb-1 larger-text"><b>Amba Sir</b></p>
+                            <p class="larger-text">Jalan Raya Sarirogo,<br> Kec. Sidoarjo,<br>Jawa Timur 61252.</p>
                             <h5 class="mt-5 mb-2 text-muted larger-text" style="margin-bottom: 0.25rem;">Nama Kasir</h5>
                             <p class="larger-text" style="margin-top: 0.25rem;">{{ $namaKasir }}</p>
                         </div>
