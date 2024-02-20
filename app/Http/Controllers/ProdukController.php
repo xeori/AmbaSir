@@ -27,7 +27,7 @@ class ProdukController extends Controller
     public function store(Request $request ) 
     {
         $data = $request->validate([
-<<<<<<< HEAD
+
             'name'=> 'required',
             'kategori_id'=> 'required',
             'harga'=>'required|numeric|min:1',
@@ -36,17 +36,7 @@ class ProdukController extends Controller
             'gambar'=>'required',
         ]);
     
-=======
-    'name' => 'required',
-    'kategori_id' => 'required',
-    'harga' => 'required',
-    'stok' => 'required',
-    'penyanyi' => 'required', // Ubah dari 'required' menjadi 'nullable'
-    'diskon' => 'nullable',
-    'gambar' => 'required',
-]);
-        // dd($request->all());
->>>>>>> c7351167fa8d9178edbab39eb7451d0bf438d78f
+
         // Periksa apakah ada nilai diskon yang diberikan
       
         if ($request->hasFile('gambar')) {

@@ -11,6 +11,7 @@ use App\Models\PasswordResetToken;
 use Illuminate\Support\Facades\Session;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -125,7 +126,7 @@ class LoginController extends Controller
 
         ], $customMessage);
 
-        $token = \Str::random(60); // Memperbaiki pemanggilan Str::random()
+        $token = Str::random(60); // Memperbaiki pemanggilan Str::random()
 
         PasswordResetToken::updateOrCreate(
             [

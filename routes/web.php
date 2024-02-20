@@ -39,17 +39,7 @@ Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register-proses', [LoginController::class, 'register_proses'])->name('register-proses');
 
 Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'], function(){
-<<<<<<< HEAD
-=======
-    Route::get('/user',[HomeController::class,'index'])->name('index');
-    Route::get('/create',[HomeController::class,'create'])->name('user.create');
-    Route::post('/store',[HomeController::class,'store'])->name('user.store');
-    Route::get('/edit/{id}',[HomeController::class,'edit'])->name('user.edit');
-    Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update');
-    Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
 
-
->>>>>>> c7351167fa8d9178edbab39eb7451d0bf438d78f
     Route::get('/kategori',[KategoriController::class,'index'])->name('kategori');
     Route::get('/kategori/create',[KategoriController::class,'create'])->name('kategori.create');
     Route::post('/kategori/store',[KategoriController::class,'store'])->name('kategori.store');
