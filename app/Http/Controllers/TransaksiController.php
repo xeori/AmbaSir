@@ -178,6 +178,7 @@ public function print_invoice(string $id){
 
         return view('transaksi.pembayaran', compact('produk', 'p_detail', 'subtotal', 'qty', 'transaksi_detail', 'transaksi', 'kembalian'));
     }
+    
         public function edit(string $id)
     {
         

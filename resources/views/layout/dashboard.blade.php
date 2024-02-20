@@ -3,7 +3,7 @@
   <div id="alertMessage" class="alert alert-info alert-dismissible fade show" role="alert">
     Selamat datang 
     {{ $pengguna }}
-    di Kasir UKK
+    di Kasir 
     !!!
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
 </div>
@@ -130,6 +130,7 @@
         </div>
     </div>
     <!-- row -->
+<<<<<<< HEAD
 
     <div class="row">
         <div class="col-lg-7 col-xl-8 grid-margin stretch-card">
@@ -233,5 +234,7 @@
     <!-- row -->
 
 
+=======
+>>>>>>> c7351167fa8d9178edbab39eb7451d0bf438d78f
 </div>
 @endsection

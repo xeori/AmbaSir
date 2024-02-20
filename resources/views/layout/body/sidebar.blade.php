@@ -1,7 +1,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
       <a href="{{ route('dashboard') }}" class="sidebar-brand">
-        Amba<span>Sir</span>
+        Bum<span>Sir</span>
       </a>
       <div class="sidebar-toggler not-active">
         <span></span>
@@ -37,7 +37,7 @@
         <li class="nav-item nav-category">Item</li>
         <li class="nav-item">
             <a href="{{ route('kategori') }}" class="nav-link">
-                <i class="link-icon" data-feather="server"></i>
+                <i class="link-icon" data-feather="film"></i>
                 <span class="link-title">Kategori</span>
             </a>
         </li>
@@ -45,13 +45,17 @@
              
              <li class="nav-item">
               <a href="{{ route('produk') }}" class="nav-link">
-                  <i class="link-icon" data-feather="archive"></i>
+                  <i class="link-icon" data-feather="music"></i>
                   <span class="link-title">Produk</span>
               </a>
           </li>
         @endif
         
+<<<<<<< HEAD
         @if(auth()->user()->role != "admin" && auth()->user()->role != "pemilik")
+=======
+        @if(auth()->user()->role!="admin")
+>>>>>>> c7351167fa8d9178edbab39eb7451d0bf438d78f
         <li class="nav-item nav-category">Kasir</li>
        
         <li class="nav-item">
@@ -61,6 +65,7 @@
             </a>
         </li>
         @endif
+<<<<<<< HEAD
         @if(auth()->user()->role != "admin" && auth()->user()->role != "karyawan")
         <li class="nav-item">
             <a href="{{ route('riwayat') }}" class="nav-link">
@@ -70,6 +75,17 @@
         </li>
         @endif
         
+=======
+        
+        @if(auth()->user()->role!="pengguna")
+        <li class="nav-item">
+          <a href="{{ route('riwayat') }}" class="nav-link">
+              <i class="link-icon" data-feather="database"></i>
+              <span class="link-title">Database</span>
+          </a>
+      </li>
+        @endif
+>>>>>>> c7351167fa8d9178edbab39eb7451d0bf438d78f
         
       
       </ul>

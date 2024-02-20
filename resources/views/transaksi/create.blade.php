@@ -142,11 +142,17 @@
                 </tr>
                 @endforeach
               </table>
-              <div class="mt-3">
-                <a class="btn btn-inverse-info btn" href="{{ route('transaksi') }}"><i class="fas fa-file"></i> Tunda</a>
-                <a class="btn btn-inverse-info btn" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(4)]) }}"><i class="fas fa-frog"></i> Selesai</a>
-              </div>
-           
+              
+                
+                @if($kembalian >= 0)
+    <a id="btnSelesai" class="btn btn-inverse-info btn" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(4)]) }}">
+        <i class="fas fa-frog"></i> Selesai
+    </a>
+@else
+    <button class="btn btn-inverse-info btn" disabled>
+        <i class="fas fa-frog"></i> Selesai
+    </button>
+@endif
 
               <!-- <a href="transaksidetail.selesai" b class="btn btn-success"><i class="fas fa-check"></i> Selesai</a> -->
            

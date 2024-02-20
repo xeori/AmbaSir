@@ -8,6 +8,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\TransaksiDetailController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,13 +23,33 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/',[LoginController::class,'index'])->name('login');
 Route::post('/login-proses',[LoginController::class,'login_proses'])->name('login-proses');
+Route::get('/forgot_password',[LoginController::class,'forgot_password'])->name('forgot_password');
+
+Route::post('/forgot_password_act',[LoginController::class,'forgot_password_act'])->name('forgot_password_act');
+
+Route::get('/validasi_forgot_password/{token}',[LoginController::class,'validasi_forgot_password'])->name('validasi_forgot_password');
+Route::post('/validasi_forgot_password_act',[LoginController::class,'validasi_forgot_password_act'])->name('validasi_forgot_password_act');
+
+
 Route::post('/register-proses',[LoginController::class,'register_proses'])->name('register-proses');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
 
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register-proses', [LoginController::class, 'register_proses'])->name('register-proses');
 
 Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'], function(){
+<<<<<<< HEAD
+=======
+    Route::get('/user',[HomeController::class,'index'])->name('index');
+    Route::get('/create',[HomeController::class,'create'])->name('user.create');
+    Route::post('/store',[HomeController::class,'store'])->name('user.store');
+    Route::get('/edit/{id}',[HomeController::class,'edit'])->name('user.edit');
+    Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update');
+    Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
+
+
+>>>>>>> c7351167fa8d9178edbab39eb7451d0bf438d78f
     Route::get('/kategori',[KategoriController::class,'index'])->name('kategori');
     Route::get('/kategori/create',[KategoriController::class,'create'])->name('kategori.create');
     Route::post('/kategori/store',[KategoriController::class,'store'])->name('kategori.store');
@@ -53,7 +74,6 @@ Route::get('transaksi/create',[TransaksiController::class,'create'])->name('tran
 Route::post('transaksi/store',[TransaksiController::class,'store'])->name('transaksi.store');
 
 Route::get('index/{id}',[TransaksiController::class,'invoice'])->name('invoice');
-
 Route::get('transaksi/edit/{id}',[TransaksiController::class,'edit'])->name('transaksi.edit');
 Route::put('transaksi/update/{id}',[TransaksiController::class,'update'])->name('transaksi.update');
 Route::delete('transaksi/destroy/{id}',[TransaksiController::class,'destroy'])->name('transaksi.destroy');

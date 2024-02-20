@@ -20,7 +20,7 @@ theme for your project. -->
             name="keywords"
             content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-        <title>KasirUkk | Login</title>
+        <title>KasirUkk | Forgot Password</title>
 
         <style>
             .authlogin-side-wrapper {
@@ -82,8 +82,8 @@ theme for your project. -->
                                     </div>
                                     <div class="col-md-8 ps-md-0">
                                         <div class="auth-form-wrapper px-4 py-5">
-                                            <a href="#" class="noble-ui-logo logo-light d-block mb-2">Album<span>Kasir</span></a>
-                                            <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
+                                            <a href="#" class="noble-ui-logo logo-light d-block mb-2">Password<span>Baru</span></a>
+                                            <h5 class="text-muted fw-normal mb-4">Masukan Password Baru  </h5>
 
                                             @if(session('errorMessage'))
                                             <div id="alertMessage" class="alert alert-danger" role="alert">
@@ -92,49 +92,40 @@ theme for your project. -->
                                             </div>
                                             @endif
 
-                                            <form action="{{ route('login-proses') }}" class="forms-sample" method="POST">
+                                            <form action="{{ route('validasi_forgot_password_act') }}" class="forms-sample" method="POST">
                                                 @csrf
+                                                <input type="hidden" name="token" value="{{$token}}">
                                                 <div class="mb-3">
-                                                    <label for="userEmail" class="form-label">Email address</label>
-                                                    <input
-                                                        type="email"
-                                                        name="email"
-                                                        class="form-control @error('email') is-invalid @enderror"
-                                                        id="userEmail"
-                                                        placeholder="Email">
-
-                                                    @error('email')
-                                                    <span class="text-danger">{{$message}}</span>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="userPassword" class="form-label">Password</label>
+                                                    <label for="password" class="form-label">Password Baru</label>
                                                     <input
                                                         type="password"
                                                         name="password"
                                                         class="form-control @error('password') is-invalid @enderror"
-                                                        id="userPassword"
-                                                        autocomplete="current-password"
-                                                        placeholder="Password">
+                                                        id="password"
+                                                        placeholder="password">
 
                                                     @error('password')
                                                     <span class="text-danger">{{$message}}</span>
                                                     @enderror
                                                 </div>
 
+                                            
+
                                                 <div>
 
                                                     <button
                                                         type="submit"
                                                         class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                                                        Login
+                                                        Submit
+                                                     
                                                     </button>
+                                                    
                                                 </div>
-                                                <a href="{{ route('register') }}" class="d-block mt-3 text-muted">Not a user? Sign up</a>
-
-                                                <p class="mb-1">
-                                                <a href="{{ route('forgot_password') }}" class="d-block mt-3 text-muted">Forgot your password?</a>
+                                                @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
                                             </form>
                                         </div>
                                     </div>

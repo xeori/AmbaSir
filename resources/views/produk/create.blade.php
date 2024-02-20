@@ -21,10 +21,23 @@
                     <form action="{{ route('produk.store') }}" class="forms-sample" method="POST"  enctype="multipart/form-data"  enctype="multipart/form-data" >
                         @csrf
                         <div class="mb-3">
-                            <label for="exampleInputUsername1" class="form-label">Nama Produk</label>
+                            <label for="exampleInputUsername1" class="form-label">Nama Lagu</label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="exampleInputUsername1" autocomplete="off" placeholder="Produk">
                         
                         @error('name')
+                      <span class="text-danger">{{$message}}</span>    
+                       
+                        @enderror
+                    </div>
+
+                    
+                  
+
+                    <div class="mb-3">
+                            <label for="exampleInputPenyanyi" class="form-label">Nama Penyanyi</label>
+                            <input type="text" name="penyanyi" class="form-control @error('penyanyi') is-invalid @enderror" id="exampleInputUserpenyanyi1" autocomplete="off" placeholder="Penyanyi">
+                        
+                        @error('penyanyi')
                       <span class="text-danger">{{$message}}</span>    
                        
                         @enderror

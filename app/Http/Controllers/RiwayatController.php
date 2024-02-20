@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use App\Models\TransaksiDetail;
 use Dompdf\Options;
+use Carbon\Carbon;
 class RiwayatController extends Controller
 {
     public function index()
@@ -25,9 +26,28 @@ class RiwayatController extends Controller
     }
 
     public function print(Request $request)
-    {
-        // Ambil semua data transaksi detail dari database
-    $transaksiDetails = TransaksiDetail::all();
+{
+    // Ambil semua data transaksi detail dari database
+    $allTransaksiDetails = TransaksiDetail::all();
+    
+    // Dapatkan opsi yang dipilih dari formulir
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
+
+    // Parse the dates using Carbon for proper date handling
+    $startDateTime = Carbon::parse($startDate)->startOfDay();
+    $endDateTime = Carbon::parse($endDate)->endOfDay();
+
+    // Query TransaksiDetail based on the date range
+    $transaksiDetails = TransaksiDetail::whereBetween('created_at', [$startDateTime, $endDateTime])->get();
+
+    // Gunakan opsi yang dipilih untuk mengambil data tertentu dari database
+    if (!empty($selectedOptions)) {
+        $transaksiDetails = TransaksiDetail::whereIn('kolom_tersedia', $selectedOptions)->get();
+    } else {
+        // Jika tidak ada opsi yang dipilih, gunakan semua data
+        $transaksiDetails = $allTransaksiDetails;
+    }
 
     // Konfigurasi Dompdf
     $options = new Options();
@@ -47,7 +67,8 @@ class RiwayatController extends Controller
 
     // Unduh PDF
     return $dompdf->stream('laporan-pengeluaran.pdf');
-    }
+}
+
     
     
 

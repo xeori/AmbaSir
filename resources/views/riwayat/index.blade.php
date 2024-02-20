@@ -68,15 +68,5 @@
 
 </div>
 
-<script>
-    document.getElementById('printButton').addEventListener('click', function() {
-        var checkboxes = document.querySelectorAll('input[name="ambil_data[]"]:checked');
-        var selectedTransactions = [];
-        checkboxes.forEach(function(checkbox) {
-            selectedTransactions.push(checkbox.value);
-        });
-        document.getElementById('selectedTransactions').value = JSON.stringify(selectedTransactions);
-        document.getElementById('printForm').submit();
-    });
-</script>
+
 @endsection
