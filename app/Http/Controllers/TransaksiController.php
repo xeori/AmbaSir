@@ -222,6 +222,7 @@ public function print_invoice(string $id){
         // dd($data);
         $transaksi_detail = TransaksiDetail::whereTransaksiId($id)->get();
 
+
     
    
    

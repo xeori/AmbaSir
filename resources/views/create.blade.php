@@ -49,10 +49,7 @@
                     <div class="mt-3">
                         <label class="form-label" for="role">Role:</label>
                         <select name="role" class="form-control" id="role">
-                            @if(auth()->user()->role === 'pemilik')
-                                <option value="pemilik">Pemilik</option>
-                            @endif
-                            <option value="karyawan">Pengguna</option>
+                            <option value="karyawan">karyawan</option>
                             <option value="admin">Admin</option>
                             <!-- Tambahkan opsi untuk peran lain jika diperlukan -->
                         </select>

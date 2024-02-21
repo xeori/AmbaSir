@@ -1,3 +1,165 @@
+{{-- @extends('layout.body.main')
+@section('layout')
+@include('sweetalert::alert')
+<div class="page-content">
+
+  <nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Kasir</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Transaksi</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-md-6   grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Part Komputer</h6>
+          <p class="text-muted mb-3">Silahkan Memilih Part Komputer Yang Ingin Di Beli</p>
+          <div class="table-responsive">
+            <table id="dataTableExample" class="table">
+             <thead>
+    <tr>
+        <th>#</th>
+        <th>Nama Produk</th>
+        <th>Harga</th>
+        <th>Stok</th>
+        <th>Aksi</th>
+    </tr>
+</thead>
+<tbody>
+  @foreach ($produk as $pd)
+  <tr>
+      <td>{{ $loop->iteration }}</td>
+      <td>{{ $pd->name }}</td>
+      <td>{{ $pd->harga }}</td>
+      <td>{{ $pd->stok }}</td>
+      <td>
+          <form action="{{ route('transaksidetail.create') }}" method="POST">
+              @csrf
+              <input type="hidden" name="produk_id" value="{{ $pd->id }}">
+              <input type="hidden" name="produk_name" value="{{ $pd->name }}">
+              <input type="hidden" name="harga" value="{{ $pd->harga }}">
+              <input type="hidden" name="transaksi_id" value="{{ Request::segment(4) }}">
+              <input type="hidden" name="subtotal" value="{{ $subtotal }}"> 
+              <input type="hidden" id="hiddenQty" value="1">
+              <button type="submit" class="btn btn-inverse-info btn-icon-text">
+                <i class="link-icon" data-feather="chevrons-right"></i>
+            </button>
+        </form>
+          </form>
+      </td>
+  </tr>
+  @endforeach
+</tbody>
+
+              
+            </table>
+               
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Part Komputer</h6>
+          <p class="text-muted mb-3">Jika Sudah Silahkan Lanjutkan Pembayaran</p>
+          <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nama Produk</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($transaksi_detail as $tdl)
+                  <tr>
+                    <th>{{ $loop->iteration }}</th>
+                    <td>{{ $tdl->produk_name }}</td>
+                    <td>{{ $tdl->qty }}</td>
+                    <td>{{ 'Rp.'.format_rupiah ($tdl->subtotal)}}</td>
+                    <td>
+                      <a href="{{ route('transaksidetail.delete', ['id' => $tdl->id]) }}" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data?')) { document.getElementById('delete-form-{{$tdl->id}}').submit(); }">
+                         <i class="link-icon" data-feather="x"></i>
+                   </a>
+     
+                       <form id="delete-form-{{$tdl->id}}" action="{{ route('transaksidetail.delete', ['id' => $tdl->id]) }}" method="POST" style="display: none;">
+                           @csrf
+                           @method('DELETE')
+                       </form>
+                       </td>
+                  </tr>
+              @endforeach
+                </tbody>
+                   
+                
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Pembayaran</h6>
+          <form action="" method="GET">
+          <div class="form-group mb-3">
+            <label class="mb-2"  for="">Total Belanja</label>
+            <input type="number" value="{{ optional($transaksi)->total }}" disabled name="total_belanja" class="form-control">
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="mb-2" for="">Dibayarkan</label>
+            <input type="number" name="dibayarkan" value="{{ request('dibayarkan') }}" class="form-control">
+          </div>
+          @if($kembalian < 0)
+          <div class="alert alert-danger">
+              Uang tidak cukup. Harap masukkan jumlah uang yang sesuai.
+          </div>
+      @endif
+          <button type="submit" class="btn btn-inverse-warning mb-3" style="width: 100%;">Hitung</button>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Selesai</h6>
+          <div class="form-group mb-3">
+            <label class="mb-2" for="">Uang Kembalian</label>
+            <input type="number" value="{{ format_rupiah($kembalian) }}" disabled name="kembalian" class="form-control">
+        </div>
+
+        <div class="form-group mt-5">
+               
+          @if($kembalian >= 0)
+          <a id="btnSelesai" class="btn btn-inverse-info mb-3" style="width: 100%;" href="{{ route('transaksidetail.selesai', ['id' => Request::segment(4)]) }}">
+              <i class="fas fa-frog"></i> Selesai
+          </a>
+      @else
+          <button class="btn btn-inverse-info mb-3" style="width: 100%;" disabled>
+              <i class="fas fa-frog"></i> Selesai
+          </button>
+      @endif
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+@endsection --}}
 @extends('layout.body.main')
 @section('layout')
 @include('sweetalert::alert')
@@ -203,4 +365,4 @@
   
 
 
-@endsection
+@endsection 

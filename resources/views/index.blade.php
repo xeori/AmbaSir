@@ -31,6 +31,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $dt)
+                                <form action="{{route('user.delete', ['id' =>$dt->id]) }}" method="POST">
+                                    @csrf @method('DELETE')
                                 <tr>
                                     <th>{{$loop->iteration}}</th>
                                     <td>{{ $dt->name }}</td>
@@ -47,26 +49,18 @@
                                     <td><img src="{{ asset($dt->gambar) }}" alt="" style="max-width: 200px;"></td>
                                     <td>
                                         <div class="d-flex">
-                                            @if($loop->first && auth()->user()->role === 'pemilik')
-                                            <!-- Tampilkan tombol edit hanya untuk data pertama jika pengguna adalah pemilik -->
+                                           
                                             <a href="{{route('user.edit',['id' =>$dt->id]) }}" class="btn btn-inverse-warning btn-icon me-2">
                                                 <i class="link-icon" data-feather="edit"></i>
                                             </a>
-                                        @elseif(!$loop->first)
-                                            <!-- Tampilkan tombol edit untuk semua data kecuali data pertama -->
-                                            <a href="{{route('user.edit',['id' =>$dt->id]) }}" class="btn btn-inverse-warning btn-icon me-2">
-                                                <i class="link-icon" data-feather="edit"></i>
-                                            </a>
-                                        @endif
                                             
-                                            @if(auth()->user()->role === 'pemilik')
-                                                <form action="{{route('user.delete', ['id' =>$dt->id]) }}" method="POST">
-                                                    @csrf @method('DELETE')
+                                         
+                                               
                                                     <button type="submit" class="btn btn-inverse-danger btn-icon">
                                                         <i class="link-icon" data-feather="trash"></i>
                                                     </button>
                                                 </form>
-                                            @endif
+                                          
                                         </div>
                                     </td>
                                 </tr>

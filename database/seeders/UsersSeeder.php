@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
             "name"=> "petinggi",
             "email"=> "petinggi@gmail.com",
             "password"=> Hash::make("petinggi56"),
-            "role"=> "pemilik",
+            "role"=> "admin",
             "gambar"=>"images/shesh.jpg",
             ],
            

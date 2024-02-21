@@ -30,13 +30,9 @@ Route::post('/forgot_password_act',[LoginController::class,'forgot_password_act'
 Route::get('/validasi_forgot_password/{token}',[LoginController::class,'validasi_forgot_password'])->name('validasi_forgot_password');
 Route::post('/validasi_forgot_password_act',[LoginController::class,'validasi_forgot_password_act'])->name('validasi_forgot_password_act');
 
-
+Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register-proses',[LoginController::class,'register_proses'])->name('register-proses');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-
-
-Route::get('/register', [LoginController::class, 'register'])->name('register');
-Route::post('/register-proses', [LoginController::class, 'register_proses'])->name('register-proses');
 
 Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'], function(){
 
@@ -54,7 +50,18 @@ Route::group(['middleware' => ['auth', 'userAkses:admin'], 'prefix' => 'admin'],
     Route::put('/produk/update/{id}',[ProdukController::class,'update'])->name('produk.update');
     Route::delete('/produk/destroy/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
 
+    Route::get('riwayat/index',[RiwayatController::class,'index'])->name('riwayat');    
+    Route::post('/riwayat/print', [RiwayatController::class, 'print'])->name('riwayat.print');
+    Route::get('/riwayat/pdf', [RiwayatController::class, 'generatePDF'])->name('riwayat.pdf'); 
+    Route::delete('riwayat/destroy/{id}',[RiwayatController::class,'destroy'])->name('riwayat.destroy');
 
+    Route::get('/layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
+    Route::get('/user',[HomeController::class,'index'])->name('index');
+    Route::get('/create',[HomeController::class,'create'])->name('user.create');
+    Route::post('/store',[HomeController::class,'store'])->name('user.store');
+    Route::get('/edit/{id}',[HomeController::class,'edit'])->name('user.edit');
+    Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update');
+    Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
 });
 
 Route::group(['middleware' => ['auth', 'userAkses:karyawan'],'prefix' => 'kasir'], function(){
@@ -81,24 +88,4 @@ Route::delete('/transaksidetail/delete/{id}', [TransaksiDetailController::class,
 // routes/web.php
 Route::post('invoice/print/{id}', [TransaksiController::class,'print_invoice'])->name('print.invoice');
 
-});
-
-Route::group(['middleware' => ['auth', 'userAkses:pemilik'],'prefix' => 'pemilik'], function(){
-
-    
-
-    Route::get('riwayat/index',[RiwayatController::class,'index'])->name('riwayat');    
-    Route::post('/riwayat/print', [RiwayatController::class, 'print'])->name('riwayat.print');
-    Route::get('/riwayat/pdf', [RiwayatController::class, 'generatePDF'])->name('riwayat.pdf'); 
-    Route::delete('riwayat/destroy/{id}',[RiwayatController::class,'destroy'])->name('riwayat.destroy');
-
-});
-Route::group(['middleware' => ['auth', 'userAkses:pemilik,admin'],'prefix' => 'admin'], function(){
-    Route::get('/layout/dashboard',[HomeController::class,'dashboard'])->name('dashboard');
-    Route::get('/user',[HomeController::class,'index'])->name('index');
-    Route::get('/create',[HomeController::class,'create'])->name('user.create');
-    Route::post('/store',[HomeController::class,'store'])->name('user.store');
-    Route::get('/edit/{id}',[HomeController::class,'edit'])->name('user.edit');
-    Route::put('/update/{id}',[HomeController::class,'update'])->name('user.update');
-    Route::delete('/delete/{id}',[HomeController::class,'delete'])->name('user.delete');
 });

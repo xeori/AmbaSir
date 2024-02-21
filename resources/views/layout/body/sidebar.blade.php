@@ -33,7 +33,7 @@
         </li>
         
         @endif
-        @if(auth()->user()->role != "pemilik" && auth()->user()->role != "karyawan")
+        @if(auth()->user()->role!="karyawan")
         <li class="nav-item nav-category">Item</li>
         <li class="nav-item">
             <a href="{{ route('kategori') }}" class="nav-link">
@@ -52,10 +52,10 @@
         @endif
         
 
-        @if(auth()->user()->role != "admin" && auth()->user()->role != "pemilik")
+     
 
         <li class="nav-item nav-category">Kasir</li>
-       
+        @if(auth()->user()->role!="admin")
         <li class="nav-item">
             <a href="{{ route('transaksi') }}" class="nav-link">
                 <i class="link-icon" data-feather="credit-card"></i>
@@ -64,7 +64,7 @@
         </li>
         @endif
 
-        @if(auth()->user()->role != "admin" && auth()->user()->role != "karyawan")
+        @if(auth()->user()->role!="karyawan")
         <li class="nav-item">
             <a href="{{ route('riwayat') }}" class="nav-link">
                 <i class="link-icon" data-feather="database"></i>
