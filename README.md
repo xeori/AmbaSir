@@ -22,8 +22,8 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini secara lokal:
 3. Update Composer: `composer update`
 4. Generate env: `cp .env.example .env` dan `php artisan key:generate`
 4. Migrate Database: `php artisan migrate`
-5. Migrate Userseeder: 'php artisan db:seed --class=UsersSeeder'
-6. Run 'php artisan serve'
+5. Migrate Userseeder: `php artisan db:seed --class=UsersSeeder`
+6. Run `php artisan serve`
 
 ## Lisensi
 
