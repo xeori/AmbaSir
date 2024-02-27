@@ -1,6 +1,6 @@
-# AmbaSir Kasir - Part Komputer Sederhana
+# AmbaSir - Part Komputer Sederhana
 
-AmbaSir Kasir adalah proyek ujian kompetensi yang dikembangkan sebagai bagian dari ujian akhir komputer sederhana.
+AmbaSir adalah proyek ujian kompetensi yang dikembangkan sebagai bagian dari ujian akhir komputer sederhana.
 
 ## Deskripsi
 
