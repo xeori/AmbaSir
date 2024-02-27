@@ -20,7 +20,7 @@ theme for your project. -->
             name="keywords"
             content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-        <title>KasirUkk | Login</title>
+        <title>AmbaSir | Login</title>
 
         <style>
             .authlogin-side-wrapper {
@@ -82,7 +82,7 @@ theme for your project. -->
                                     </div>
                                     <div class="col-md-8 ps-md-0">
                                         <div class="auth-form-wrapper px-4 py-5">
-                                            <a href="#" class="noble-ui-logo logo-light d-block mb-2">Album<span>Kasir</span></a>
+                                            <a href="#" class="noble-ui-logo logo-light d-block mb-2">Amba<span>sir</span></a>
                                             <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
 
                                             @if(session('errorMessage'))
