@@ -20,7 +20,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini secara lokal:
 1. Clone repositori ini: `git clone https://github.com/xeori/AmbaSir.git`
 2. Masuk ke direktori proyek: `cd AmbaSir`
 3. Update Composer: `composer update`
-4. Generate env: `cp .env.example .env` and 'php artisan key:generate'
+4. Generate env: `cp .env.example .env` and `php artisan key:generate`
 4. Migrate Database: `php artisan migrate`
 5. Migrate Userseeder: 'php artisan db:seed --class=UsersSeeder'
 6. Run 'php artisan serve'
