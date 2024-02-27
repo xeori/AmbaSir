@@ -18,7 +18,7 @@ License: For each use you must have a valid license purchased only from above li
 	<meta name="author" content="NobleUI">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<title>NobleUI - HTML Bootstrap 5 Admin Dashboard Template</title>
+	<title>AmbaSir | Sign up</title>
 
   <style>
     .authlogin-side-wrapper{
@@ -67,7 +67,7 @@ License: For each use you must have a valid license purchased only from above li
                 </div>
                 <div class="col-md-8 ps-md-0">
                   <div class="auth-form-wrapper px-4 py-5">
-                    <a href="#" class="noble-ui-logo logo-light d-block mb-2">Album<span>Kasir</span></a>
+                    <a href="#" class="noble-ui-logo logo-light d-block mb-2">Amba<span>Sir</span></a>
                     <h5 class="text-muted fw-normal mb-4">Create a free account.</h5>
                     <form action="{{ route('register-proses') }}" class="forms-sample" method="POST"  enctype="multipart/form-data">
                         @csrf
