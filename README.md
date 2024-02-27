@@ -31,5 +31,5 @@ Proyek ini dilisensikan xeori.
 
 ## Kontak
 
-Jika Anda memiliki pertanyaan atau masukan, hubungi saya di [yudhaamarthatungga@gmail.com].
+Jika Anda memiliki pertanyaan atau masukan, hubungi saya di yudhaamarthatungga@gmail.com.
 
